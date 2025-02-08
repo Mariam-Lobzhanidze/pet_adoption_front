@@ -1,0 +1,14 @@
+<div class="d-flex flex-column">
+  @for(row of chunkedList ; let rowIndex = $index; track rowIndex) {
+  <ul class="list-unstyled d-flex justify-content-center m-0">
+    @for(item of row; let i = $index; track i) {
+    <li class="text-primary d-flex align-items-center">
+      @if (i % 2 !== 0) {
+      <i class="bi bi-dot mx-1"></i>
+      }
+      <span>{{ item | truncate : 14 }}</span>
+    </li>
+    }
+  </ul>
+  }
+</div>

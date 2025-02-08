@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+$primary: #563d7f;
+$secondary: #a14985;
+
+//custom variables
+$tertiary: #dc607a;
+
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "primary": $primary,
+    "secondary": $secondary,
+    "tertiary": $tertiary,
+  )
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";

@@ -1,1 +1,47 @@
-<div class="main"></div>
+<div class="_main">
+  <div class="_header"></div>
+  <div class="_content">
+    <app-card [imageUrl]="image">
+      <div class="card_body">
+        <h5 class="text-primary text-center">
+          {{ "Belle" | uppercase }}
+        </h5>
+        <app-dotted-list [listItems]="listItems"></app-dotted-list>
+      </div>
+      <div class="card_footer">
+        <a href="#" class="btn btn-light w-100"
+          >Learn more
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </app-card>
+
+    <app-card
+      [imageUrl]="
+        'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/74178832/1/?bust=1738562549&width=300'
+      "
+    >
+      <div class="card_body">
+        <h5 class="text-primary text-center">
+          {{ "Snow" | uppercase }}
+        </h5>
+      </div>
+    </app-card>
+
+    <app-card
+      [imageUrl]="
+        'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/73839167/1/?bust=1738562559&width=300'
+      "
+    >
+      <div class="card_header">Best buddy</div>
+      <div class="card_body">
+        <h5 class="text-primary text-center">
+          {{ "Junior" | uppercase }}
+        </h5>
+      </div>
+      <div class="card_footer d-flex justify-content-end">
+        <i class="bi bi-arrow-right"></i>
+      </div>
+    </app-card>
+  </div>
+</div>

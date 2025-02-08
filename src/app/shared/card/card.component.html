@@ -1,0 +1,21 @@
+<div class="card m-5">
+  <div class="card-header">
+    <ng-content select=".card_header"></ng-content>
+  </div>
+
+  <div class="img-container">
+    <img [src]="imageUrl" alt="card-image" />
+  </div>
+
+  <div class="card-body">
+    <ng-content select=".card_body"></ng-content>
+  </div>
+  <div class="card-footer">
+    <ng-content select=".card_footer"> </ng-content>
+  </div>
+</div>
+
+<!-- <a href="#" class="btn btn-light w-100"
+      >Learn more
+      <i class="bi bi-arrow-right"></i>
+    </a> -->

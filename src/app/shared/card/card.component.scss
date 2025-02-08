@@ -1,0 +1,15 @@
+@use "mixins" as m;
+
+.card {
+  @include m.card-size(220px);
+  cursor: pointer;
+
+  .img-container {
+    @include m.image-placeholder(260px);
+  }
+
+  .card-header:empty,
+  .card-footer:empty {
+    display: none;
+  }
+}
