@@ -5,7 +5,7 @@
 
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
-
+//
 $theme-colors: map-merge(
   $theme-colors,
   (
@@ -23,9 +23,16 @@ $theme-colors: map-merge(
     "btn-active-color": $btn-active-color,
     "btn-active-border-color": $btn-active-border-color,
 
+    "btn-close-color": $btn-close-color,
+    "offcanvas-color": $offcanvas-color,
+
+    "navbar-light-color": $navbar-light-color,
+    "navbar-light-hover-color": $navbar-light-hover-color,
+
     //custom ones
     "tertiary": $tertiary,
     "primaryDarken": $primaryDarken,
+    "primaryTint": $primaryTint,
   )
 );
 

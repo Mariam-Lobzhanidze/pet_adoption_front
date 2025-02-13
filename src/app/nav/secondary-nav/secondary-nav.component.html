@@ -1,38 +1,16 @@
 <nav
-  class="secondary_nav bg-primaryDarken navbar navbar-expand-lg position-absolute top-100 start-0 end-0"
+  class="bg-primaryDarken navbar navbar-expand-lg position-absolute top-100 start-0 end-0"
+  [ngClass]="{ show: isVisible }"
 >
   <div class="container container-fluid">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDarkDropdown"
-    >
-      <span class="navbar-toggler-icon d-none"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <button
-            class="btn dropdown-toggle"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Adopt or get involved
-          </button>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" routerLink="">About Adopto</a>
-            </li>
-            <li><a class="dropdown-item" routerLink="">Adopting pets</a></li>
-            <li>
-              <a class="dropdown-item" routerLink=""
-                >Animal shelters & Rescues</a
-              >
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+    <ul class="navbar-nav gap-5">
+      @for(dropdown of secondaryNavItems;track dropdown.title) {
+      <app-dropdown
+        [toggleText]="dropdown.title"
+        [items]="dropdown.items"
+      ></app-dropdown>
+
+      }
+    </ul>
   </div>
 </nav>

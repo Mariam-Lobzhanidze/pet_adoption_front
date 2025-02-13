@@ -1,0 +1,36 @@
+.dropdown {
+  &-menu {
+    transition: opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    flex-direction: column;
+  }
+
+  &-menu.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &-toggle {
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--bs-primaryTint);
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &-item {
+    font-size: 14px;
+    span {
+      transition: all 0.3s ease;
+    }
+    &:hover span {
+      color: var(--bs-primaryTint);
+    }
+  }
+}

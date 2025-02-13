@@ -1,0 +1,23 @@
+<li class="nav-item dropdown">
+  <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
+    {{ toggleText | uppercase }}
+  </button>
+
+  <ul class="dropdown-menu">
+    @for(dropdownItem of items;track dropdownItem.label) {
+    <li class="p-2">
+      <a
+        class="dropdown-item d-flex align-items-center gap-3"
+        [routerLink]="dropdownItem.route"
+      >
+        @if(dropdownItem.icon) {
+        <i class="{{ dropdownItem.icon }} fs-4"></i>
+        }
+        <span>
+          {{ dropdownItem.label }}
+        </span>
+      </a>
+    </li>
+    }
+  </ul>
+</li>

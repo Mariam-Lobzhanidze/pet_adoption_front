@@ -2,18 +2,18 @@
 
 .navbar {
   height: 80px;
-}
 
-.ph-heart {
-  transition: all 0.3s ease;
-  &:hover {
-    color: var(--bs-secondary);
+  .ph-heart {
+    transition: all 0.3s ease;
+    &:hover {
+      color: var(--bs-secondary);
+    }
   }
-}
 
-.adopto_logo {
-  width: 50%;
-  @include m.media-up(md) {
-    width: 75%;
+  .adopto_logo {
+    width: 50%;
+    @include m.media-up(md) {
+      width: 75%;
+    }
   }
 }

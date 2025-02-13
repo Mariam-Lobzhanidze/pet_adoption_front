@@ -10,11 +10,17 @@ $breakpoints: (
 $font-family-base: "Poppins", sans-serif;
 
 $primary: #6504b5;
+
+//custom ones
+$primaryDarken: #2e0152;
+$primaryTint: #c19be1;
+//
+
 $secondary: #cf0091;
 
-$dropdown-bg: #6504b5;
 $dropdown-link-color: #fff;
-$dropdown-link-hover-bg: #510391;
+$dropdown-bg: #2e0152;
+$dropdown-link-hover-bg: transparent;
 
 $btn-color: #fff;
 $btn-link-hover-color: #fff;
@@ -25,7 +31,13 @@ $btn-active-color: #fff;
 
 $btn-active-border-color: transparent;
 
+$btn-close-color: #fff;
+$offcanvas-color: #fff;
+
+$navbar-light-color: #fff;
+$navbar-light-hover-color: $primaryTint;
+
 //custom ones
 $tertiary: #ff2069;
-$primaryDarken: #510391;
 $custom-bg: #efeef1;
+//

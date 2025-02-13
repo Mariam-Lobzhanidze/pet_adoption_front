@@ -1,11 +1,17 @@
-.secondary_nav {
+@use "mixins" as m;
+
+.navbar {
+  opacity: 0;
+  transform: translateY(-30%);
   transition: all 0.3s ease;
+  display: none;
 
-  .dropdown-toggle:hover {
-    text-decoration: underline;
+  @include m.media-up(lg) {
+    display: flex;
   }
+}
 
-  .dropdown-toggle::after {
-    display: none;
-  }
+.navbar.show {
+  opacity: 1;
+  transform: translateY(0%);
 }
