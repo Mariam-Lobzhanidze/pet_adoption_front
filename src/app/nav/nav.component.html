@@ -1,0 +1,88 @@
+<nav class="navbar bg-primary p-0 position-relative">
+  <div class="container container-fluid h-100">
+    <a class="icon-link navbar-brand" routerLink="">
+      <img src="adopto_logo.png" class="adopto_logo" alt="adopto logo" />
+    </a>
+    <ul
+      class="navbar-nav d-flex flex-row align-items-center justify-content-between flex-fill h-100"
+    >
+      <li class="nav-item d-none d-lg-flex">
+        <a class="icon-link text-light fw-bold" (click)="toggleSecondaryNav()">
+          All about pets
+          <i class="ph-bold ph-caret-up"></i>
+        </a>
+      </li>
+
+      <li class="nav-item d-none d-lg-flex h-100">
+        <a
+          class="nav-link text-light d-flex align-items-center border-light border-end pe-4 border-opacity-50"
+        >
+          <i class="ph-fill ph-heart fs-2"></i>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav flex-row align-items-center">
+      @if(!isLoggedIn) {
+
+      <li class="nav-item d-none d-lg-flex ms-5">
+        <a class="nav-link text-light">
+          <app-user-avatar></app-user-avatar>
+        </a>
+      </li>
+
+      } @else {
+      <button
+        class="btn text-primary bg-light rounded fw-bold d-none d-lg-flex ms-5"
+        routerLink=""
+      >
+        Sign in
+      </button>
+      }
+      <button
+        class="shadow-none btn d-lg-none d-flex"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#pawOffcanvas"
+      >
+        <i class="ph ph-list text-light fs-2"></i>
+      </button>
+    </ul>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="pawOffcanvas">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          Some text as placeholder. In real life you can have the elements you
+          have chosen. Like, text, images, lists, etc.
+        </div>
+        <div class="dropdown mt-3">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+          >
+            Dropdown button
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="">Action</a></li>
+            <li><a class="dropdown-item" routerLink="">Another action</a></li>
+            <li>
+              <a class="dropdown-item" routerLink="">Something else here</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  @if(showSecondaryNav) {
+  <app-secondary-nav></app-secondary-nav>
+  }
+</nav>

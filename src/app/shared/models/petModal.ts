@@ -2,7 +2,7 @@ export interface PetDetails {
   name?: string;
   breed: string;
   age: string;
-  gender: Gender;
+  gender?: Gender;
   size?: Size;
   isInShelter?: boolean;
   shelterName?: string;
@@ -11,6 +11,15 @@ export interface PetDetails {
   coatLength?: CoatLengthType;
   goodWith?: GoodWith[];
   image?: string;
+  status?: 'Adopted' | 'Fostered' | 'Any';
+}
+
+export interface Shelter {
+  title: string;
+  address: string;
+  phone: string;
+  logo: string;
+  email?: string;
 }
 
 export type Care = 'House-trained' | 'Special Needs' | 'Any';

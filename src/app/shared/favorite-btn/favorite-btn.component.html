@@ -1,0 +1,13 @@
+<button
+  class="d-flex justify-content-center align-items-center border border-0 shadow position-absolute"
+  (click)="toggleFavorite()"
+  [ngStyle]="{ top: positions.top, right: positions.right }"
+>
+  @if(isFavorite) {
+
+  <i class="ph-fill ph-heart fs-2 text-primary"></i>
+  } @else {
+
+  <i class="ph ph-heart fs-2 text-primary"></i>
+  }
+</button>

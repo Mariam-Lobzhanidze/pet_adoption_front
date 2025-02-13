@@ -1,0 +1,31 @@
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+$font-family-base: "Poppins", sans-serif;
+
+$primary: #6504b5;
+$secondary: #cf0091;
+
+$dropdown-bg: #6504b5;
+$dropdown-link-color: #fff;
+$dropdown-link-hover-bg: #510391;
+
+$btn-color: #fff;
+$btn-link-hover-color: #fff;
+$btn-link-color: #fff;
+
+$btn-hover-color: #fff;
+$btn-active-color: #fff;
+
+$btn-active-border-color: transparent;
+
+//custom ones
+$tertiary: #ff2069;
+$primaryDarken: #510391;
+$custom-bg: #efeef1;

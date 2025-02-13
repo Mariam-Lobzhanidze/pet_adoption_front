@@ -1,21 +1,41 @@
+@import "variables";
+@import "mixins";
+
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
-
-$primary: #563d7f;
-$secondary: #a14985;
-
-//custom variables
-$tertiary: #dc607a;
 
 $theme-colors: map-merge(
   $theme-colors,
   (
     "primary": $primary,
     "secondary": $secondary,
+
+    "dropdown-bg": $dropdown-bg,
+    "dropdown-link-color": $dropdown-link-color,
+    "dropdown-link-hover-bg": $dropdown-link-hover-bg,
+
+    "btn-color": $btn-color,
+    "btn-link-color": $btn-link-color,
+    "btn-link-hover-color": $btn-link-hover-color,
+    "btn-hover-color": $btn-hover-color,
+    "btn-active-color": $btn-active-color,
+    "btn-active-border-color": $btn-active-border-color,
+
+    //custom ones
     "tertiary": $tertiary,
+    "primaryDarken": $primaryDarken,
   )
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  background-color: $custom-bg;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}

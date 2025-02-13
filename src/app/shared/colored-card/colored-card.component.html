@@ -1,0 +1,32 @@
+<div
+  class="card text-overlay text-light rounded-3 shadow"
+  [ngClass]="{
+    'bg-primary text-light': bgColor === 'primary',
+    'bg-light text-primary': bgColor === 'light',
+    'border border-0': showFooter,
+
+  }"
+  [ngStyle]="{
+    width: cardWidth,
+    height: cardHeight,
+    cursor: !showFooter ? 'pointer' : 'default'
+  }"
+>
+  <div
+    class="card-body d-flex flex-column gap-3 justify-content-center align-items-center text-center fs-6"
+  >
+    <ng-content select=".colored_card_icon"></ng-content>
+    <ng-content></ng-content>
+  </div>
+  @if(showFooter) {
+  <div class="card-footer text-center text-uppercase fw-bold">
+    <a
+      [routerLink]="cardLink || '/'"
+      class="text-light text-decoration-none"
+      target="_blank"
+    >
+      <ng-content select=".colored_card_footer_text"></ng-content>
+    </a>
+  </div>
+  }
+</div>

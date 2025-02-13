@@ -1,4 +1,6 @@
-@mixin image-placeholder($height) {
+@use "variables" as v;
+
+@mixin image-placeholder($height: auto) {
   height: $height;
   overflow: hidden;
 
@@ -9,7 +11,23 @@
   }
 }
 
-@mixin card-size($width, $height: auto) {
+@mixin card-size($width: auto, $height: auto) {
   width: $width;
   height: $height;
+}
+
+@mixin media-up($size) {
+  @media (min-width: map-get(v.$breakpoints, $size)) {
+    @content;
+  }
+}
+
+@mixin media-down($size) {
+  $max-width: map-get(v.$breakpoints, $size);
+
+  @if $max-width {
+    @media (max-width: #{$max-width - 1px}) {
+      @content;
+    }
+  }
 }

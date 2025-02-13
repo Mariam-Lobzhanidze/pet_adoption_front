@@ -1,0 +1,14 @@
+.card {
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  &:hover {
+    border: 2px solid var(--bs-primary);
+  }
+  &-footer {
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: var(--bs-secondary);
+      cursor: pointer;
+    }
+  }
+}
