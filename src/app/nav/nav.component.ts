@@ -10,7 +10,7 @@ import {
   DOG_ITEMS,
   OTHER_TYPE_ITEMS,
 } from '../shared/constants/dropdown-constants';
-import { DropdownComponent } from '../shared/dropdown/dropdown.component';
+import { SubMenuComponent } from './subMenu/submenu.component';
 
 @Component({
   selector: 'app-nav',
@@ -20,14 +20,16 @@ import { DropdownComponent } from '../shared/dropdown/dropdown.component';
     UserAvatarComponent,
     SecondaryNavComponent,
     SidebarComponent,
-    DropdownComponent,
+    SubMenuComponent,
   ],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
 })
 export class NavComponent {
-  public isLoggedIn: boolean = true;
+  public isLoggedIn: boolean = false;
+
   public showSecondaryNav: boolean = false;
+  public showInnerSidebar: boolean = false;
 
   public navItems: { title: string; items: DropdownItem[] }[] = [
     { title: 'Adopt or get involved', items: ADOPT_ITEMS },
@@ -35,4 +37,19 @@ export class NavComponent {
     { title: 'Cats & kittens', items: CAT_ITEMS },
     { title: 'Other types of pets', items: OTHER_TYPE_ITEMS },
   ];
+
+  public selectedSidebarData: { title: string; items: DropdownItem[] } | null =
+    null;
+
+  public onShowInnerSidebar(innerSidebarData: {
+    title: string;
+    items: DropdownItem[];
+  }): void {
+    this.selectedSidebarData = innerSidebarData;
+    this.showInnerSidebar = true;
+  }
+
+  public onCloseInnerSidebar(): void {
+    this.showInnerSidebar = false;
+  }
 }

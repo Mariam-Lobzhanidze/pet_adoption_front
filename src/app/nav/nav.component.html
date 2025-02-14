@@ -1,6 +1,6 @@
 <nav class="navbar bg-primary p-0 position-relative">
   <div class="container container-fluid h-100">
-    <a class="icon-link navbar-brand" routerLink="">
+    <a routerLink="/">
       <img src="adopto_logo.png" class="adopto_logo" alt="adopto logo" />
     </a>
     <ul
@@ -53,20 +53,6 @@
       >
         <i class="ph ph-list text-light fs-2"></i>
       </button>
-      <app-sidebar [offcanvasId]="'adoptoMobileNav'">
-        <div class="offcanvas_body">
-          <nav class="navbar">
-            <ul class="navbar-nav d-flex flex-column gap-3">
-              @for(dropdown of navItems;track dropdown.title) {
-              <li class="nav-item p-2">
-                <a class="nav-link">{{ dropdown.title }}</a>
-              </li>
-
-              }
-            </ul>
-          </nav>
-        </div>
-      </app-sidebar>
     </ul>
   </div>
   <app-secondary-nav
@@ -74,3 +60,57 @@
     [secondaryNavItems]="navItems"
   ></app-secondary-nav>
 </nav>
+
+<app-sidebar [offcanvasId]="'adoptoMobileNav'">
+  <a class="offcanvas_title" routerLink="/">
+    <img src="adopto_logo.png" class="adopto_logo" alt="adopto logo" />
+  </a>
+  <div class="offcanvas_body h-100">
+    <nav class="navbar d-flex flex-column h-100">
+      <ul class="navbar-nav d-flex flex-column w-100 flex-fill">
+        @for(dropdown of navItems;let i=$index;track dropdown.title) {
+        <li
+          class="icon-link nav-item p-2"
+          (click)="onShowInnerSidebar(dropdown)"
+        >
+          <a class="nav-link fs-5">{{ dropdown.title }}</a>
+          <i class="ph ph-caret-right"></i>
+        </li>
+
+        }
+        <div class="w-100"><hr class="divider text-light" /></div>
+        <li class="nav-item p-2 w-100">
+          <a class="nav-link fs-5">Favorites</a>
+        </li>
+      </ul>
+
+      <ul
+        class="navbar-nav d-flex flex-row justify-content-between align-items-center w-100 align-self-end"
+      >
+        @if(isLoggedIn) {
+
+        <li class="nav-item">
+          <a class="nav-link text-light">
+            <app-user-avatar></app-user-avatar>
+          </a>
+        </li>
+
+        } @else {
+        <button class="btn text-primary bg-light rounded fw-bold">
+          Sign in
+        </button>
+        }
+        <li class="nav-item p-2">
+          <span class="p-2 fs-5">En|Ka</span>
+        </li>
+      </ul>
+    </nav>
+
+    @if(showInnerSidebar) {
+    <app-submenu
+      [sidebarData]="selectedSidebarData"
+      (close)="onCloseInnerSidebar()"
+    ></app-submenu>
+    }
+  </div>
+</app-sidebar>

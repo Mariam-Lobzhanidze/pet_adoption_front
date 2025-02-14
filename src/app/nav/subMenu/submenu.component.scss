@@ -1,0 +1,12 @@
+.nav-item {
+  transition: all 0.3s ease;
+  &:hover {
+    color: var(--bs-primaryTint);
+  }
+}
+.ph-caret-left {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translate(0%, -50%);
+}

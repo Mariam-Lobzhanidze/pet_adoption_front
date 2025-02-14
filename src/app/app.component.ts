@@ -15,10 +15,10 @@ export class AppComponent {
   //   age: 'Puppy',
   //   breed: 'Labrador terrier',
   //   gender: 'Female',
-  //   size: 'Small(0-25 lbs)',
-  //   color: 'red',
-  //   coatLength: 'Short',
-  //   shelterName: 'Uganda',
+  //   // size: 'Small(0-25 lbs)',
+  //   // color: 'red',
+  //   // coatLength: 'Short',
+  //   // shelterName: 'Uganda',
   // };
   // public shelters: Shelter[] = [
   //   {

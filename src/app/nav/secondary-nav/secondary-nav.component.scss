@@ -5,6 +5,7 @@
   transform: translateY(-30%);
   transition: all 0.3s ease;
   display: none;
+  z-index: 99999;
 
   @include m.media-up(lg) {
     display: flex;

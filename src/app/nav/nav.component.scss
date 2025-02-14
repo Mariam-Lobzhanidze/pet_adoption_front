@@ -9,11 +9,11 @@
       color: var(--bs-secondary);
     }
   }
+}
 
-  .adopto_logo {
-    width: 50%;
-    @include m.media-up(md) {
-      width: 75%;
-    }
+.adopto_logo {
+  width: 50%;
+  @include m.media-up(md) {
+    width: 75%;
   }
 }

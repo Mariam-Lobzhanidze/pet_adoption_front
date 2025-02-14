@@ -1,6 +1,6 @@
 .dropdown {
   &-menu {
-    transition: opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 0.3s ease;
     display: flex;
     opacity: 0;
     visibility: hidden;
@@ -26,9 +26,11 @@
 
   &-item {
     font-size: 14px;
+
     span {
       transition: all 0.3s ease;
     }
+
     &:hover span {
       color: var(--bs-primaryTint);
     }

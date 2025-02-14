@@ -1,0 +1,13 @@
+<div class="d-flex flex-column position-fixed top-0 start-0 w-100 h-100">
+  <div
+    class="d-flex justify-content-center bg-primaryDarken p-4 position-relative"
+  >
+    <i class="ph-bold ph-caret-left fs-1" (click)="closeSidebar()"></i>
+    <h5 class="text-light">{{ sidebarData?.title }}</h5>
+  </div>
+  <ul class="navbar-nav bg-primary d-flex flex-column flex-fill">
+    @for(item of sidebarData?.items;track item.label) {
+    <li class="nav-item fs-5 p-4" (click)="closeSidebar()">{{ item.label }}</li>
+    }
+  </ul>
+</div>
