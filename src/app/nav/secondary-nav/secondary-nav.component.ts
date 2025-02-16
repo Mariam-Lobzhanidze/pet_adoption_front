@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DropdownComponent } from '../../shared/dropdown/dropdown.component';
-import { DropdownItem } from '../../shared/models/dropdown-item.model';
+import { Item } from '../../shared/models/item.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,5 +12,5 @@ import { CommonModule } from '@angular/common';
 })
 export class SecondaryNavComponent {
   @Input() isVisible: boolean = false;
-  @Input() secondaryNavItems: { title: string; items: DropdownItem[] }[] = [];
+  @Input() secondaryNavItems: { title: string; items: Item[] }[] = [];
 }

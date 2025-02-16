@@ -1,0 +1,15 @@
+<div class="container container-fluid mt-3 mt-sm-5">
+  <div style="max-height: 400px">
+    <img
+      src="home_img_1.jpg"
+      alt="girls with dog"
+      class="rounded object-fit-cover w-100 h-100"
+    />
+  </div>
+
+  <div class="cards_container">
+    @for (item of petCards; track item.label) {
+    <app-icon-card [item]="item"></app-icon-card>
+    }
+  </div>
+</div>

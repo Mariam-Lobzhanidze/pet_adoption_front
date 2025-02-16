@@ -31,3 +31,17 @@
     }
   }
 }
+
+@mixin grid($columns: 12, $gap: 16px, $breakpoints: ()) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+
+  @if length($breakpoints) > 0 {
+    @each $size, $value in $breakpoints {
+      @include media-up($size) {
+        grid-template-columns: repeat($value, 1fr);
+      }
+    }
+  }
+}

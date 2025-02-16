@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DropdownItem } from '../../shared/models/dropdown-item.model';
+import { Item } from '../../shared/models/item.model';
 
 @Component({
   selector: 'app-submenu',
@@ -9,7 +9,7 @@ import { DropdownItem } from '../../shared/models/dropdown-item.model';
   styleUrl: './submenu.component.scss',
 })
 export class SubMenuComponent {
-  @Input() sidebarData: { title: string; items: DropdownItem[] } | null = null;
+  @Input() sidebarData: { title: string; items: Item[] } | null = null;
   @Output() close = new EventEmitter<void>();
 
   public closeSidebar(): void {

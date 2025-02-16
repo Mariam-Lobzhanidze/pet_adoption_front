@@ -3,7 +3,7 @@ import { UserAvatarComponent } from '../shared/user-avatar/user-avatar.component
 import { SecondaryNavComponent } from './secondary-nav/secondary-nav.component';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
-import { DropdownItem } from '../shared/models/dropdown-item.model';
+import { Item } from '../shared/models/item.model';
 import {
   ADOPT_ITEMS,
   CAT_ITEMS,
@@ -31,19 +31,18 @@ export class NavComponent {
   public showSecondaryNav: boolean = false;
   public showInnerSidebar: boolean = false;
 
-  public navItems: { title: string; items: DropdownItem[] }[] = [
+  public navItems: { title: string; items: Item[] }[] = [
     { title: 'Adopt or get involved', items: ADOPT_ITEMS },
     { title: 'Dogs & puppies', items: DOG_ITEMS },
     { title: 'Cats & kittens', items: CAT_ITEMS },
     { title: 'Other types of pets', items: OTHER_TYPE_ITEMS },
   ];
 
-  public selectedSidebarData: { title: string; items: DropdownItem[] } | null =
-    null;
+  public selectedSidebarData: { title: string; items: Item[] } | null = null;
 
   public onShowInnerSidebar(innerSidebarData: {
     title: string;
-    items: DropdownItem[];
+    items: Item[];
   }): void {
     this.selectedSidebarData = innerSidebarData;
     this.showInnerSidebar = true;

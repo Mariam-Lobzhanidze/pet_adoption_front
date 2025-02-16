@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { NavComponent } from './nav/nav.component';
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavComponent],
+  imports: [NavComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -48,8 +49,5 @@ export class AppComponent {
   // ];
   // public get listItems(): string[] {
   //   return Object.values(this.items);
-  // }
-  // public onCardClick(value: string): void {
-  //   console.log(value);
   // }
 }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DropdownItem } from '../models/dropdown-item.model';
+import { Item } from '../models/item.model';
 import { UpperCasePipe } from '@angular/common';
 
 @Component({
@@ -12,5 +12,5 @@ import { UpperCasePipe } from '@angular/common';
 })
 export class DropdownComponent {
   @Input({ required: true }) toggleText!: string;
-  @Input() items: DropdownItem[] = [];
+  @Input() items: Item[] = [];
 }
