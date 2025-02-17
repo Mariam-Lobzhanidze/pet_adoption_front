@@ -12,6 +12,7 @@ $theme-colors: map-merge(
   (
     "primary": $primary,
     "secondary": $secondary,
+    "primaryLight": $primaryLight,
 
     "dropdown-bg": $dropdown-bg,
     "dropdown-link-color": $dropdown-link-color,
@@ -47,3 +48,6 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
