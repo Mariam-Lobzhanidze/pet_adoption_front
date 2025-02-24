@@ -1,7 +1,8 @@
 .nav-item {
   transition: all 0.3s ease;
+  color: var(--bs-light);
   &:hover {
-    color: var(--bs-primaryTint);
+    color: var(--bs-secondary);
   }
 }
 .ph-caret-left {

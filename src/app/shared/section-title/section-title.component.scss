@@ -1,0 +1,24 @@
+@use "mixins" as m;
+
+.adopto-section-title {
+  color: var(--bs-secondary);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  cursor: pointer;
+  font-size: 18px;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  @include m.media-up(sm) {
+    font-size: 30px;
+    margin-bottom: 42px;
+  }
+
+  &:hover {
+    color: var(--bs-primary);
+  }
+}

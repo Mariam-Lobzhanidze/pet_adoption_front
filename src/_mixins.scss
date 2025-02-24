@@ -1,21 +1,5 @@
 @use "variables" as v;
 
-@mixin image-placeholder($height: auto) {
-  height: $height;
-  overflow: hidden;
-
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-@mixin card-size($width: auto, $height: auto) {
-  width: $width;
-  height: $height;
-}
-
 @mixin media-up($size) {
   @media (min-width: map-get(v.$breakpoints, $size)) {
     @content;

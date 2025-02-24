@@ -1,29 +1,67 @@
-<div class="home container container-fluid">
-  <div class="section">
+<div class="adopto-home container container-fluid">
+  <div class="adopto-section">
     <app-search
       [suggestions]="petBreeds"
       placeholderText="Search Terrier,Bengal,etc. "
     ></app-search>
   </div>
 
-  <div class="hero section">
-    <img
-      src="home_img_5.jpg"
-      alt="girls with dog"
-      class="rounded object-fit-cover w-100 h-100"
-    />
+  <div class="adopto-hero adopto-section">
+    <ng-container
+      *ngTemplateOutlet="heroImage; context: { $implicit: 'home_img_5.jpg' }"
+    ></ng-container>
 
-    <div class="hero_cards">
+    <div class="adopto-icon-cards">
       @for (item of petCards; track item.label) {
       <app-icon-card [item]="item"></app-icon-card>
       }
     </div>
 
-    <img
-      src="home_img_9.jpg"
-      alt="girls with dog"
-      class="rounded object-fit-cover w-100 h-100 d-lg-flex d-none"
-    />
+    <ng-container
+      *ngTemplateOutlet="heroImage; context: { $implicit: 'home_img_9.jpg' }"
+    ></ng-container>
   </div>
-  <div class="section">asadasdad</div>
+
+  <div class="adopto-section">
+    <app-section-title
+      title="Pets available for adoption"
+      routerLink="/"
+      icon="ph-caret-right"
+    ></app-section-title>
+
+    <div class="adopto-card-list">
+      @if (petService.loading()){ @for(item of placeholders;let i=$index;track i
+      ) {
+      <app-card [loading]="true"></app-card>
+
+      } } @else { @for (item of petCardData | async;let i=$index; track i) {
+      <app-card [item]="item" [loading]="false"></app-card>
+      } } @if(!petService.loading()) {
+      <app-see-more-card [totalAmount]="totalPetsCount"></app-see-more-card>
+      }
+    </div>
+  </div>
+
+  <div class="adopto-section">
+    <app-section-title title="Got Love? Give Love."></app-section-title>
+    <app-pet-stories></app-pet-stories>
+  </div>
 </div>
+
+<ng-template #heroImage let-imageSrc>
+  <div
+    [ngClass]="{ 'bg-primary placeholder-wave': !imageLoaded[imageSrc] }"
+    class="adopto-hero-image rounded overflow-hidden d-flex justify-content-center align-items-center position-relative"
+  >
+    <img
+      [src]="imageSrc"
+      alt="girls with dog"
+      class="object-fit-cover w-100 h-100 img-fluid"
+      (load)="imageLoaded[imageSrc] = true"
+      [style.display]="imageLoaded[imageSrc] ? 'block' : 'none'"
+    />
+    @if(!imageLoaded[imageSrc]) {
+    <i class="display-3 text-light ph-thin ph-paw-print position-absolute"></i>
+    }
+  </div>
+</ng-template>

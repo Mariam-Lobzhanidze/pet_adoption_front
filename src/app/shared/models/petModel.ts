@@ -1,4 +1,5 @@
 export interface PetDetails {
+  id: number;
   name?: string;
   breed: string;
   age: string;
@@ -12,6 +13,7 @@ export interface PetDetails {
   goodWith?: GoodWith[];
   image?: string;
   status?: 'Adopted' | 'Fostered' | 'Any';
+  type?: string;
 }
 
 export interface Shelter {

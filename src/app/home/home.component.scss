@@ -1,17 +1,13 @@
 @use "mixins" as m;
 
-.home {
+.adopto-home {
   margin-top: 20px;
 
   @include m.media-up(sm) {
-    margin-top: 50px;
+    margin-top: 40px;
   }
 
-  .section {
-    margin-bottom: 36px;
-  }
-
-  .hero {
+  .adopto-hero {
     @include m.grid(
       1,
       16px,
@@ -20,8 +16,27 @@
       )
     );
 
-    &_cards {
+    .adopto-hero-image {
+      min-height: 300px;
+      @include m.media-up(sm) {
+        min-height: 430px;
+      }
+    }
+
+    .adopto-icon-cards {
       @include m.grid(2, 16px);
     }
+  }
+
+  .adopto-card-list {
+    @include m.grid(
+      2,
+      16px,
+      (
+        md: 3,
+        lg: 4,
+        xl: 5,
+      )
+    );
   }
 }

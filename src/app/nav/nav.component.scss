@@ -9,9 +9,19 @@
       color: var(--bs-secondary);
     }
   }
+
+  li,
+  .nav-link {
+    color: var(--bs-light);
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--bs-secondary);
+    }
+  }
 }
 
-.adopto_logo {
+.adopto-logo {
   width: 50%;
   @include m.media-up(md) {
     width: 75%;

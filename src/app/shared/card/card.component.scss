@@ -1,23 +1,19 @@
 @use "mixins" as m;
 
 .card {
-  @include m.card-size();
-
   cursor: pointer;
   border: 1px solid transparent;
   transition: all 0.3s ease;
 
   &:hover {
-    border: 1px solid var(--bs-primary);
+    border: 1px solid var(--bs-primaryDarken);
   }
 
-  .img_container {
-    @include m.image-placeholder();
-  }
+  .card-img-top {
+    height: 250px;
 
-  .card-header:empty,
-  .card-footer:empty,
-  .card-body:empty {
-    display: none;
+    @include m.media-down(sm) {
+      height: 200px;
+    }
   }
 }

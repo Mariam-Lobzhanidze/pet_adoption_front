@@ -9,36 +9,21 @@ $breakpoints: (
 
 $font-family-base: "Poppins", sans-serif;
 
-$primary: #6504b5;
+$primary: #382f60;
+$secondary: #a45fbe;
+$secondaryLight: #4b81ab;
+$tertiary: #485188;
 
-//custom ones
-$primaryDarken: #2e0152;
-$primaryTint: #c19be1;
-$primaryLight: #e0cdf0;
-//
+// $primary: #1f3a52;
+// $secondary: #41a186;
+// $secondaryLight: #8cca6e;
+// $tertiary: #d3f689;
 
-$secondary: #cf0091;
+$primaryDarken: darken($primary, 10%);
+$primaryLight: lighten($primary, 55%);
 
+$custom-bg: #f8f9fa;
+
+$dropdown-bg: $primaryDarken;
 $dropdown-link-color: #fff;
-$dropdown-bg: #2e0152;
 $dropdown-link-hover-bg: transparent;
-
-$btn-color: #fff;
-$btn-link-hover-color: #fff;
-$btn-link-color: #fff;
-
-$btn-hover-color: #fff;
-$btn-active-color: #fff;
-
-$btn-active-border-color: transparent;
-
-$btn-close-color: #fff;
-$offcanvas-color: #fff;
-
-$navbar-light-color: #fff;
-$navbar-light-hover-color: $primaryTint;
-
-//custom ones
-$tertiary: #ff2069;
-$custom-bg: #efeef1;
-//

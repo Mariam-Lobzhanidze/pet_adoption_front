@@ -1,7 +1,7 @@
 @use "mixins" as m;
 
 .card {
-  .img_container {
+  .adopto-img-container {
     @include m.image-placeholder(144px);
   }
 }

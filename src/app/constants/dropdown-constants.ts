@@ -1,4 +1,4 @@
-import { Item } from '../models/item.model';
+import { Item } from '../shared/models/item.model';
 
 export const ADOPT_ITEMS: Item[] = [
   { label: 'About Adopto', route: '' },

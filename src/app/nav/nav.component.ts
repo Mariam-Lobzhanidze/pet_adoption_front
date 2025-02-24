@@ -9,7 +9,7 @@ import {
   CAT_ITEMS,
   DOG_ITEMS,
   OTHER_TYPE_ITEMS,
-} from '../shared/constants/dropdown-constants';
+} from '../constants/dropdown-constants';
 import { SubMenuComponent } from './subMenu/submenu.component';
 
 @Component({

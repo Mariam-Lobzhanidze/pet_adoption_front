@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './icon-card.component.html',
-  styleUrl: './icon-card.component.scss',
+  styleUrls: ['./icon-card.component.scss'],
 })
 export class IconCardComponent {
   @Input({ required: true }) item!: Item;
 
   constructor(private router: Router) {}
 
-  public onSelectCard(item: Item): void {
+  public onSelectCard(): void {
     if (this.item.route) {
       this.router.navigate([this.item.route]);
     }

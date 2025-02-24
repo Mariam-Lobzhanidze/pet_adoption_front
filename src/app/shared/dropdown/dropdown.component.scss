@@ -14,9 +14,11 @@
 
   &-toggle {
     transition: all 0.3s ease;
+    color: var(--bs-light);
 
     &:hover {
-      color: var(--bs-primaryTint);
+      // color: var(--bs-primaryLight);
+      color: var(--bs-secondary);
     }
 
     &::after {
@@ -32,7 +34,8 @@
     }
 
     &:hover span {
-      color: var(--bs-primaryTint);
+      // color: var(--bs-primaryLight);
+      color: var(--bs-secondary);
     }
   }
 }

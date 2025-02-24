@@ -1,11 +1,27 @@
 .card {
   cursor: pointer;
-  color: var(--bs-primary);
   background-color: var(--bs-light);
   transition: all 0.3s ease;
 
+  &-body {
+    i {
+      color: var(--bs-primary);
+      transition: all 0.3s ease;
+    }
+    p {
+      color: var(--bs-dark);
+      transition: all 0.3s ease;
+    }
+  }
+
   &:hover {
     background-color: var(--bs-primary);
-    color: var(--bs-light);
+
+    .card-body {
+      i,
+      p {
+        color: var(--bs-light);
+      }
+    }
   }
 }

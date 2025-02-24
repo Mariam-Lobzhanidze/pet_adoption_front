@@ -1,19 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { PetDetails } from '../models/petModel';
 import { FavoriteBtnComponent } from '../favorite-btn/favorite-btn.component';
-import { CardPlaceholderComponent } from '../placeholders/card-placeholder.component';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule, FavoriteBtnComponent, CardPlaceholderComponent],
+  imports: [CommonModule, FavoriteBtnComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  public isFavorite = false;
-  @Input() imageUrl: string = '';
+  @Input() loading: boolean = true;
+  public imageLoaded: boolean = false;
+  @Input() item: Partial<PetDetails> = {};
 
-  @Input() cardWidth: string = '220px';
-  @Input() imageHeight: string = '260px';
+  public isFavorite: boolean = false;
+
+  public updateFavoriteStatus(newStatus: boolean): void {
+    this.isFavorite = newStatus;
+
+    console.log(`card with id ${this.item.id} changed to ${this.isFavorite}`);
+  }
 }

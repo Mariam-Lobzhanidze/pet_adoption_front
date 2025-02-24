@@ -1,78 +1,9 @@
-<div class="app_main_wrapper">
-  <div class="app_nav">
+<div class="adopto-main-wrapper">
+  <div class="adopto-nav">
     <app-nav> </app-nav>
   </div>
 
-  <div class="app_dynamic_content">
+  <div class="adopto-dynamic-content">
     <app-home></app-home>
   </div>
 </div>
-
-<!-- <div class="_content">
-  <div class="d-flex gap-5 flex-wrap m-5">
-    <app-card [imageUrl]="image">
-      <div class="card_body">
-        <h5 class="text-center">
-          {{ "Belle" | uppercase }}
-        </h5>
-        <app-dotted-list [listItems]="listItems"></app-dotted-list>
-      </div>
-    </app-card>
-
-    <app-card
-      [imageUrl]="
-        'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/74178832/1/?bust=1738562549&width=300'
-      "
-    >
-      <div class="card_body">
-        <h5 class="text-center">
-          {{ "Snow" | uppercase }}
-        </h5>
-      </div>
-    </app-card>
-
-    <app-card
-      [imageUrl]="
-        'https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/74178829/1/?bust=1738562564&width=280'
-      "
-    >
-      <div class="card_body">
-        <h5 class="text-center">
-          {{ "Junior" | uppercase }}
-        </h5>
-      </div>
-    </app-card>
-  </div>
-
-  <div class="d-flex gap-5 flex-wrap m-5">
-    @for(item of [{name: 'Dogs',icon: 'ph-dog'},{name: 'Cats',icon:
-    'ph-cat'},{name: 'Other animals',icon: 'ph-paw-print'},{name:
-    'Shelters&Rescues',icon: 'ph-house-line'}];let i=$index;track item.name) {
-    <app-colored-card
-      (click)="onCardClick(item.name)"
-      cardLink=""
-      [showFooter]="false"
-      cardWidth="180px"
-      cardHeight="180px"
-      [bgColor]="'light'"
-    >
-      <i class="ph-thin {{ item.icon }} display-1 colored_card_icon"></i>
-      <p>{{ item.name }}</p>
-      <div class="colored_card_footer_text">Meet them</div>
-    </app-colored-card>
-    }
-
-    <app-colored-card cardLink="">
-      <i class="ph-thin ph-cat display-1 colored_card_icon"></i>
-      <p>4 more cats available on Petfinder</p>
-      <div class="colored_card_footer_text">Meet Pets</div>
-    </app-colored-card>
-  </div>
-</div> -->
-
-<!-- @for(shelter of shelters;track shelter.title) {
-  <div class="d-flex flex-row flex-wrap gap-2">
-    <app-shelter-card [shelter]="shelter"></app-shelter-card>
-  </div>
-
-  } -->

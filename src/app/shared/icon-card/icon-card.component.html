@@ -1,8 +1,12 @@
-<div class="card rounded-3 shadow h-100" (click)="onSelectCard(item)">
+<div
+  class="card rounded-3 shadow h-100 overflow-hidden"
+  (click)="onSelectCard()"
+>
   <div
     class="card-body d-flex flex-column gap-3 justify-content-center align-items-center fs-6"
   >
-    <i class="ph-thin {{ item.icon }} display-1 colored_card_icon"></i>
+    <i class="ph-thin {{ item.icon }} display-1"></i>
+
     <p>{{ item.label }}</p>
   </div>
 </div>

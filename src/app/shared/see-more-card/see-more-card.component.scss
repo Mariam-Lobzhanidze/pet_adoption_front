@@ -1,0 +1,26 @@
+@use "mixins" as m;
+
+.card {
+  cursor: pointer;
+  .card-footer {
+    transition: all 0.3s ease;
+  }
+
+  &:hover .card-footer {
+    background-color: var(--bs-primaryDarken);
+  }
+
+  &-body {
+    height: 250px;
+    @include m.media-down(sm) {
+      height: 200px;
+    }
+    span {
+      font-size: 14px;
+
+      @include m.media-down(sm) {
+        font-size: 13px;
+      }
+    }
+  }
+}

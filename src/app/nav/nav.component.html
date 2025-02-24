@@ -1,12 +1,12 @@
 <nav class="navbar bg-primary p-0 position-relative">
   <div class="container container-fluid h-100">
     <a routerLink="/">
-      <img src="adopto_logo.png" class="adopto_logo" alt="adopto logo" />
+      <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
     </a>
     <ul
-      class="navbar-nav d-flex flex-row align-items-center justify-content-between flex-fill h-100"
+      class="navbar-nav d-lg-flex d-none flex-row align-items-center justify-content-between flex-fill h-100"
     >
-      <li class="nav-item d-none d-lg-flex">
+      <li class="nav-item d-flex">
         <a
           class="icon-link text-light fw-bold"
           (click)="this.showSecondaryNav = !this.showSecondaryNav"
@@ -19,12 +19,11 @@
         </a>
       </li>
 
-      <li class="nav-item d-none d-lg-flex h-100">
+      <li class="nav-item d-flex h-100">
         <a
           class="icon-link text-light fw-bold border-light border-end pe-4 border-opacity-50"
         >
           <i class="ph-fill ph-heart fs-3"></i>
-          <!-- Favorites -->
         </a>
       </li>
     </ul>
@@ -40,7 +39,7 @@
 
       } @else {
       <button
-        class="btn text-primary bg-light rounded fw-bold d-none d-lg-flex ms-5"
+        class="btn text-light bg-secondary rounded fw-bold d-none d-lg-flex ms-5"
       >
         Sign in
       </button>
@@ -55,15 +54,18 @@
       </button>
     </ul>
   </div>
+  @if(showSecondaryNav){
   <app-secondary-nav
     [isVisible]="showSecondaryNav"
     [secondaryNavItems]="navItems"
   ></app-secondary-nav>
+
+  }
 </nav>
 
 <app-sidebar [offcanvasId]="'adoptoMobileNav'">
   <a class="offcanvas_title" routerLink="/">
-    <img src="adopto_logo.png" class="adopto_logo" alt="adopto logo" />
+    <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
   </a>
   <div class="offcanvas_body h-100">
     <nav class="navbar d-flex flex-column h-100">
@@ -96,7 +98,7 @@
         </li>
 
         } @else {
-        <button class="btn text-primary bg-light rounded fw-bold">
+        <button class="btn text-light bg-secondary rounded fw-bold">
           Sign in
         </button>
         }
