@@ -54,13 +54,11 @@
       </button>
     </ul>
   </div>
-  @if(showSecondaryNav){
+
   <app-secondary-nav
     [isVisible]="showSecondaryNav"
     [secondaryNavItems]="navItems"
   ></app-secondary-nav>
-
-  }
 </nav>
 
 <app-sidebar [offcanvasId]="'adoptoMobileNav'">

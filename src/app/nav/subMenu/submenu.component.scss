@@ -10,4 +10,9 @@
   top: 50%;
   left: 16px;
   transform: translate(0%, -50%);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--bs-secondary);
+  }
 }

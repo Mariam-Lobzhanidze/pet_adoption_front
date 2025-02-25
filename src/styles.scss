@@ -10,17 +10,13 @@
 $theme-colors: map-merge(
   $theme-colors,
   (
-    "primary": $primary,
     "primaryDarken": $primaryDarken,
     "primaryLight": $primaryLight,
 
-    "secondary": $secondary,
     "secondaryLight": $secondaryLight,
 
     "tertiary": $tertiary,
     "custom-bg": $custom-bg,
-    "dropdown-bg": $dropdown-bg,
-    "dropdown-link-color": $dropdown-link-color,
   )
 );
 
@@ -40,5 +36,14 @@ a {
 
   @include media-down(sm) {
     margin-bottom: 30px;
+  }
+}
+
+.nav-item .nav-link {
+  color: var(--bs-light);
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--bs-secondary);
   }
 }

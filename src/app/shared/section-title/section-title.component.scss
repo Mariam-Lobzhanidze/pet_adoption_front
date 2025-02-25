@@ -8,7 +8,6 @@
   display: flex;
   align-items: center;
   column-gap: 16px;
-  cursor: pointer;
   font-size: 18px;
   justify-content: center;
   transition: all 0.3s ease;
@@ -17,8 +16,16 @@
     font-size: 30px;
     margin-bottom: 42px;
   }
+}
+
+.clickable {
+  cursor: pointer;
 
   &:hover {
     color: var(--bs-primary);
   }
+}
+
+.non-clickable {
+  cursor: default;
 }

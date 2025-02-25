@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { SectionTitleComponent } from '../shared/section-title/section-title.component';
 import { SeeMoreCardComponent } from '../shared/see-more-card/see-more-card.component';
-import { PetStoriesComponent } from '../stories/pet-stories/pet-stories.component';
+import { PetStoriesCarouselComponent } from '../shared/pet-stories-carousel/pet-stories-carousel.component';
+import { PET_STORIES } from '../constants/pet-stories';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ import { PetStoriesComponent } from '../stories/pet-stories/pet-stories.componen
     CommonModule,
     SectionTitleComponent,
     SeeMoreCardComponent,
-    PetStoriesComponent,
+    PetStoriesCarouselComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -39,6 +40,13 @@ export class HomeComponent implements OnInit {
   public totalPetsCount = 100;
 
   public petCardData!: Observable<PetDetails[]>;
+
+  public petStories: {
+    image: string;
+    petName: string;
+    owner: string;
+    description: string;
+  }[] = PET_STORIES;
 
   constructor(public petService: PetForAdoptionService) {}
 

@@ -1,0 +1,24 @@
+@use "mixins" as m;
+
+.adopto-story-image {
+  width: 100%;
+  height: 300px;
+
+  @include m.media-up(lg) {
+    width: 40%;
+  }
+}
+
+.ph-caret-left,
+.ph-caret-right {
+  color: var(--bs-primary);
+  background-color: var(--bs-light);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+  &:hover {
+    color: var(--bs-light);
+    background-color: var(--bs-primary);
+  }
+}

@@ -12,5 +12,5 @@ import { UpperCasePipe } from '@angular/common';
 })
 export class DropdownComponent {
   @Input({ required: true }) toggleText!: string;
-  @Input() items: Item[] = [];
+  @Input({ required: true }) items: Item[] = [];
 }

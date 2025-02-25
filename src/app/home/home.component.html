@@ -43,8 +43,11 @@
   </div>
 
   <div class="adopto-section">
-    <app-section-title title="Got Love? Give Love."></app-section-title>
-    <app-pet-stories></app-pet-stories>
+    <app-section-title title="Real-life Love Stories"></app-section-title>
+    <app-pet-stories-carousel
+      [petStories]="petStories"
+      displayMode="both"
+    ></app-pet-stories-carousel>
   </div>
 </div>
 

@@ -9,21 +9,28 @@ $breakpoints: (
 
 $font-family-base: "Poppins", sans-serif;
 
-$primary: #382f60;
-$secondary: #a45fbe;
-$secondaryLight: #4b81ab;
-$tertiary: #485188;
+$primary: #1f3a52;
+$secondary: #41a186;
 
-// $primary: #1f3a52;
-// $secondary: #41a186;
-// $secondaryLight: #8cca6e;
-// $tertiary: #d3f689;
-
+//custom ones
 $primaryDarken: darken($primary, 10%);
 $primaryLight: lighten($primary, 55%);
-
+$secondaryLight: #8cca6e;
+$tertiary: #d3f689;
 $custom-bg: #f8f9fa;
+//
 
 $dropdown-bg: $primaryDarken;
 $dropdown-link-color: #fff;
 $dropdown-link-hover-bg: transparent;
+
+$accordion-color: #fff;
+$accordion-bg: $primary;
+$accordion-border-width: 0;
+
+$accordion-button-bg: transparent;
+$accordion-button-color: #fff;
+$accordion-button-active-bg: transparent;
+$accordion-button-active-color: $secondary;
+$accordion-icon-color: #fff;
+$accordion-icon-active-color: #fff;
