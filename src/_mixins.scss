@@ -29,3 +29,44 @@
     }
   }
 }
+
+@mixin responsive-font($mobile, $tablet, $desktop) {
+  font-size: $mobile;
+
+  @include media-up(md) {
+    font-size: $tablet;
+  }
+
+  @include media-up(lg) {
+    font-size: $desktop;
+  }
+}
+
+@mixin responsive-margin-bottom($mobile, $tablet, $desktop) {
+  margin-bottom: $mobile;
+
+  @include media-up(md) {
+    margin-bottom: $tablet;
+  }
+
+  @include media-up(lg) {
+    margin-bottom: $desktop;
+  }
+}
+
+//avatar
+
+@mixin responsive-size($mobile, $tablet, $desktop) {
+  width: $mobile;
+  height: $mobile;
+
+  @include media-up(md) {
+    width: $tablet;
+    height: $tablet;
+  }
+
+  @include media-up(lg) {
+    width: $desktop;
+    height: $desktop;
+  }
+}

@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
-import { DOG_ITEMS } from '../constants/dropdown-constants';
-import { Item } from '../shared/models/item.model';
+import { JoinUsCardComponent } from '../shared/join-us-card/join-us-card.component';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [],
+  imports: [JoinUsCardComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })
-export class FooterComponent {
-  public items: Item[] = DOG_ITEMS;
-}
+export class FooterComponent {}

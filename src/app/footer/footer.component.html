@@ -1,109 +1,147 @@
-<footer
-  class="bg-primary container container-fluid d-flex flex-column align-items-center gap-5 bg-primary p-5"
->
-  <a routerLink="/">
-    <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
-  </a>
-  <div class="accordion w-100 d-flex flex-column gap-2" id="adoptoAccordion">
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button
-          class="accordion-button"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseOne"
-        >
-          Adopt or get involved
-        </button>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show">
-        <div class="accordion-body">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Who we are</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Love stories</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink=""
-                >Animal shelters & rescues</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button
-          class="accordion-button rounded"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseTwo"
-        >
-          About cats and kittens
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse show">
-        <div class="accordion-body">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Find a cat</a>
-            </li>
+<footer class="bg-primary">
+  <div
+    class="py-4 px-3 container container-fluid d-flex flex-column align-items-center gap-5"
+  >
+    <a routerLink="/">
+      <img src="adopto_logo.png" class="adopto-logo" alt="Adopto logo" />
+    </a>
 
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Cat breeds</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Feeding your cat</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Cat health</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Cat Adoption</a>
-            </li>
-          </ul>
+    <nav class="w-100 d-flex flex-column-reverse flex-lg-row gap-5">
+      <div class="accordion d-lg-flex gap-3 w-100" id="adoptoAccordion">
+        <div class="accordion-item">
+          <h6 class="accordion-header">
+            <button
+              class="accordion-button fw-bold text-uppercase"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="false"
+              aria-controls="collapseOne"
+            >
+              Adopt or get involved
+            </button>
+          </h6>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingOne"
+          >
+            <div class="accordion-body">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Who we are</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Love stories</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" routerLink=""
+                    >Animal shelters & rescues</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button
-          class="accordion-button rounded"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseThree"
-        >
-          About dogs and puppies
-        </button>
-      </h2>
-      <div id="collapseThree" class="accordion-collapse collapse show">
-        <div class="accordion-body">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Find a dog</a>
-            </li>
 
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Dog breeds</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Feeding your dog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Dog health</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="">Dog Adoption</a>
-            </li>
-          </ul>
+        <div class="accordion-item">
+          <h6 class="accordion-header">
+            <button
+              class="accordion-button fw-bold text-uppercase"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              About cats and kittens
+            </button>
+          </h6>
+          <div
+            id="collapseTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingTwo"
+          >
+            <div class="accordion-body">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Find a cat</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Cat breeds</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Feeding your cat</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Cat health</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Cat Adoption</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h6 class="accordion-header">
+            <button
+              class="accordion-button fw-bold text-uppercase"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+            >
+              About dogs and puppies
+            </button>
+          </h6>
+          <div
+            id="collapseThree"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingThree"
+          >
+            <div class="accordion-body">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Find a dog</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Dog breeds</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Feeding your dog</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Dog health</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="">Dog Adoption</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
+      <app-join-us-card
+        message="
+        Ready to make a difference? Join us to help pets find their forever homes.
+        "
+        buttonText="Get started"
+        routePath="/"
+      ></app-join-us-card>
+    </nav>
+  </div>
+
+  <div class="bg-primaryDarken p-4 text-center">
+    <small class="text-light">
+      © 2025 Adopto.com <br />
+      Proudly supporting animal welfare initiatives.
+    </small>
   </div>
 </footer>

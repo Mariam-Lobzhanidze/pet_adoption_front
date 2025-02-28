@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../shared/models/item.model';
-import { PET_TYPE_CARDS_ITEMS } from '../constants/dropdown-constants';
 import { IconCardComponent } from '../shared/icon-card/icon-card.component';
 import { SearchComponent } from '../shared/search/search.component';
 import { ALL_BREEDS } from '../constants/breeds-constants';
@@ -13,6 +12,7 @@ import { SectionTitleComponent } from '../shared/section-title/section-title.com
 import { SeeMoreCardComponent } from '../shared/see-more-card/see-more-card.component';
 import { PetStoriesCarouselComponent } from '../shared/pet-stories-carousel/pet-stories-carousel.component';
 import { PET_STORIES } from '../constants/pet-stories';
+import { ICON_CARDS_ITEMS } from '../constants/dropdown-constants';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +30,8 @@ import { PET_STORIES } from '../constants/pet-stories';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  public petCards: Item[] = PET_TYPE_CARDS_ITEMS;
   public petBreeds: string[] = ALL_BREEDS;
+  public petCards: Item[] = ICON_CARDS_ITEMS;
 
   public imageLoaded: Record<string, boolean> = {};
 

@@ -1,16 +1,10 @@
-.nav-item {
-  transition: all 0.3s ease;
-  color: var(--bs-light);
-  &:hover {
-    color: var(--bs-secondary);
-  }
-}
 .ph-caret-left {
   position: absolute;
   top: 50%;
   left: 16px;
   transform: translate(0%, -50%);
-  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--bs-light);
 
   &:hover {
     color: var(--bs-secondary);

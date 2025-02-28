@@ -12,32 +12,58 @@ $theme-colors: map-merge(
   (
     "primaryDarken": $primaryDarken,
     "primaryLight": $primaryLight,
-
     "secondaryLight": $secondaryLight,
-
+    "secondaryDarken": $secondaryDarken,
     "tertiary": $tertiary,
-    "custom-bg": $custom-bg,
+    "adoptoBody": $adoptoBody,
   )
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 body {
-  background-color: $custom-bg;
+  background-color: $adoptoBody;
+}
+
+p,
+h6 {
+  margin: 0;
 }
 
 a {
-  cursor: pointer;
   text-decoration: none;
+  cursor: pointer;
+}
+
+//font sizes and margins
+
+h4 {
+  @include responsive-font(18px, 20px, 22px);
+}
+
+p,
+h6,
+.form-control,
+.btn-secondary,
+.btn-primary,
+.nav-item .nav-link {
+  @include responsive-font(14px, 16px, 16px);
 }
 
 .adopto-section {
-  margin-bottom: 70px;
+  @include responsive-margin-bottom(30px, 50px, 70px);
 
-  @include media-down(sm) {
-    margin-bottom: 30px;
+  &-title {
+    @include responsive-font(20px, 24px, 30px);
+    @include responsive-margin-bottom(24px, 36px, 42px);
   }
 }
+
+small {
+  @include responsive-font(12px, 13px, 13px);
+}
+
+//coloring
 
 .nav-item .nav-link {
   color: var(--bs-light);
@@ -45,5 +71,13 @@ a {
 
   &:hover {
     color: var(--bs-secondary);
+  }
+}
+
+.btn-secondary {
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--bs-secondaryDarken);
   }
 }

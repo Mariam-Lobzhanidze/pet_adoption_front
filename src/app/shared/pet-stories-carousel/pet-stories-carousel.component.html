@@ -5,7 +5,9 @@
     <div class="carousel-item" [class.active]="i === 0">
       <div class="carousel-content d-flex flex-lg-row flex-column gap-4">
         @if( displayMode === 'both') {
-        <div class="adopto-story-image rounded overflow-hidden bg-secondary">
+        <div
+          class="adopto-story-image rounded overflow-hidden bg-secondary shadow"
+        >
           <img
             class="object-fit-cover w-100 h-100"
             [src]="story.image"
@@ -14,7 +16,7 @@
         </div>
         } @if(displayMode === 'text' || displayMode === 'both') {
         <div
-          class="rounded flex-fill d-flex flex-column gap-4 justify-content-center align-items-center position-relative"
+          class="rounded flex-fill d-flex flex-column gap-4 justify-content-center align-items-center"
         >
           <i class="ph-fill ph-paw-print fs-2 text-primary"></i>
 
@@ -26,22 +28,23 @@
               {{ story.petName }} + {{ story.owner }}
             </span>
           </div>
-          <div class="d-flex gap-3 p-2 justify-content-between w-100">
-            <i
-              class="ph-bold ph-caret-left fs-4 p-2"
-              data-bs-target="#petStoriesCarousel"
-              data-bs-slide="prev"
-            ></i>
-            <i
-              class="ph-bold ph-caret-right fs-4 p-2"
-              data-bs-target="#petStoriesCarousel"
-              data-bs-slide="next"
-            ></i>
-          </div>
         </div>
         }
       </div>
     </div>
+
     }
+  </div>
+  <div class="d-flex gap-4 mt-3 justify-content-end">
+    <i
+      class="ph-bold ph-caret-left fs-4 p-2"
+      data-bs-target="#petStoriesCarousel"
+      data-bs-slide="prev"
+    ></i>
+    <i
+      class="ph-bold ph-caret-right fs-4 p-2"
+      data-bs-target="#petStoriesCarousel"
+      data-bs-slide="next"
+    ></i>
   </div>
 </div>

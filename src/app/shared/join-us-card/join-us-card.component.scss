@@ -1,6 +1,10 @@
-.adopto-section-title a {
-  transition: all 0.3s ease;
+.card-text {
+  max-width: 500px;
+}
+
+a {
   color: var(--bs-secondary);
+
   &:hover {
     color: var(--bs-secondaryDarken);
   }

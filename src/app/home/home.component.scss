@@ -1,12 +1,6 @@
 @use "mixins" as m;
 
-.adopto-home {
-  margin-top: 20px;
-
-  @include m.media-up(sm) {
-    margin-top: 40px;
-  }
-
+.container {
   .adopto-hero {
     @include m.grid(
       1,
@@ -16,7 +10,7 @@
       )
     );
 
-    .adopto-hero-image {
+    &-image {
       min-height: 300px;
       @include m.media-up(sm) {
         min-height: 430px;

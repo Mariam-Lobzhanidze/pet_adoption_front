@@ -9,7 +9,7 @@ import { Item } from '../../shared/models/item.model';
   styleUrl: './submenu.component.scss',
 })
 export class SubMenuComponent {
-  @Input() sidebarData: { title: string; items: Item[] } | null = null;
+  @Input() submenuData: { title: string; items: Item[] } | null = null;
   @Output() close = new EventEmitter<void>();
 
   public closeSidebar(): void {

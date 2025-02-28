@@ -35,14 +35,13 @@ export const OTHER_TYPE_ITEMS: Item[] = [
   { label: 'Small&Furry Pets', route: '' },
 ];
 
-export const PET_TYPE_CARDS_ITEMS = [
-  { label: 'Dogs', icon: 'ph-dog', route: '/', selected: false },
-  { label: 'Cats', icon: 'ph-cat', route: '/', selected: false },
-  { label: 'Others', icon: 'ph-paw-print', route: '', selected: false },
+export const ICON_CARDS_ITEMS = [
+  { label: 'Dogs', icon: 'ph-dog', route: '/' },
+  { label: 'Cats', icon: 'ph-cat', route: '/' },
+  { label: 'Others', icon: 'ph-paw-print', route: '' },
   {
     label: 'Shelters',
     icon: 'ph-house-line',
     route: '/',
-    selected: false,
   },
 ];

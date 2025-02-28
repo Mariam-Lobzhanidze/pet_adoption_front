@@ -35,8 +35,8 @@
       color: var(--bs-dark);
       background-color: var(--bs-light);
       &:hover {
-        background-color: var(--bs-primaryLight);
-        border-left: 4px solid var(--bs-primary);
+        background-color: var(--bs-tertiary);
+        border-left: 4px solid var(--bs-secondary);
       }
     }
   }

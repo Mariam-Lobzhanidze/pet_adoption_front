@@ -7,8 +7,8 @@
       class="navbar-nav d-lg-flex d-none flex-row align-items-center justify-content-between flex-fill h-100"
     >
       <li class="nav-item d-flex">
-        <a
-          class="icon-link text-light fw-bold"
+        <button
+          class="btn icon-link text-light fw-bold"
           (click)="this.showSecondaryNav = !this.showSecondaryNav"
         >
           All about pets
@@ -16,7 +16,7 @@
             class="ph-bold"
             [ngClass]="showSecondaryNav ? 'ph-caret-down' : 'ph-caret-up'"
           ></i>
-        </a>
+        </button>
       </li>
 
       <li class="nav-item d-flex h-100">
@@ -39,7 +39,7 @@
 
       } @else {
       <button
-        class="btn text-light bg-secondary rounded fw-bold d-none d-lg-flex ms-5"
+        class="btn btn-secondary text-light rounded fw-bold d-none d-lg-flex ms-5 text-uppercase"
       >
         Sign in
       </button>
@@ -96,7 +96,9 @@
         </li>
 
         } @else {
-        <button class="btn text-light bg-secondary rounded fw-bold">
+        <button
+          class="btn btn-secondary text-light rounded fw-bold text-uppercase"
+        >
           Sign in
         </button>
         }
@@ -108,7 +110,7 @@
 
     @if(showInnerSidebar) {
     <app-submenu
-      [sidebarData]="selectedSidebarData"
+      [submenuData]="selectedSidebarData"
       (close)="onCloseInnerSidebar()"
     ></app-submenu>
     }

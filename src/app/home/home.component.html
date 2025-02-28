@@ -1,4 +1,4 @@
-<div class="adopto-home container container-fluid">
+<div class="container container-fluid">
   <div class="adopto-section">
     <app-search
       [suggestions]="petBreeds"
@@ -54,7 +54,7 @@
 <ng-template #heroImage let-imageSrc>
   <div
     [ngClass]="{ 'bg-primary placeholder-wave': !imageLoaded[imageSrc] }"
-    class="adopto-hero-image rounded overflow-hidden d-flex justify-content-center align-items-center position-relative"
+    class="adopto-hero-image shadow rounded overflow-hidden d-flex justify-content-center align-items-center position-relative"
   >
     <img
       [src]="imageSrc"

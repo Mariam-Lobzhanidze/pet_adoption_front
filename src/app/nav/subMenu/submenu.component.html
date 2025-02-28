@@ -1,15 +1,24 @@
-<div class="d-flex flex-column position-fixed top-0 start-0 w-100 h-100">
-  <div
-    class="d-flex justify-content-center bg-primaryDarken p-4 position-relative text-light"
+<nav class="d-flex flex-column position-fixed top-0 start-0 w-100 h-100">
+  <header
+    class="d-flex justify-content-center align-items-center bg-primaryDarken p-4 position-relative text-light"
   >
-    <i class="ph-bold ph-caret-left fs-1" (click)="closeSidebar()"></i>
-    <h5>{{ sidebarData?.title }}</h5>
-  </div>
-  <ul class="navbar-nav bg-primary d-flex flex-column flex-fill">
-    @for(item of sidebarData?.items;track item.label) {
-    <li class="nav-item p-4" (click)="closeSidebar()">
-      <a class="nav-link">{{ item.label }}</a>
+    <button
+      class="border-0 bg-transparent text-light"
+      (click)="closeSidebar()"
+      aria-label="Close submenu"
+    >
+      <i class="ph-bold ph-caret-left fs-2"></i>
+    </button>
+    <h4 class="m-0">{{ submenuData?.title }}</h4>
+  </header>
+
+  <ul class="navbar-nav bg-primary d-flex flex-column flex-fill p-3">
+    @for (item of submenuData?.items; track item.label) {
+    <li class="nav-item p-2">
+      <a class="nav-link" (click)="closeSidebar()">
+        {{ item.label }}
+      </a>
     </li>
     }
   </ul>
-</div>
+</nav>
