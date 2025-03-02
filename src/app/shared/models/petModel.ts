@@ -14,6 +14,7 @@ export interface PetDetails {
   image?: string;
   status?: 'Adopted' | 'Fostered' | 'Any';
   type?: string;
+  userId?: string;
 }
 
 export interface Shelter {

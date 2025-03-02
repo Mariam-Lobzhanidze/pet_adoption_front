@@ -1,8 +1,10 @@
-<div class="card border-1 shadow border-1 bg-primary">
+<div class="card border-1 shadow bg-primary">
   <div
     class="card-body p-3 text-light text-center font-monospace fst-italic d-flex flex-column align-items-center gap-3"
   >
-    <app-avatar [avatarImage]="'avatar_puppy.jpeg'" shape="circle"></app-avatar>
+    @if(avatarImage) {
+    <app-avatar [avatarImage]="avatarImage" shape="circle"></app-avatar>
+    }
 
     <p class="card-text">
       {{ message }}
@@ -10,7 +12,7 @@
     </p>
     <a
       [routerLink]="routePath"
-      class="btn btn-secondary text-light fw-bold text-center w-100 text-uppercase"
+      class="btn btn-secondary text-light fw-bold w-100 text-uppercase"
     >
       {{ buttonText }}
     </a>

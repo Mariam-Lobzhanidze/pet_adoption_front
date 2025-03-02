@@ -3,13 +3,14 @@ import { RouterLink } from '@angular/router';
 import { AvatarComponent } from '../avatar/avatar.component';
 
 @Component({
-  selector: 'app-join-us-card',
+  selector: 'app-call-to-action-card',
   standalone: true,
   imports: [RouterLink, AvatarComponent],
-  templateUrl: './join-us-card.component.html',
-  styleUrl: './join-us-card.component.scss',
+  templateUrl: './call-to-action-card.component.html',
+  styleUrl: './call-to-action-card.component.scss',
 })
-export class JoinUsCardComponent {
+export class CallToActionCard {
+  @Input() avatarImage?: string;
   @Input({ required: true }) message: string = '';
   @Input({ required: true }) buttonText: string = '';
   @Input({ required: true }) routePath: string = '/';

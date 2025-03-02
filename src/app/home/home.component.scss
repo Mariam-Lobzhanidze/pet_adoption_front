@@ -1,7 +1,8 @@
 @use "mixins" as m;
 
 .container {
-  .adopto-hero {
+  .hero-section {
+    // min-height: 350px;
     @include m.grid(
       1,
       16px,
@@ -10,19 +11,12 @@
       )
     );
 
-    &-image {
-      min-height: 300px;
-      @include m.media-up(sm) {
-        min-height: 430px;
-      }
-    }
-
-    .adopto-icon-cards {
-      @include m.grid(2, 16px);
+    &-icon-cards {
+      @include m.grid(2, 10px);
     }
   }
 
-  .adopto-card-list {
+  .card-list {
     @include m.grid(
       2,
       16px,

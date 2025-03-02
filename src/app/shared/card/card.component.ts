@@ -17,6 +17,7 @@ export class CardComponent {
 
   public isFavorite: boolean = false;
 
+  //go to service
   public updateFavoriteStatus(newStatus: boolean): void {
     this.isFavorite = newStatus;
 

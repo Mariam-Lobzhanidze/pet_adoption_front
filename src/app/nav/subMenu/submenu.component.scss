@@ -1,12 +1,29 @@
-.ph-caret-left {
-  position: absolute;
-  top: 50%;
-  left: 16px;
-  transform: translate(0%, -50%);
-  transition: all 0.3s ease;
-  color: var(--bs-light);
+nav {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 
-  &:hover {
-    color: var(--bs-secondary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  &.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ph-caret-left {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translate(0%, -50%);
+    transition: all 0.3s ease;
+    color: var(--bs-light);
+
+    &:hover {
+      color: var(--bs-secondary);
+    }
   }
 }

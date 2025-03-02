@@ -1,19 +1,21 @@
 .dropdown {
   &-menu {
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease-in-out;
     display: flex;
-    opacity: 0;
-    visibility: hidden;
     flex-direction: column;
+    opacity: 0;
+    transform: translateY(5%);
+    visibility: hidden;
   }
 
   &-menu.show {
     opacity: 1;
+    transform: none;
     visibility: visible;
   }
 
   &-toggle {
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     color: var(--bs-light);
 
     &:hover {

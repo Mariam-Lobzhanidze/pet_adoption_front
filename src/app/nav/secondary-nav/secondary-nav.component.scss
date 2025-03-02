@@ -7,12 +7,12 @@
   display: none;
   z-index: 99999;
 
+  &.show {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
   @include m.media-up(lg) {
     display: flex;
   }
-}
-
-.navbar.show {
-  opacity: 1;
-  transform: translateY(0%);
 }

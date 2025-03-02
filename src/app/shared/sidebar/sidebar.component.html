@@ -4,16 +4,16 @@
   [id]="offcanvasId"
 >
   <div class="offcanvas-header bg-primary p-3">
-    <h5 class="offcanvas-title">
-      <ng-content select=".offcanvas_title"></ng-content>
-    </h5>
+    <div class="offcanvas-title">
+      <ng-content select=".offcanvas__title"></ng-content>
+    </div>
     <button
+      data-bs-dismiss="offcanvas"
       type="button"
       class="btn-close"
-      data-bs-dismiss="offcanvas"
     ></button>
   </div>
   <div class="offcanvas-body">
-    <ng-content select=".offcanvas_body"></ng-content>
+    <ng-content select=".offcanvas__body"></ng-content>
   </div>
 </div>

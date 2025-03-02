@@ -1,17 +1,27 @@
 <div class="container container-fluid">
-  <div class="adopto-section">
+  <section class="page-section d-flex flex-column gap-3">
     <app-search
       [suggestions]="petBreeds"
       placeholderText="Search Terrier,Bengal,etc. "
     ></app-search>
-  </div>
+    <app-suggestion-dropdown
+      [suggestions]="cityNames"
+      placeholderText="Search Tbilisi,batumi. "
+      (queryChange)="getSearchQuery($event)"
+    ></app-suggestion-dropdown>
+    <app-suggestion-dropdown
+      [suggestions]="petBreeds"
+      placeholderText="Search Terrier... "
+      (queryChange)="getSearchQuery($event)"
+    ></app-suggestion-dropdown>
+  </section>
 
-  <div class="adopto-hero adopto-section">
+  <section class="hero-section page-section">
     <ng-container
       *ngTemplateOutlet="heroImage; context: { $implicit: 'home_img_5.jpg' }"
     ></ng-container>
 
-    <div class="adopto-icon-cards">
+    <div class="hero-section-icon-cards">
       @for (item of petCards; track item.label) {
       <app-icon-card [item]="item"></app-icon-card>
       }
@@ -20,16 +30,16 @@
     <ng-container
       *ngTemplateOutlet="heroImage; context: { $implicit: 'home_img_9.jpg' }"
     ></ng-container>
-  </div>
+  </section>
 
-  <div class="adopto-section">
+  <section class="page-section">
     <app-section-title
       title="Pets available for adoption"
       routerLink="/"
       icon="ph-caret-right"
     ></app-section-title>
 
-    <div class="adopto-card-list">
+    <div class="card-list">
       @if (petService.loading()){ @for(item of placeholders;let i=$index;track i
       ) {
       <app-card [loading]="true"></app-card>
@@ -40,26 +50,26 @@
       <app-see-more-card [totalAmount]="totalPetsCount"></app-see-more-card>
       }
     </div>
-  </div>
+  </section>
 
-  <div class="adopto-section">
+  <section class="page-section">
     <app-section-title title="Real-life Love Stories"></app-section-title>
     <app-pet-stories-carousel
       [petStories]="petStories"
       displayMode="both"
     ></app-pet-stories-carousel>
-  </div>
+  </section>
 </div>
 
 <ng-template #heroImage let-imageSrc>
   <div
     [ngClass]="{ 'bg-primary placeholder-wave': !imageLoaded[imageSrc] }"
-    class="adopto-hero-image shadow rounded overflow-hidden d-flex justify-content-center align-items-center position-relative"
+    class="hero-section-image shadow rounded overflow-hidden d-flex justify-content-center align-items-center position-relative"
   >
     <img
       [src]="imageSrc"
       alt="girls with dog"
-      class="object-fit-cover w-100 h-100 img-fluid"
+      class="object-fit-cover w-100 h-100"
       (load)="imageLoaded[imageSrc] = true"
       [style.display]="imageLoaded[imageSrc] ? 'block' : 'none'"
     />

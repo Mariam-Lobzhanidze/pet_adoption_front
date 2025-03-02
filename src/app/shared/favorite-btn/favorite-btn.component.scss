@@ -5,7 +5,7 @@ button {
   height: 42px;
   border-radius: 50%;
   background-color: var(--bs-light);
-  z-index: 99999;
+  z-index: 999;
 
   @include m.media-down(sm) {
     width: 36px;

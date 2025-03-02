@@ -13,6 +13,8 @@ import { SeeMoreCardComponent } from '../shared/see-more-card/see-more-card.comp
 import { PetStoriesCarouselComponent } from '../shared/pet-stories-carousel/pet-stories-carousel.component';
 import { PET_STORIES } from '../constants/pet-stories';
 import { ICON_CARDS_ITEMS } from '../constants/dropdown-constants';
+import { GEORGIAN_CITIES } from '../constants/georgianCities';
+import { SuggestionDropdownComponent } from '../shared/suggestion-dropdown/suggestion-dropdown.component';
 
 @Component({
   selector: 'app-home',
@@ -25,12 +27,14 @@ import { ICON_CARDS_ITEMS } from '../constants/dropdown-constants';
     SectionTitleComponent,
     SeeMoreCardComponent,
     PetStoriesCarouselComponent,
+    SuggestionDropdownComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
   public petBreeds: string[] = ALL_BREEDS;
+  public cityNames: string[] = GEORGIAN_CITIES;
   public petCards: Item[] = ICON_CARDS_ITEMS;
 
   public imageLoaded: Record<string, boolean> = {};
@@ -52,5 +56,9 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit(): void {
     this.petCardData = this.petService.petItems$;
+  }
+
+  public getSearchQuery(query: string): void {
+    console.log(query);
   }
 }

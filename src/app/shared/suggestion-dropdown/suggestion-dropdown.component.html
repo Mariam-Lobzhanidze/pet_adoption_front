@@ -1,0 +1,14 @@
+<div class="adopto-search-bar d-flex form-inputs align-items-stretch w-50">
+  <input
+    type="text"
+    class="form-control rounded-end-0 shadow-none"
+    [ngbTypeahead]="search"
+    [placeholder]="placeholderText"
+    (selectItem)="onSearch($event)"
+  />
+
+  @if(searchQuery) {
+
+  <i class="ph ph-x text-primary fs-5 fw-bold" (click)="clearSearch()"></i>
+  }
+</div>

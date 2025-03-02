@@ -1,0 +1,42 @@
+.adopto-search-bar {
+  position: relative;
+
+  .ph-magnifying-glass {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--bs-primary);
+
+    &:hover {
+      background-color: var(--bs-primaryDarken);
+    }
+  }
+
+  .ph-x {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}
+
+:host ::ng-deep {
+  ngb-typeahead-window {
+    width: 100%;
+    background-color: var(--bs-light);
+
+    .dropdown-menu.show {
+      background-color: var(--bs-light);
+    }
+
+    .dropdown-item {
+      padding: 16px;
+      color: var(--bs-dark);
+      background-color: var(--bs-light);
+      &:hover {
+        background-color: var(--bs-tertiary);
+        border-left: 4px solid var(--bs-secondary);
+      }
+    }
+  }
+}

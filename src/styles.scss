@@ -44,18 +44,19 @@ h4 {
 p,
 h6,
 .form-control,
+.accordion-button,
 .btn-secondary,
 .btn-primary,
 .nav-item .nav-link {
   @include responsive-font(14px, 16px, 16px);
 }
 
-.adopto-section {
-  @include responsive-margin-bottom(30px, 50px, 70px);
+.page-section {
+  @include responsive-margin-bottom(30px, 46px, 52px);
 
-  &-title {
+  .section-title {
     @include responsive-font(20px, 24px, 30px);
-    @include responsive-margin-bottom(24px, 36px, 42px);
+    @include responsive-margin-bottom(22px, 26px, 30px);
   }
 }
 
@@ -81,3 +82,12 @@ small {
     background-color: var(--bs-secondaryDarken);
   }
 }
+
+.adopto-logo {
+  width: 120px;
+  @include media-up(md) {
+    width: 150px;
+  }
+}
+
+//

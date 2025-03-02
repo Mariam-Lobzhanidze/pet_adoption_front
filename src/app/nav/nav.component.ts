@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { UserAvatarComponent } from '../shared/user-avatar/user-avatar.component';
 import { SecondaryNavComponent } from './secondary-nav/secondary-nav.component';
 import { CommonModule } from '@angular/common';
@@ -26,10 +26,11 @@ import { SubMenuComponent } from './subMenu/submenu.component';
   styleUrl: './nav.component.scss',
 })
 export class NavComponent {
+  @ViewChild(SidebarComponent) sidebar!: SidebarComponent;
   public isLoggedIn: boolean = false;
 
   public showSecondaryNav: boolean = false;
-  public showInnerSidebar: boolean = false;
+  public showSubMenu: boolean = false;
 
   public navItems: { title: string; items: Item[] }[] = [
     { title: 'Adopt or get involved', items: ADOPT_ITEMS },
@@ -40,15 +41,12 @@ export class NavComponent {
 
   public selectedSidebarData: { title: string; items: Item[] } | null = null;
 
-  public onShowInnerSidebar(innerSidebarData: {
-    title: string;
-    items: Item[];
-  }): void {
-    this.selectedSidebarData = innerSidebarData;
-    this.showInnerSidebar = true;
+  public onShowSubMenu(selectedData: { title: string; items: Item[] }): void {
+    this.selectedSidebarData = selectedData;
+    this.showSubMenu = true;
   }
 
-  public onCloseInnerSidebar(): void {
-    this.showInnerSidebar = false;
+  public onCloseSubMenu(): void {
+    this.showSubMenu = false;
   }
 }

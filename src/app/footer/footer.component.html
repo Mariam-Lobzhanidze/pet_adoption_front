@@ -1,12 +1,12 @@
 <footer class="bg-primary">
   <div
-    class="py-4 px-3 container container-fluid d-flex flex-column align-items-center gap-5"
+    class="py-4 container container-fluid d-flex flex-column align-items-center gap-4"
   >
     <a routerLink="/">
-      <img src="adopto_logo.png" class="adopto-logo" alt="Adopto logo" />
+      <img src="footer_logo.png" class="adopto-logo" alt="Adopto logo" />
     </a>
 
-    <nav class="w-100 d-flex flex-column-reverse flex-lg-row gap-5">
+    <nav class="d-flex flex-column-reverse flex-lg-row gap-3">
       <div class="accordion d-lg-flex gap-3 w-100" id="adoptoAccordion">
         <div class="accordion-item">
           <h6 class="accordion-header">
@@ -128,13 +128,14 @@
         </div>
       </div>
 
-      <app-join-us-card
+      <app-call-to-action-card
         message="
         Ready to make a difference? Join us to help pets find their forever homes.
         "
         buttonText="Get started"
         routePath="/"
-      ></app-join-us-card>
+        [avatarImage]="'avatar_puppy.jpeg'"
+      ></app-call-to-action-card>
     </nav>
   </div>
 

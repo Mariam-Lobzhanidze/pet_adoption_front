@@ -1,21 +1,30 @@
-<nav class="d-flex flex-column position-fixed top-0 start-0 w-100 h-100">
+<nav
+  class="d-flex flex-column"
+  [ngClass]="{ visible: submenuData !== null && showSubmenu }"
+>
   <header
-    class="d-flex justify-content-center align-items-center bg-primaryDarken p-4 position-relative text-light"
+    class="d-flex justify-content-center align-items-center bg-primary p-4 position-relative text-light"
   >
     <button
       class="border-0 bg-transparent text-light"
-      (click)="closeSidebar()"
+      (click)="onCloseSubMenu()"
       aria-label="Close submenu"
     >
       <i class="ph-bold ph-caret-left fs-2"></i>
     </button>
-    <h4 class="m-0">{{ submenuData?.title }}</h4>
+    <h6 class="m-0 text-uppercase">{{ submenuData?.title }}</h6>
   </header>
 
-  <ul class="navbar-nav bg-primary d-flex flex-column flex-fill p-3">
+  <ul class="navbar-nav bg-primaryDarken d-flex flex-column flex-fill p-3">
     @for (item of submenuData?.items; track item.label) {
     <li class="nav-item p-2">
-      <a class="nav-link" (click)="closeSidebar()">
+      <a
+        class="nav-link"
+        (click)="onCloseSubMenu()"
+        routerLink=""
+        data-bs-dismiss="offcanvas"
+        data-bs-target="#adoptoMobileNav"
+      >
         {{ item.label }}
       </a>
     </li>

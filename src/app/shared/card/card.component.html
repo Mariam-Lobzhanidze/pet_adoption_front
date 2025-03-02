@@ -23,7 +23,7 @@
         'placeholder-lg placeholder-wave w-100 bg-primary ': loading
       }"
     >
-      {{ loading ? "" : item.name || "No name" }}
+      {{ loading ? "" : item.name }}
     </h6>
   </div>
   @if(!loading && imageLoaded) {
