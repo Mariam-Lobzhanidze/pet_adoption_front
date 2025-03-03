@@ -1,0 +1,34 @@
+<div
+  class="d-flex flex-lg-row flex-column bg-light rounded mx-auto align-items-lg-center shadow-sm"
+  style="max-width: 700px"
+>
+  <div class="flex-grow-1">
+    <app-suggestion-dropdown
+      [suggestions]="petBreeds"
+      placeholderText="Terrier,Labrador... "
+      (queryChange)="selectedBreed = $event"
+      [showBorder]="false"
+    ></app-suggestion-dropdown>
+  </div>
+  <span class="d-none d-lg-flex"
+    ><i class="ph-thin ph-line-vertical text-dark opacity-25 fs-1"></i>
+  </span>
+  <div class="flex-grow-1">
+    <app-suggestion-dropdown
+      [suggestions]="cityNames"
+      placeholderText="Tbilisi,batumi... "
+      (queryChange)="selectedCity = $event"
+      [showBorder]="false"
+    ></app-suggestion-dropdown>
+  </div>
+  <i
+    (click)="onSearch()"
+    class="d-none d-lg-flex ph ph-magnifying-glass fs-5 text-light p-3 rounded rounded-start-0 align-self-stretch"
+  ></i>
+  <button
+    (click)="onSearch()"
+    class="btn btn-primary d-lg-none d-flex m-3 d-flex justify-content-center p-2"
+  >
+    Search for pet
+  </button>
+</div>

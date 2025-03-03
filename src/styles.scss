@@ -15,14 +15,14 @@ $theme-colors: map-merge(
     "secondaryLight": $secondaryLight,
     "secondaryDarken": $secondaryDarken,
     "tertiary": $tertiary,
-    "adoptoBody": $adoptoBody,
+    "pageBody": $pageBody,
   )
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 body {
-  background-color: $adoptoBody;
+  background-color: $pageBody;
 }
 
 p,
@@ -91,3 +91,32 @@ small {
 }
 
 //
+.search-bar ngb-typeahead-window.dropdown-menu {
+  width: 100%;
+  background-color: var(--bs-light);
+
+  .dropdown-menu.show {
+    background-color: var(--bs-light);
+  }
+
+  .dropdown-item {
+    padding: 16px;
+    color: var(--bs-dark);
+    background-color: var(--bs-light);
+
+    &:hover {
+      background-color: var(--bs-tertiary);
+      border-left: 4px solid var(--bs-secondary);
+    }
+  }
+}
+
+.ph-magnifying-glass {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: var(--bs-primary);
+
+  &:hover {
+    background-color: var(--bs-primaryDarken);
+  }
+}

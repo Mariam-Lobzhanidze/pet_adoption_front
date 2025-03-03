@@ -1,14 +1,15 @@
-<div class="adopto-search-bar d-flex form-inputs align-items-stretch w-50">
+<div class="search-bar form-inputs">
   <input
     type="text"
-    class="form-control rounded-end-0 shadow-none"
+    class="form-control shadow-none p-3"
+    [(ngModel)]="searchQuery"
     [ngbTypeahead]="search"
     [placeholder]="placeholderText"
     (selectItem)="onSearch($event)"
+    [ngClass]="{ 'border-0': !showBorder }"
   />
 
   @if(searchQuery) {
-
-  <i class="ph ph-x text-primary fs-5 fw-bold" (click)="clearSearch()"></i>
+  <i class="ph ph-x text-primary fs-6 fw-bold" (click)="clearSearch()"></i>
   }
 </div>

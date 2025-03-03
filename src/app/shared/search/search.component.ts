@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { debounceTime, map, Observable } from 'rxjs';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -19,6 +19,7 @@ export class SearchComponent {
 
   public search = (text$: Observable<string>) =>
     text$.pipe(
+      debounceTime(300),
       map((term) =>
         this.suggestions
           .filter((v) => v.toLowerCase().includes(term.toLowerCase()))
@@ -29,7 +30,6 @@ export class SearchComponent {
   public onSearch() {
     this.queryChange.emit(this.searchQuery);
     this.searchQuery = '';
-    console.log(this.searchQuery);
   }
 
   public clearSearch() {

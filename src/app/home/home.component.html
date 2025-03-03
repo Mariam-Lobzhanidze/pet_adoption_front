@@ -1,19 +1,6 @@
 <div class="container container-fluid">
-  <section class="page-section d-flex flex-column gap-3">
-    <app-search
-      [suggestions]="petBreeds"
-      placeholderText="Search Terrier,Bengal,etc. "
-    ></app-search>
-    <app-suggestion-dropdown
-      [suggestions]="cityNames"
-      placeholderText="Search Tbilisi,batumi. "
-      (queryChange)="getSearchQuery($event)"
-    ></app-suggestion-dropdown>
-    <app-suggestion-dropdown
-      [suggestions]="petBreeds"
-      placeholderText="Search Terrier... "
-      (queryChange)="getSearchQuery($event)"
-    ></app-suggestion-dropdown>
+  <section class="page-section">
+    <app-search-bar></app-search-bar>
   </section>
 
   <section class="hero-section page-section">
