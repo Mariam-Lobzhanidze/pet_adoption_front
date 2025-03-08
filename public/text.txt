@@ -1,0 +1,9 @@
+ <!-- Sign up or Log in, help pets find forever home! -->
+                    <!-- Paws up! Join us to find furry friends a home! -->
+                    <!-- "Tails are wagging for you—join & make a difference!" 🐕 -->
+                    <!-- "One click closer to a happy tail—sign up today!" ✨ -->
+                    <!-- "Help paws find homes—sign in & start today!" 🏡🐾 -->
+                    <!-- "Your kindness = their forever home! Join us!" 🌎🐶🐱 -->
+<!-- <span class="d-lg-flex d-none">
+                      Wag more, worry less 😊</span
+                    > -->

@@ -1,0 +1,27 @@
+<div class="d-flex flex-column gap-3">
+  <div class="d-flex flex-lg-row flex-column gap-2 w-100">
+    <button
+      (click)="onEmitAuthType('register')"
+      class="btn btn-secondaryDarken text-light w-100"
+    >
+      Create account
+    </button>
+    <button
+      (click)="onEmitAuthType('login')"
+      class="btn btn-light text-dark w-100"
+    >
+      Log in
+    </button>
+  </div>
+
+  <app-divider text="Or continue with"></app-divider>
+
+  <div class="d-flex flex-lg-row flex-column gap-2 w-100 social">
+    <button class="btn w-100">
+      <img src="/icons/google.svg" alt="Google" class="icon" />
+    </button>
+    <button class="btn w-100">
+      <img src="/icons/facebook.svg" alt="Facebook" class="icon" />
+    </button>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { PetDetails } from '../models/petModel';
+import { PetDetails } from '../models/pet.model';
 import { FavoriteBtnComponent } from '../favorite-btn/favorite-btn.component';
 
 @Component({

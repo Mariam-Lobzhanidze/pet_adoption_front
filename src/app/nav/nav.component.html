@@ -38,6 +38,8 @@
 
       } @else {
       <button
+        data-bs-toggle="offcanvas"
+        data-bs-target="#authSidebar"
         class="btn btn-secondary text-light fw-bold d-none d-lg-flex text-uppercase"
       >
         Sign in
@@ -60,7 +62,7 @@
   ></app-secondary-nav>
 </nav>
 <!--mobile nav-->
-<app-sidebar [offcanvasId]="'adoptoMobileNav'">
+<app-sidebar [offcanvasId]="'adoptoMobileNav'" [offcanvasPosition]="'start'">
   <a class="offcanvas__title" routerLink="/">
     <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
   </a>
@@ -93,6 +95,8 @@
 
         } @else {
         <button
+          data-bs-toggle="offcanvas"
+          data-bs-target="#authSidebar"
           class="btn btn-secondary text-light rounded fw-bold text-uppercase"
         >
           Sign in
@@ -111,3 +115,4 @@
     ></app-submenu>
   </div>
 </app-sidebar>
+<app-auth></app-auth>

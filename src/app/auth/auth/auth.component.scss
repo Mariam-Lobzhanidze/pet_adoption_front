@@ -1,0 +1,35 @@
+@use "mixins" as m;
+
+.offcanvas__body {
+  header {
+    max-width: 400px;
+    &-title {
+      line-height: 1.5;
+      letter-spacing: 1.8px;
+    }
+  }
+
+  .container {
+    .back-btn {
+      width: 30px;
+      height: 30px;
+    }
+
+    .card {
+      background-color: transparent;
+
+      @include m.media-up(xl) {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        background-color: var(--bs-primary);
+        // min-height: 500px;
+      }
+
+      .ph {
+        transition: color 0.3s ease;
+        &:hover {
+          color: var(--bs-secondary);
+        }
+      }
+    }
+  }
+}

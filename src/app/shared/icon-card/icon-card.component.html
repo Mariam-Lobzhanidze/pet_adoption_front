@@ -1,12 +1,12 @@
 <a
-  class="card shadow"
+  class="card shadow rounded overflow-hidden"
   [routerLink]="item.route"
   aria-label="Go to pet category route"
 >
   <div
     class="card-body d-flex flex-column gap-3 justify-content-center align-items-center"
   >
-    <i class="ph-thin {{ item.icon }} display-3"></i>
-    <h6>{{ item.label }}</h6>
+    <i class="ph-thin {{ item.icon }} display-3 card-body-icon"></i>
+    <h4 class="card-body-text">{{ item.label }}</h4>
   </div>
 </a>

@@ -2,7 +2,6 @@
 
 .container {
   .hero-section {
-    // min-height: 350px;
     @include m.grid(
       1,
       16px,

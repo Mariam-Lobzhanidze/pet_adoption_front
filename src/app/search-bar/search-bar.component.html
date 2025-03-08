@@ -16,14 +16,14 @@
   <div class="flex-grow-1">
     <app-suggestion-dropdown
       [suggestions]="cityNames"
-      placeholderText="Tbilisi,batumi... "
+      placeholderText="Tbilisi,Batumi... "
       (queryChange)="selectedCity = $event"
       [showBorder]="false"
     ></app-suggestion-dropdown>
   </div>
   <i
     (click)="onSearch()"
-    class="d-none d-lg-flex ph ph-magnifying-glass fs-5 text-light p-3 rounded rounded-start-0 align-self-stretch"
+    class="d-none d-lg-flex ph ph-magnifying-glass fs-5 text-light mx-2 rounded"
   ></i>
   <button
     (click)="onSearch()"

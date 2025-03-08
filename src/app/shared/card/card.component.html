@@ -17,14 +17,14 @@
   </div>
 
   <div class="card-footer p-3">
-    <h6
+    <h4
       class="m-0 text-center text-primary fw-bold"
       [ngClass]="{
         'placeholder-lg placeholder-wave w-100 bg-primary ': loading
       }"
     >
       {{ loading ? "" : item.name }}
-    </h6>
+    </h4>
   </div>
   @if(!loading && imageLoaded) {
   <app-favorite-btn

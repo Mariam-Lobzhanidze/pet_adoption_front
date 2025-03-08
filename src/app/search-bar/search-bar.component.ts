@@ -32,9 +32,3 @@ export class SearchBarComponent {
     console.log(this.selectedBreed, this.selectedCity);
   }
 }
-
-// private clearSearch() {
-//   this.selectedBreed = '';
-//   this.selectedCity = '';
-// }
-// this.clearSearch();

@@ -1,0 +1,65 @@
+<app-sidebar [offcanvasId]="'authSidebar'" [offcanvasPosition]="'bottom'">
+  <a class="offcanvas__title" routerLink="/">
+    <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
+  </a>
+  <div class="offcanvas__body h-100">
+    <div class="container py-5 h-100 position-relative">
+      @if(authView !=='default' ) {
+      <button
+        class="back-btn d-flex align-items-center justify-content-center border-0 bg-secondary rounded text-tertiary position-absolute top-0 start-0 p-2 d-xl-none"
+        (click)="authView = 'default'"
+        aria-label="back to default auth view"
+      >
+        <i class="ph ph-arrow-left fs-3"></i>
+      </button>
+      }
+      <div
+        class="row d-flex justify-content-center align-items-lg-center align-items-start h-100"
+      >
+        <div class="col">
+          <div class="card border-0 rounded overflow-hidden">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block">
+                <img
+                  src="pet_with_family.jpg"
+                  alt="pet with family"
+                  class="object-fit-cover w-100 h-100"
+                />
+              </div>
+              <div
+                class="position-relative col-xl-6 p-lg-4 p-3 d-flex flex-column justify-content-center align-items-center"
+              >
+                @if(authView !== 'default'){
+                <button
+                  class="border-0 bg-primary rounded text-tertiary position-absolute d-none d-xl-block top-50 start-0 translate-middle p-3"
+                  (click)="authView = 'default'"
+                  aria-label="back to default auth view"
+                >
+                  <i class="ph ph-caret-left fs-2"></i>
+                </button>
+
+                } @if(authView === 'default') {
+                <header class="text-wrap text-center">
+                  <h3 class="header-title text-tertiary">
+                    Sign up to help a pet! 🐶
+                  </h3>
+                </header>
+                <div class="w-100" style="max-width: 400px">
+                  <app-auth-buttons
+                    (loadAuth)="handleAuthChange($event)"
+                  ></app-auth-buttons>
+                </div>
+                } @else if(authView === 'login') {
+                <app-login></app-login>
+                } @else if(authView === 'register') {
+                <app-register></app-register>
+
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-sidebar>

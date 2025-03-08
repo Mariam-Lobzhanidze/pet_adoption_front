@@ -11,6 +11,8 @@ import {
   OTHER_TYPE_ITEMS,
 } from '../constants/dropdown-constants';
 import { SubMenuComponent } from './subMenu/submenu.component';
+import { RouterLink } from '@angular/router';
+import { AuthComponent } from '../auth/auth/auth.component';
 
 @Component({
   selector: 'app-nav',
@@ -21,6 +23,8 @@ import { SubMenuComponent } from './subMenu/submenu.component';
     SecondaryNavComponent,
     SidebarComponent,
     SubMenuComponent,
+    RouterLink,
+    AuthComponent,
   ],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',

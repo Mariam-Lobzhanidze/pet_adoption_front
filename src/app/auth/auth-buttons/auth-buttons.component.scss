@@ -1,0 +1,11 @@
+.social .btn {
+  border: 1px solid var(--bs-light);
+  transition: all 0.3s ease;
+  &:hover {
+    border: 1px solid var(--bs-secondary);
+  }
+}
+.icon {
+  width: 26px;
+  height: 26px;
+}

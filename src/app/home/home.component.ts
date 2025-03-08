@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../shared/models/item.model';
 import { IconCardComponent } from '../shared/icon-card/icon-card.component';
-import { PetDetails } from '../shared/models/petModel';
+import { PetDetails } from '../shared/models/pet.model';
 import { CardComponent } from '../shared/card/card.component';
 import { PetForAdoptionService } from '../services/pet-for-adoption.service';
 import { Observable } from 'rxjs';

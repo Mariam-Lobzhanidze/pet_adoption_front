@@ -15,6 +15,7 @@ $theme-colors: map-merge(
     "secondaryLight": $secondaryLight,
     "secondaryDarken": $secondaryDarken,
     "tertiary": $tertiary,
+
     "pageBody": $pageBody,
   )
 );
@@ -26,29 +27,30 @@ body {
 }
 
 p,
-h6 {
+h2,
+h3,
+h4 {
   margin: 0;
 }
 
-a {
+a,
+.form-check-input {
   text-decoration: none;
   cursor: pointer;
 }
 
-//font sizes and margins
-
-h4 {
-  @include responsive-font(18px, 20px, 22px);
-}
-
 p,
-h6,
+h4,
 .form-control,
 .accordion-button,
-.btn-secondary,
-.btn-primary,
+.btn,
 .nav-item .nav-link {
   @include responsive-font(14px, 16px, 16px);
+}
+
+header h3 {
+  @include responsive-font(18px, 20px, 22px);
+  @include responsive-margin-bottom(24px, 28px, 32px);
 }
 
 .page-section {
@@ -64,22 +66,12 @@ small {
   @include responsive-font(12px, 13px, 13px);
 }
 
-//coloring
-
 .nav-item .nav-link {
   color: var(--bs-light);
   transition: all 0.3s ease;
 
   &:hover {
     color: var(--bs-secondary);
-  }
-}
-
-.btn-secondary {
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: var(--bs-secondaryDarken);
   }
 }
 
@@ -90,7 +82,6 @@ small {
   }
 }
 
-//
 .search-bar ngb-typeahead-window.dropdown-menu {
   width: 100%;
   background-color: var(--bs-light);
@@ -108,15 +99,5 @@ small {
       background-color: var(--bs-tertiary);
       border-left: 4px solid var(--bs-secondary);
     }
-  }
-}
-
-.ph-magnifying-glass {
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: var(--bs-primary);
-
-  &:hover {
-    background-color: var(--bs-primaryDarken);
   }
 }

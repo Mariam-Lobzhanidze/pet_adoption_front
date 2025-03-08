@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { PetDetails } from '../shared/models/petModel';
+import { PetDetails } from '../shared/models/pet.model';
 
 @Injectable({
   providedIn: 'root',

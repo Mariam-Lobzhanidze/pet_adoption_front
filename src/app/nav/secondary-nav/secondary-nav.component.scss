@@ -5,7 +5,7 @@
   transform: translateY(-30%);
   transition: all 0.3s ease;
   display: none;
-  z-index: 99999;
+  z-index: 999;
 
   &.show {
     opacity: 1;

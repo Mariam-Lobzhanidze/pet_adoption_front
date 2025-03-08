@@ -1,20 +1,23 @@
 .card {
   background-color: var(--bs-light);
-  transition: all 0.3s ease-in-out;
-
-  i {
-    color: var(--bs-secondaryDarken);
-  }
-  h6 {
-    color: var(--bs-dark);
+  transition: all 0.3s ease;
+  .card-body {
+    &-icon {
+      color: var(--bs-secondaryDarken);
+    }
+    &-text {
+      color: var(--bs-dark);
+    }
   }
 
   &:hover {
     background-color: var(--bs-primary);
 
-    i,
-    h6 {
-      color: var(--bs-light);
+    .card-body {
+      &-icon,
+      &-text {
+        color: var(--bs-light);
+      }
     }
   }
 }
