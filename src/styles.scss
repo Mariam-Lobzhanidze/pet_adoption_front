@@ -101,3 +101,28 @@ small {
     }
   }
 }
+
+.form-control.ng-invalid.ng-touched {
+  border: 1px solid var(--bs-danger);
+}
+
+label {
+  color: var(--bs-form-label-color);
+}
+
+.form-field-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.form-field-wrapper .form-control::placeholder {
+  color: var(--bs-light);
+  opacity: 0.5;
+}
+
+.auth-form {
+  --bs-body-bg: transparent;
+  --bs-body-color: var(--bs-light);
+  --bs-border-color: var(--bs-secondary);
+  --bs-form-label-color: var(--bs-tertiary);
+}

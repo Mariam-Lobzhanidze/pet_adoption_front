@@ -1,0 +1,16 @@
+@use "mixins" as m;
+small {
+  position: absolute;
+  top: -15px;
+  right: 10px;
+  background-color: var(--bs-primaryDarken);
+  padding: 3px 6px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+@include m.media-up(xl) {
+  small {
+    background-color: var(--bs-primary);
+  }
+}

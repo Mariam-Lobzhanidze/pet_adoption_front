@@ -1,0 +1,24 @@
+@if(toasts().length > 0){
+<div class="position-fixed top-0 end-0 p-3 toast-container">
+  @for(toast of toasts();let i=$index;track i) {
+  <div
+    class="toast show d-flex align-items-center justify-content-center text-center"
+    [@toastAnimation]
+    [ngClass]="{
+      'bg-secondaryDarken': toast.type === 'success',
+      'bg-danger': toast.type === 'error',
+      'bg-primaryDarken': toast.type === 'info',
+      'text-light': toast.type === 'success' || toast.type === 'info',
+      'text-dark': toast.type === 'error'
+    }"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-body">
+      {{ toast.message }}
+    </div>
+  </div>
+  }
+</div>
+}

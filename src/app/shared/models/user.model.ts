@@ -1,17 +1,25 @@
+import { UserRole, UserStatus } from '../../enums/user.enum';
+
 export interface User {
-  fullName?: string;
+  id: string;
+  username?: string;
   email: string;
   password: string;
+  confirmPassword: string;
   phone?: string;
+  shelterName?: string;
+  address?: string;
+  terms: boolean;
+  logo?: string;
+  isShelter: boolean;
   city?: string;
-  profilePicture?: File;
-  userType: 'individual' | 'shelter';
-}
-
-export interface Shelter extends User {
-  shelterName: string;
-  address: string;
-  legalId: string;
-  logo?: File;
-  website?: string;
+  socialLinks?: {
+    facebook?: string;
+    twitter?: string;
+    instagram?: string;
+    website?: string;
+  };
+  isFirstLogin?: boolean;
+  status: UserStatus;
+  role: UserRole;
 }

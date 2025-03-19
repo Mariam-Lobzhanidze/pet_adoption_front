@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 import { AuthButtonsComponent } from '../auth-buttons/auth-buttons.component';
-import { ActivatedRoute, Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 
@@ -19,13 +18,10 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class AuthComponent implements OnInit {
   public authView: 'default' | 'login' | 'register' = 'default';
-  public constructor(private router: Router, private route: ActivatedRoute) {}
 
-  public ngOnInit(): void {
-    // console.log(this.route);
-  }
+  public ngOnInit(): void {}
 
-  handleAuthChange(view: 'login' | 'register') {
+  public handleAuthChange(view: 'login' | 'register') {
     this.authView = view;
   }
 }

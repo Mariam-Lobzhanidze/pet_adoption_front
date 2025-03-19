@@ -3,19 +3,8 @@
     <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
   </a>
   <div class="offcanvas__body h-100">
-    <div class="container py-5 h-100 position-relative">
-      @if(authView !=='default' ) {
-      <button
-        class="back-btn d-flex align-items-center justify-content-center border-0 bg-secondary rounded text-tertiary position-absolute top-0 start-0 p-2 d-xl-none"
-        (click)="authView = 'default'"
-        aria-label="back to default auth view"
-      >
-        <i class="ph ph-arrow-left fs-3"></i>
-      </button>
-      }
-      <div
-        class="row d-flex justify-content-center align-items-lg-center align-items-start h-100"
-      >
+    <div class="container py-lg-5 py-3 h-100 position-relative">
+      <div class="row d-flex align-items-lg-center align-items-start h-100">
         <div class="col">
           <div class="card border-0 rounded overflow-hidden">
             <div class="row g-0">
@@ -27,9 +16,17 @@
                 />
               </div>
               <div
-                class="position-relative col-xl-6 p-lg-4 p-3 d-flex flex-column justify-content-center align-items-center"
+                class="position-relative col-xl-6 d-flex flex-column justify-content-center align-items-center"
               >
-                @if(authView !== 'default'){
+                @if(authView !=='default' ) {
+                <button
+                  class="back-btn p-4 align-self-start d-flex align-items-center justify-content-center border-0 rounded bg-transparent text-tertiary d-xl-none"
+                  (click)="authView = 'default'"
+                  aria-label="back to default auth view"
+                >
+                  <i class="ph ph-arrow-left fs-3"></i>
+                </button>
+                } @if(authView !== 'default'){
                 <button
                   class="border-0 bg-primary rounded text-tertiary position-absolute d-none d-xl-block top-50 start-0 translate-middle p-3"
                   (click)="authView = 'default'"
@@ -50,9 +47,14 @@
                   ></app-auth-buttons>
                 </div>
                 } @else if(authView === 'login') {
-                <app-login></app-login>
+                <div class="w-100">
+                  <app-login></app-login>
+                </div>
+
                 } @else if(authView === 'register') {
-                <app-register></app-register>
+                <div class="w-100">
+                  <app-register></app-register>
+                </div>
 
                 }
               </div>

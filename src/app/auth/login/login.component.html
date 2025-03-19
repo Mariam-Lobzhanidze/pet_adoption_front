@@ -1,1 +1,36 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+  <div class="container px-lg-5 py-lg-4 p-3">
+    <header>
+      <h3 class="text-tertiary">Log in to your account</h3>
+    </header>
+
+    <div class="d-flex flex-lg-row flex-column gap-3 mb-4">
+      <div class="form-field-wrapper">
+        <input
+          type="email"
+          class="form-control w-100"
+          formControlName="email"
+          placeholder="Email"
+        />
+        <app-error [control]="loginForm.get('email')"></app-error>
+      </div>
+      <div class="form-field-wrapper">
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Password"
+        />
+        <app-error [control]="loginForm.get('password')"></app-error>
+      </div>
+    </div>
+
+    <button
+      class="btn btn-secondary text-light w-100"
+      type="submit"
+      [disabled]="isSubmitted"
+    >
+      Log In
+    </button>
+  </div>
+</form>

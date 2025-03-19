@@ -1,5 +1,9 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class="container p-lg-4 p-3">
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit()"
+  class="auth-form w-100"
+>
+  <div class="container p-lg-5 p-3">
     <header>
       <h3 class="text-tertiary">
         {{
@@ -12,95 +16,126 @@
       <div class="d-flex flex-lg-row flex-column gap-3">
         @if(isUser()) {
 
-        <div class="">
+        <div class="form-field-wrapper">
           <input
             type="text"
             class="form-control"
             formControlName="username"
             placeholder="Username"
-            [ngClass]="{
-              'is-invalid':
-                registerForm.get('username')?.invalid &&
-                registerForm.get('username')?.touched,
-            }"
           />
+          <app-error [control]="registerForm.get('username')"></app-error>
         </div>
 
         } @if(isShelter()) {
-        <div class="">
+        <div class="form-field-wrapper">
           <input
             type="text"
             class="form-control"
             formControlName="shelterName"
             placeholder="Charity or shelter name"
           />
+          <app-error [control]="registerForm.get('shelterName')"></app-error>
         </div>
         }
-        <div class="">
+        <div class="form-field-wrapper">
           <input
             type="email"
             class="form-control w-100"
             formControlName="email"
             placeholder="Email"
           />
+          <app-error [control]="registerForm.get('email')"></app-error>
         </div>
       </div>
       @if(isShelter()){
       <div class="d-flex flex-md-row flex-column gap-3">
-        <div class="">
+        <div class="form-field-wrapper">
           <input
             type="text"
             class="form-control"
             formControlName="address"
             placeholder="Address"
           />
+          <app-error [control]="registerForm.get('address')"></app-error>
         </div>
-        <div class="">
+        <div class="form-field-wrapper">
           <input
             type="text"
             class="form-control"
             formControlName="phone"
             placeholder="Phone"
           />
+          <app-error [control]="registerForm.get('phone')"></app-error>
         </div>
       </div>
 
       }
 
-      <div class="d-flex flex-md-row flex-column gap-3">
-        <div class="">
+      <div class="d-flex flex-md-row flex-column gap-3 mb-3">
+        <div class="form-field-wrapper">
           <input
             type="password"
             class="form-control"
             formControlName="password"
             placeholder="Password"
+            [ngClass]="{
+              'ng-invalid': passwordMismatchError
+            }"
           />
+          <app-error [control]="registerForm.get('password')"></app-error>
         </div>
 
-        <div class="">
+        <div class="form-field-wrapper">
           <input
             type="password"
             class="form-control"
             formControlName="confirmPassword"
-            placeholder="Confirm Password"
+            placeholder="Repeat Password"
+            [ngClass]="{
+              'ng-invalid': passwordMismatchError
+            }"
           />
+
+          <app-error
+            [control]="registerForm.get('confirmPassword')"
+            [form]="registerForm"
+          ></app-error>
         </div>
       </div>
     </div>
 
-    <div class="my-3 form-check">
-      <input type="checkbox" class="form-check-input" formControlName="terms" />
-      <label class="form-check-label"
-        ><small>I agree to the terms and conditions</small></label
-      >
+    <div class="mb-4 form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        formControlName="terms"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('terms')?.invalid &&
+            registerForm.get('terms')?.touched
+        }"
+      />
+      <label class="form-check-label">
+        <small>
+          Accept
+          <a class="text-secondary text-decoration-underline">
+            terms and conditions</a
+          >
+        </small>
+      </label>
     </div>
-
-    <button class="btn btn-secondary text-light w-100 mb-3" type="submit">
+    <button
+      class="btn btn-secondary text-light mb-4 w-100"
+      type="submit"
+      [disabled]="isSubmitting"
+    >
       Register
     </button>
 
     <app-divider
-      [text]="isShelter() ? 'switch back' : 'or register as a shelter'"
+      [text]="
+        isShelter() ? 'back to personal user form' : 'or register as a shelter'
+      "
     ></app-divider>
 
     <div class="form-check form-switch d-flex align-items-center gap-3">
@@ -109,20 +144,6 @@
         type="checkbox"
         formControlName="isShelter"
       />
-      <!-- <p class="text-tertiary">
-        {{ isShelter() ? "" : "register as a shelter" }}
-      </p> -->
     </div>
   </div>
 </form>
-
-<!-- @if(isShelter() ) {
-    <div class="mb-3">
-      <input
-        type="file"
-        class="form-control"
-        (change)="onFileChange($event, 'logo')"
-        placeholder="Shelter logo"
-      />
-    </div>
-    } -->
