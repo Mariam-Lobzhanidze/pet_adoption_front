@@ -1,9 +1,19 @@
+@use "mixins" as m;
 .card {
   background-color: var(--bs-light);
   transition: all 0.3s ease;
   .card-body {
     &-icon {
       color: var(--bs-secondaryDarken);
+      fill: var(--bs-secondaryDarken);
+
+      width: 60px;
+      height: 60px;
+
+      @include m.media-up(lg) {
+        width: 80px;
+        height: 80px;
+      }
     }
     &-text {
       color: var(--bs-dark);
@@ -17,6 +27,7 @@
       &-icon,
       &-text {
         color: var(--bs-light);
+        fill: var(--bs-light);
       }
     }
   }

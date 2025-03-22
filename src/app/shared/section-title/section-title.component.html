@@ -1,12 +1,27 @@
-<h2 class="section-title">
+<h2 class="section-title d-flex justify-content-center align-items-center">
   <a
-    class="fw-bold d-flex justify-content-center align-items-center gap-2"
-    [routerLink]="routerLink"
-    [ngClass]="{ 'pe-none': !routerLink }"
+    class="fw-bold d-flex align-items-center gap-2"
+    [routerLink]="routePath"
+    [ngClass]="{ 'pe-none': !routePath }"
   >
     {{ title }}
     @if (icon) {
-    <i class="ph fw-bold" [ngClass]="icon"></i>
+    <span
+      class="section-title-icon d-flex align-items-center justify-content-center"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <polyline
+          points="96 48 176 128 96 208"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+      </svg>
+    </span>
+
     }
   </a>
 </h2>

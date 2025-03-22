@@ -1,11 +1,20 @@
-.ph-magnifying-glass {
+.line-vertical {
+  color: var(--bs-primary);
+  height: 50px;
+  opacity: 0.3;
+}
+
+.magnifying-glass {
   cursor: pointer;
   transition: all 0.3s ease;
   background-color: var(--bs-primary);
   height: 40px;
   width: 40px;
-  align-items: center;
-  justify-content: center;
+  color: var(--bs-light);
+  svg {
+    height: 28px;
+    width: 28px;
+  }
 
   &:hover {
     background-color: var(--bs-primaryDarken);

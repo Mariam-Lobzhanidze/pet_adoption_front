@@ -13,5 +13,5 @@ export class CallToActionCard {
   @Input() avatarImage?: string;
   @Input({ required: true }) message: string = '';
   @Input({ required: true }) buttonText: string = '';
-  @Input({ required: true }) routePath: string = '/';
+  @Input() routePath: string = '/';
 }

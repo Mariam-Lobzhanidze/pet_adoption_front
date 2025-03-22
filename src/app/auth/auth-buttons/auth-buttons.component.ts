@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { DividerComponent } from '../../shared/divider/divider.component';
 
+type AuthType = 'login' | 'register';
 @Component({
   selector: 'app-auth-buttons',
   standalone: true,
@@ -9,9 +10,9 @@ import { DividerComponent } from '../../shared/divider/divider.component';
   styleUrl: './auth-buttons.component.scss',
 })
 export class AuthButtonsComponent {
-  @Output() loadAuth = new EventEmitter<'login' | 'register'>();
+  @Output() loadAuth = new EventEmitter<AuthType>();
 
-  public onEmitAuthType(type: 'login' | 'register') {
+  public onEmitAuthType(type: AuthType): void {
     this.loadAuth.emit(type);
   }
 }

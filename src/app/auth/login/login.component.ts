@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ErrorComponent } from '../error/error.component';
+import { ErrorComponent } from '../../shared/error/error.component';
 import {
   FormBuilder,
   FormGroup,

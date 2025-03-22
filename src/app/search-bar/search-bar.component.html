@@ -10,8 +10,21 @@
       [showBorder]="false"
     ></app-suggestion-dropdown>
   </div>
-  <span class="d-none d-lg-flex"
-    ><i class="ph-thin ph-line-vertical text-dark opacity-25 fs-1"></i>
+  <span class="d-none d-lg-flex line-vertical">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+      <rect width="256" height="256" fill="none" />
+      <line
+        x1="128"
+        y1="24"
+        x2="128"
+        y2="232"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="8"
+      />
+    </svg>
   </span>
   <div class="flex-grow-1">
     <app-suggestion-dropdown
@@ -21,10 +34,37 @@
       [showBorder]="false"
     ></app-suggestion-dropdown>
   </div>
-  <i
+
+  <div
     (click)="onSearch()"
-    class="d-none d-lg-flex ph ph-magnifying-glass fs-5 text-light mx-2 rounded"
-  ></i>
+    class="d-none d-lg-flex justify-content-center align-items-center magnifying-glass rounded mx-2"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+      <rect width="256" height="256" fill="none" />
+      <circle
+        cx="112"
+        cy="112"
+        r="80"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="16"
+      />
+      <line
+        x1="168.57"
+        y1="168.57"
+        x2="224"
+        y2="224"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="16"
+      />
+    </svg>
+  </div>
+
   <button
     (click)="onSearch()"
     class="btn btn-primary d-lg-none d-flex m-3 d-flex justify-content-center p-2"

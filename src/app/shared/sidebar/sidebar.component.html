@@ -1,5 +1,6 @@
 <div
   class="offcanvas bg-primaryDarken h-100"
+  #offcanvasElement
   [ngClass]="[offcanvasPositionClass]"
   tabindex="-1"
   [id]="offcanvasId"
@@ -12,6 +13,7 @@
       data-bs-dismiss="offcanvas"
       type="button"
       class="btn-close"
+      [routerLink]="'/home'"
     ></button>
   </div>
   <div class="offcanvas-body">

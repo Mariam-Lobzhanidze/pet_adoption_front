@@ -12,7 +12,6 @@ import {
 } from '../constants/dropdown-constants';
 import { SubMenuComponent } from './subMenu/submenu.component';
 import { RouterLink } from '@angular/router';
-import { AuthComponent } from '../auth/auth/auth.component';
 
 @Component({
   selector: 'app-nav',
@@ -24,15 +23,14 @@ import { AuthComponent } from '../auth/auth/auth.component';
     SidebarComponent,
     SubMenuComponent,
     RouterLink,
-    AuthComponent,
   ],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
 })
 export class NavComponent {
-  @ViewChild(SidebarComponent) sidebar!: SidebarComponent;
   public isLoggedIn: boolean = false;
 
+  @ViewChild('offcanvasMobileNav') mobileNavSidebar!: SidebarComponent;
   public showSecondaryNav: boolean = false;
   public showSubMenu: boolean = false;
 
@@ -50,7 +48,7 @@ export class NavComponent {
     this.showSubMenu = true;
   }
 
-  public onCloseSubMenu(): void {
-    this.showSubMenu = false;
+  public onShowMobileNav(): void {
+    this.mobileNavSidebar.open();
   }
 }

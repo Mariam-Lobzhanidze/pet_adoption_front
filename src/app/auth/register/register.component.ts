@@ -13,18 +13,26 @@ import {
 } from '../../validators/dynamic-validation';
 import { NgClass } from '@angular/common';
 import { passwordMatchValidator } from '../../validators/validators';
-import { ErrorComponent } from '../error/error.component';
+import { ErrorComponent } from '../../shared/error/error.component';
 import { ONLY_NUMBERS_AND_PLUS_SIGN } from '../../validators/patterns';
 import { User } from '../../shared/models/user.model';
 import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../services/toast.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   standalone: true,
-  imports: [ReactiveFormsModule, DividerComponent, NgClass, ErrorComponent],
+  imports: [
+    ReactiveFormsModule,
+    DividerComponent,
+    NgClass,
+    ErrorComponent,
+    SpinnerComponent,
+  ],
 })
 export class RegisterComponent implements OnInit {
   public registerForm!: FormGroup;
@@ -127,7 +135,7 @@ export class RegisterComponent implements OnInit {
     return !this.isShelter();
   }
 
-  private handleError(error: any): void {
+  private handleError(error: HttpErrorResponse): void {
     if (error?.error?.message?.includes('Email is already registered.')) {
       this.registerForm
         .get('email')
@@ -137,9 +145,9 @@ export class RegisterComponent implements OnInit {
         'Something went wrong. Please try again later',
         'error'
       );
-      this.isSubmitting = false;
       this.resetRegisterForm();
     }
+    this.isSubmitting = false;
   }
 
   private getPayload(formData: User): Partial<User> {
@@ -169,12 +177,17 @@ export class RegisterComponent implements OnInit {
 
       this.authService.registerUser(payload).subscribe({
         next: (response) => {
+          // this.toastService.showToast(
+          //   'Registration successful! ' + response.message,
+          //   'success'
+          // );
+
           this.toastService.showToast(
-            'Registration successful! ' + response.message,
-            'success'
+            'Thanks for signing up! You should receive a confirmation email shortly.'
           );
         },
         error: (error) => {
+          console.log(error);
           this.handleError(error);
         },
         complete: () => {

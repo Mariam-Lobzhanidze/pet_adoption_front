@@ -9,11 +9,11 @@
   }
 }
 
-.ph-caret-left,
-.ph-caret-right {
+.caret-icon {
+  width: 40px;
+  height: 40px;
   color: var(--bs-secondary);
   background-color: var(--bs-light);
-  border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
@@ -21,6 +21,8 @@
     color: var(--bs-light);
     background-color: var(--bs-secondary);
   }
+  svg {
+    width: 30px;
+    height: 30px;
+  }
 }
-
-//

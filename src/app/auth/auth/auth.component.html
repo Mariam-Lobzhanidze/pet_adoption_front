@@ -1,4 +1,4 @@
-<app-sidebar [offcanvasId]="'authSidebar'" [offcanvasPosition]="'bottom'">
+<app-sidebar [offcanvasPosition]="'top'" #authSidebar>
   <a class="offcanvas__title" routerLink="/">
     <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
   </a>
@@ -20,19 +20,49 @@
               >
                 @if(authView !=='default' ) {
                 <button
-                  class="back-btn p-4 align-self-start d-flex align-items-center justify-content-center border-0 rounded bg-transparent text-tertiary d-xl-none"
-                  (click)="authView = 'default'"
+                  class="back-btn p-4 align-self-start d-flex align-items-center justify-content-center border-0 rounded bg-transparent d-xl-none"
+                  (click)="handleAuthViewChange()"
                   aria-label="back to default auth view"
                 >
-                  <i class="ph ph-arrow-left fs-3"></i>
+                  <span class="arrow-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 256 256"
+                    >
+                      <rect width="256" height="256" fill="none" />
+                      <polyline
+                        points="160 208 80 128 160 48"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="24"
+                      />
+                    </svg>
+                  </span>
                 </button>
                 } @if(authView !== 'default'){
                 <button
-                  class="border-0 bg-primary rounded text-tertiary position-absolute d-none d-xl-block top-50 start-0 translate-middle p-3"
-                  (click)="authView = 'default'"
+                  class="border-0 bg-primary rounded position-absolute d-none d-xl-block top-50 start-0 translate-middle p-3"
+                  (click)="handleAuthViewChange()"
                   aria-label="back to default auth view"
                 >
-                  <i class="ph ph-caret-left fs-2"></i>
+                  <span class="arrow-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 256 256"
+                    >
+                      <rect width="256" height="256" fill="none" />
+                      <polyline
+                        points="160 208 80 128 160 48"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="24"
+                      />
+                    </svg>
+                  </span>
                 </button>
 
                 } @if(authView === 'default') {
@@ -43,7 +73,7 @@
                 </header>
                 <div class="w-100" style="max-width: 400px">
                   <app-auth-buttons
-                    (loadAuth)="handleAuthChange($event)"
+                    (loadAuth)="handleAuthViewChange($event)"
                   ></app-auth-buttons>
                 </div>
                 } @else if(authView === 'login') {

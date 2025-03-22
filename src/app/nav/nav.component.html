@@ -38,9 +38,8 @@
 
       } @else {
       <button
-        data-bs-toggle="offcanvas"
-        data-bs-target="#authSidebar"
         class="btn btn-secondary text-light fw-bold d-none d-lg-flex text-uppercase"
+        [routerLink]="'/auth'"
       >
         Sign in
       </button>
@@ -48,8 +47,7 @@
       <button
         class="shadow-none btn d-lg-none d-flex"
         type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#adoptoMobileNav"
+        (click)="onShowMobileNav()"
       >
         <i class="ph ph-list text-light fs-2"></i>
       </button>
@@ -62,7 +60,7 @@
   ></app-secondary-nav>
 </nav>
 <!--mobile nav-->
-<app-sidebar [offcanvasId]="'adoptoMobileNav'" [offcanvasPosition]="'start'">
+<app-sidebar [offcanvasPosition]="'start'" #offcanvasMobileNav>
   <a class="offcanvas__title" routerLink="/">
     <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
   </a>
@@ -95,9 +93,8 @@
 
         } @else {
         <button
-          data-bs-toggle="offcanvas"
-          data-bs-target="#authSidebar"
           class="btn btn-secondary text-light rounded fw-bold text-uppercase"
+          [routerLink]="'/auth'"
         >
           Sign in
         </button>
@@ -111,8 +108,7 @@
     <app-submenu
       [showSubmenu]="showSubMenu"
       [submenuData]="selectedSidebarData"
-      (close)="onCloseSubMenu()"
+      (close)="showSubMenu = false"
     ></app-submenu>
   </div>
 </app-sidebar>
-<app-auth></app-auth>

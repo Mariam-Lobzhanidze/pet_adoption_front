@@ -6,7 +6,7 @@
   <div
     class="card-body d-flex flex-column gap-3 justify-content-center align-items-center"
   >
-    <i class="ph-thin {{ item.icon }} display-3 card-body-icon"></i>
+    <div class="card-body-icon" [innerHTML]="getSanitizedSVG()"></div>
     <h4 class="card-body-text">{{ item.label }}</h4>
   </div>
 </a>

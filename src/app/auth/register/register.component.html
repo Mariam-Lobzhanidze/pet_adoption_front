@@ -4,12 +4,15 @@
   class="auth-form w-100"
 >
   <div class="container p-lg-5 p-3">
-    <header>
+    <header class="d-flex justify-content-between align-items-start">
       <h3 class="text-tertiary">
         {{
           isShelter() ? "Register Your Shelter" : "Sign Up as a Personal User"
         }}
       </h3>
+      @if(isSubmitting) {
+      <app-spinner color="tertiary"></app-spinner>
+      }
     </header>
 
     <div class="d-flex flex-column gap-3">

@@ -15,5 +15,11 @@
     @include m.media-down(sm) {
       height: 200px;
     }
+
+    .paw-print-icon {
+      width: 80px;
+      height: 80px;
+      color: var(--bs-light);
+    }
   }
 }

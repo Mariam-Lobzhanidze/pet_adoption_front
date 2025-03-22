@@ -11,6 +11,6 @@ import { RouterLink } from '@angular/router';
 })
 export class SectionTitleComponent {
   @Input() title: string = '';
-  @Input() routerLink: string = '';
-  @Input() icon: string = '';
+  @Input() routePath: string = '';
+  @Input() icon: boolean = false;
 }
