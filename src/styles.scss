@@ -1,7 +1,7 @@
 @import "variables";
 @import "mixins";
 
-@import "bootstrap-icons/font/bootstrap-icons.css";
+// @import "bootstrap-icons/font/bootstrap-icons.css";
 
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
@@ -17,6 +17,7 @@ $theme-colors: map-merge(
     "tertiary": $tertiary,
 
     "pageBody": $pageBody,
+    "dangerDarken": $dangerDarken,
   )
 );
 
@@ -29,7 +30,8 @@ body {
 p,
 h2,
 h3,
-h4 {
+h4,
+label.form-label {
   margin: 0;
 }
 
@@ -39,6 +41,7 @@ a,
   cursor: pointer;
 }
 
+label,
 p,
 h4,
 .form-control,
@@ -102,7 +105,8 @@ small {
   }
 }
 
-.form-control.ng-invalid.ng-touched {
+.form-control.ng-invalid.ng-touched,
+.form-control.invalid-border {
   border: 1px solid var(--bs-danger);
 }
 
@@ -125,4 +129,25 @@ label {
   --bs-body-color: var(--bs-light);
   --bs-border-color: var(--bs-secondary);
   --bs-form-label-color: var(--bs-tertiary);
+}
+
+.pet-form {
+  --bs-body-bg: transparent;
+  --bs-body-color: var(--bs-dark);
+  --bs-border-color: var(--bs-secondary);
+  --bs-form-label-color: var(--bs-dark);
+  .form-control {
+    box-shadow: none;
+  }
+
+  .form-field-wrapper .form-control::placeholder {
+    color: var(--bs-dark);
+    opacity: 0.5;
+  }
+}
+
+.btn:disabled {
+  color: var(--bs-gray-800);
+  font-weight: bold;
+  background-color: var(--bs-gray-300);
 }

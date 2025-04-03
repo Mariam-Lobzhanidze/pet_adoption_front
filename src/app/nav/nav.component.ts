@@ -11,7 +11,9 @@ import {
   OTHER_TYPE_ITEMS,
 } from '../constants/dropdown-constants';
 import { SubMenuComponent } from './subMenu/submenu.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { NavigationService } from '../services/navigation.service';
 
 @Component({
   selector: 'app-nav',
@@ -30,7 +32,7 @@ import { RouterLink } from '@angular/router';
 export class NavComponent {
   public isLoggedIn: boolean = false;
 
-  @ViewChild('offcanvasMobileNav') mobileNavSidebar!: SidebarComponent;
+  @ViewChild(SidebarComponent) mobileNavSidebar!: SidebarComponent;
   public showSecondaryNav: boolean = false;
   public showSubMenu: boolean = false;
 
@@ -43,6 +45,12 @@ export class NavComponent {
 
   public selectedSidebarData: { title: string; items: Item[] } | null = null;
 
+  public constructor(
+    public authService: AuthService,
+    private router: Router,
+    private navigationService: NavigationService
+  ) {}
+
   public onShowSubMenu(selectedData: { title: string; items: Item[] }): void {
     this.selectedSidebarData = selectedData;
     this.showSubMenu = true;
@@ -50,5 +58,15 @@ export class NavComponent {
 
   public onShowMobileNav(): void {
     this.mobileNavSidebar.open();
+    this.navigationService.setPreviousUrl(this.router.url);
+  }
+
+  public onLogOut(): void {
+    this.authService.logout();
+  }
+
+  public onSignIn(): void {
+    this.router.navigate(['/auth']);
+    this.navigationService.setPreviousUrl(this.router.url);
   }
 }

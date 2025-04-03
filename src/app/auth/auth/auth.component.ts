@@ -22,7 +22,7 @@ export class AuthComponent implements OnInit {
   public authView: AuthType = 'default';
   private isAuthRoute = false;
 
-  @ViewChild('authSidebar') authSidebar!: SidebarComponent;
+  @ViewChild(SidebarComponent) authSidebar!: SidebarComponent;
 
   public constructor(private route: ActivatedRoute, private router: Router) {}
 

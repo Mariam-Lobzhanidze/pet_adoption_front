@@ -1,0 +1,29 @@
+.stepper {
+  max-width: 800px;
+  margin: 0px auto;
+
+  .nav-pills .nav-link {
+    transition: all 0.3s ease;
+
+    &:disabled {
+      color: var(--bs-gray);
+      font-weight: bold;
+    }
+  }
+  .nav-item .step-num {
+    width: 30px;
+    height: 30px;
+
+    background-color: var(--bs-gray);
+
+    &.active {
+      background-color: var(--bs-secondary);
+    }
+  }
+
+  .nav-pills .nav-link.active {
+    background-color: transparent;
+    color: var(--bs-secondary);
+    font-weight: bold;
+  }
+}

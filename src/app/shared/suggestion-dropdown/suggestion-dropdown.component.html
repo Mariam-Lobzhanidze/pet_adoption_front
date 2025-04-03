@@ -1,16 +1,24 @@
-<div class="search-bar form-inputs">
+<form class="search-bar form-inputs" [formGroup]="formGroup">
   <input
     type="text"
     class="form-control shadow-none p-3"
-    [(ngModel)]="searchQuery"
     [ngbTypeahead]="search"
+    [resultFormatter]="formatter"
+    [inputFormatter]="formatter"
     [placeholder]="placeholderText"
     (selectItem)="onSearch($event)"
-    [ngClass]="{ 'border-0': !showBorder }"
+    formControlName="searchQuery"
+    [ngClass]="{
+      'border-0': !showBorder,
+      'ng-invalid ng-touched':
+        formGroup.get('searchQuery')?.invalid &&
+        formGroup.get('searchQuery')?.touched,
+      'invalid-border': showInvalidBorder
+    }"
   />
 
-  @if(searchQuery) {
-  <!-- <i class="ph ph-x text-primary fs-6 fw-bold" ></i> -->
+  @if(formGroup.get('searchQuery') && !formGroup.invalid) {
+
   <span class="x-icon" (click)="clearSearch()">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
       <rect width="256" height="256" fill="none" />
@@ -40,4 +48,4 @@
   </span>
 
   }
-</div>
+</form>

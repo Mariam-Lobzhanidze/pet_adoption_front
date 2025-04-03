@@ -1,0 +1,45 @@
+<div class="d-flex gap-2">
+  <!-- Cropped Image Preview Card -->
+  @for(image of croppedImageUrls;track image){
+  <div
+    class="card shadow overflow-hidden position-relative"
+    style="width: 160px; height: calc(160px * (7 / 6))"
+  >
+    <img
+      class="position-absolute top-0 start-0 object-fit-cover w-100 h-100"
+      [src]="image"
+      alt="Cropped Image Preview"
+    />
+  </div>
+  }
+
+  <!-- Button with Icon Card -->
+  <button
+    class="btn border-0 p-0"
+    (click)="fileInput.click()"
+    style="width: 160px; height: calc(160px * (7 / 6))"
+  >
+    <input
+      #fileInput
+      type="file"
+      (change)="fileChangeEvent($event)"
+      style="display: none"
+    />
+
+    <app-icon-card [item]="item" [selectable]="true"></app-icon-card>
+  </button>
+</div>
+
+<!-- Image Cropper -->
+@if(imageChangedEvent) {
+<image-cropper
+  [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="true"
+  [aspectRatio]="6 / 7"
+  format="png"
+  (imageCropped)="imageCropped($event)"
+  (imageLoaded)="imageLoaded($event)"
+  (cropperReady)="cropperReady()"
+  (loadImageFailed)="loadImageFailed()"
+></image-cropper>
+}

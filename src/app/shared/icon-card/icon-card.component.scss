@@ -1,5 +1,7 @@
 @use "mixins" as m;
+
 .card {
+  cursor: pointer;
   background-color: var(--bs-light);
   transition: all 0.3s ease;
   .card-body {
@@ -20,7 +22,8 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &.selected {
     background-color: var(--bs-primary);
 
     .card-body {
@@ -30,5 +33,9 @@
         fill: var(--bs-light);
       }
     }
+  }
+
+  &.selected {
+    background-color: var(--bs-secondary);
   }
 }

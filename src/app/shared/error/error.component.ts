@@ -1,16 +1,20 @@
+import { NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-error',
   standalone: true,
-  imports: [],
+  imports: [NgStyle],
   templateUrl: './error.component.html',
   styleUrl: './error.component.scss',
 })
 export class ErrorComponent {
   @Input({ required: true }) control!: AbstractControl | null;
   @Input() form!: AbstractControl | null;
+
+  @Input({ required: true }) backgroundColor: string = 'var(--bs-pageBody)';
+  @Input() textColor: string = 'var(--bs-danger)';
 
   public get errorMessage(): string | null {
     if (this.control?.touched && this.control?.invalid) {

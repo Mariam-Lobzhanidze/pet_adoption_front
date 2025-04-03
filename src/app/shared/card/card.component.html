@@ -5,7 +5,7 @@
   >
     @if (!loading) {
     <img
-      [src]="item.image || 'default_dog_img1.png'"
+      [src]="item.images?.[0]?.url"
       alt="card-image"
       class="card-img-top object-fit-cover"
       (load)="imageLoaded = true"

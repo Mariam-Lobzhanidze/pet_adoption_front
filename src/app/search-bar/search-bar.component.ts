@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ALL_BREEDS } from '../constants/breeds-constants';
 import { GEORGIAN_CITIES } from '../constants/georgianCities';
 import { SuggestionDropdownComponent } from '../shared/suggestion-dropdown/suggestion-dropdown.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ALL_BREEDS } from '../constants/pet.constants';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,8 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './search-bar.component.scss',
 })
 export class SearchBarComponent {
-  public petBreeds: string[] = ALL_BREEDS;
-  public cityNames: string[] = GEORGIAN_CITIES;
+  public petBreeds: { value: string; label: string }[] = ALL_BREEDS;
+  public cityNames: { value: string; label: string }[] = GEORGIAN_CITIES;
 
   public selectedBreed: string = '';
   public selectedCity: string = '';
@@ -29,6 +29,5 @@ export class SearchBarComponent {
       },
       queryParamsHandling: 'merge',
     });
-    console.log(this.selectedBreed, this.selectedCity);
   }
 }

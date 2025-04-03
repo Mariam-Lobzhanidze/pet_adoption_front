@@ -1,0 +1,73 @@
+<div class="stepper p-2">
+  <header>
+    <ul
+      class="nav nav-pills mb-3 d-flex justify-content-between align-items-center py-3 rounded"
+      id="pills-step"
+      role="steplist"
+    >
+      @for(step of allSteps;let i=$index; track step.stepTitle) {
+      <li
+        class="nav-item d-flex flex-sm-row flex-column align-items-center"
+        role="presentation"
+      >
+        <small
+          [class.active]="i === activeStepIndex"
+          class="step-num text-light rounded d-flex justify-content-center align-items-center"
+          >{{ i + 1 }}</small
+        >
+
+        <button
+          class="nav-link"
+          [class.active]="i === activeStepIndex"
+          [attr.aria-selected]="i === activeStepIndex ? 'true' : 'false'"
+          [attr.aria-controls]="step.stepTitle"
+          type="button"
+          role="tab"
+          [disabled]="!step.isValid || i !== activeStepIndex"
+        >
+          {{ step.stepTitle }}
+        </button>
+      </li>
+
+      <li
+        [ngClass]="{ 'd-none': i === allSteps.length - 1 }"
+        class="border-top border-gray border-1 flex-fill me-3"
+      ></li>
+
+      }
+    </ul>
+  </header>
+
+  <div class="step-content mb-5" id="pills-stepContent">
+    @for(step of allSteps;let i=$index; track step.stepTitle) {
+    <div
+      class="step-pane fade"
+      [ngClass]="{
+        show: i === activeStepIndex,
+        active: i === activeStepIndex,
+        'd-none': i !== activeStepIndex
+      }"
+      [attr.id]="step.stepTitle"
+      [attr.aria-labelledby]="step.stepTitle + '-step'"
+    >
+      @if(i===activeStepIndex) {
+
+      <ng-container *ngTemplateOutlet="step.content"></ng-container>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="steps-navigation d-flex justify-content-between mt-3">
+    <button
+      class="btn btn-dark"
+      (click)="prevStep()"
+      [disabled]="activeStepIndex === 0"
+    >
+      Previous
+    </button>
+    <button class="btn btn-secondary text-light" (click)="nextStep()">
+      {{ activeStepIndex === allSteps.length - 1 ? "Submit" : "Next" }}
+    </button>
+  </div>
+</div>

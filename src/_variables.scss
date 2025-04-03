@@ -12,13 +12,15 @@ $font-family-base: "Poppins", sans-serif;
 $primary: #1f3a52;
 $secondary: #41a186;
 $light: #fff;
-$danger: #ffb4ab;
+// $danger: #ffb4ab;
+$danger: #ff5c49;
 
 //custom ones
 $primaryDarken: darken($primary, 10%);
 $primaryLight: lighten($primary, 55%);
 $secondaryLight: #8cca6e;
 $secondaryDarken: darken($secondary, 10%);
+$dangerDarken: #ff5c49;
 
 $tertiary: #e5fab8;
 $pageBody: #f8f9fa;

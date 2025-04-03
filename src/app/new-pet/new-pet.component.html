@@ -1,0 +1,262 @@
+<div
+  class="container container-fluid rounded p-3 d-flex flex-column justify-content-center align-items-center"
+>
+  <header class="mb-3">
+    <h3 class="text-primary text-center fw-bold">Pet upload form</h3>
+  </header>
+
+  <div class="w-100">
+    <app-steps>
+      <app-step stepTitle="Images" [stepGroup]="imagesForm">
+        <ng-template #stepContent>
+          <form class="pet-form" [formGroup]="imagesForm">
+            <div class="d-flex flex-column gap-1">
+              <label class="form-label fw-bold"
+                >Upload at least one pet image</label
+              >
+              <app-image-upload></app-image-upload>
+
+              <div class="form-field-wrapper w-100">
+                <app-error
+                  [control]="imagesForm.get('images')"
+                  [backgroundColor]="'var(--bs-pageBody)'"
+                ></app-error>
+              </div>
+            </div>
+          </form>
+        </ng-template>
+      </app-step>
+      <app-step stepTitle="Basic" [stepGroup]="basicInfoForm">
+        <ng-template #stepContent>
+          <form
+            [formGroup]="basicInfoForm"
+            class="pet-form d-flex flex-column gap-3 mb-3 w-100"
+          >
+            <div class="d-flex flex-column gap-1">
+              <label class="form-label fw-bold">Select pet type</label>
+              <div
+                class="pet-form-types d-flex flex-wrap gap-1 justify-content-sm-start justify-content-between"
+              >
+                @for(item of petTypes;track item.label ) {
+                <button
+                  type="button"
+                  class="btn p-0 flex-fill"
+                  (click)="onSelectPetType(item.value)"
+                >
+                  <app-icon-card
+                    [item]="item"
+                    [selectable]="true"
+                    [selected]="item.value === selectedPetType"
+                  >
+                  </app-icon-card>
+                </button>
+
+                }
+              </div>
+            </div>
+            <div class="d-flex flex-column gap-1 flex-fill">
+              <label class="form-label fw-bold">Pet Name</label>
+              <div class="form-field-wrapper">
+                <input
+                  type="text"
+                  class="form-control w-100 p-3"
+                  formControlName="name"
+                  placeholder="Buddy"
+                />
+                <app-error
+                  [control]="basicInfoForm.get('name')"
+                  [backgroundColor]="'var(--bs-pageBody)'"
+                ></app-error>
+              </div>
+            </div>
+
+            <div class="d-flex flex-md-row flex-column gap-3">
+              <div class="d-flex flex-column gap-1 flex-fill">
+                <label class="form-label fw-bold">Pet breed</label>
+                <div class="form-field-wrapper">
+                  <app-suggestion-dropdown
+                    [suggestions]="petBreeds[selectedPetType] || []"
+                    [resetSearchQuery]="clearBreedSelect$ | async"
+                    (queryChange)="setSelectedPetBreed($event)"
+                    placeholderText="Labrador,Terrier,Bengal..."
+                    [showInvalidBorder]="
+                      basicInfoForm.get('breed')?.invalid &&
+                      basicInfoForm.get('breed')?.touched
+                        ? true
+                        : false
+                    "
+                    [formControlValue]="basicInfoForm.get('breed')?.value"
+                  ></app-suggestion-dropdown>
+                  <app-error
+                    [control]="basicInfoForm.get('breed')"
+                    [backgroundColor]="'var(--bs-pageBody)'"
+                  ></app-error>
+                </div>
+              </div>
+
+              <div class="d-flex flex-column gap-1 flex-fill">
+                <label class="form-label fw-bold">Pet Location</label>
+                <div class="form-field-wrapper">
+                  <app-suggestion-dropdown
+                    [suggestions]="petCityOptions || []"
+                    (queryChange)="setSelectedPetCity($event)"
+                    placeholderText="Tbilisi,Batumi..."
+                    [showInvalidBorder]="
+                      basicInfoForm.get('city')?.invalid &&
+                      basicInfoForm.get('city')?.touched
+                        ? true
+                        : false
+                    "
+                    [formControlValue]="basicInfoForm.get('city')?.value"
+                  ></app-suggestion-dropdown>
+                  <app-error
+                    [control]="basicInfoForm.get('city')"
+                    [backgroundColor]="'var(--bs-pageBody)'"
+                  ></app-error>
+                </div>
+              </div>
+            </div>
+            <div
+              class="d-flex flex-md-row flex-column justify-content-between gap-3"
+            >
+              <div class="d-flex flex-column gap-1 flex-fill w-100">
+                <label class="form-label fw-bold">Gender</label>
+                <div class="form-field-wrapper d-flex gap-3">
+                  @for (gender of petGenderOptions; track gender.value) {
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      formControlName="gender"
+                      [id]="gender.value"
+                      [value]="gender.value"
+                    />
+                    <label class="form-check-label" [for]="gender.value">
+                      {{ gender.label }}
+                    </label>
+                  </div>
+                  }
+                </div>
+              </div>
+
+              <div class="d-flex flex-column gap-1 flex-fill w-100">
+                <label class="form-label fw-bold">Age </label>
+                <div class="form-field-wrapper d-flex gap-3 flex-wrap">
+                  @for (age of petAgeOptions; track age.value) {
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      formControlName="age"
+                      [id]="age.value"
+                      [value]="age.value"
+                    />
+                    <label class="form-check-label" [for]="age.value">
+                      {{ age.label }}
+                    </label>
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column gap-1">
+              <label class="form-label fw-bold">Pet history</label>
+              <div class="form-field-wrapper w-100">
+                <app-quill-editor
+                  formControlName="history"
+                  placeholder="Please tell us about pet"
+                ></app-quill-editor>
+
+                <app-error
+                  [control]="basicInfoForm.get('history')"
+                  [backgroundColor]="'var(--bs-pageBody)'"
+                ></app-error>
+              </div>
+            </div>
+          </form>
+        </ng-template>
+      </app-step>
+
+      <app-step stepTitle="Details" [stepGroup]="detailsForm">
+        <ng-template #stepContent>
+          <form
+            [formGroup]="detailsForm"
+            class="pet-form d-flex flex-column mb-3 gap-3 w-100"
+          >
+            <div class="d-flex flex-column gap-1">
+              <label class="form-label fw-bold">Size</label>
+
+              <div class="d-flex flex-column gap-3">
+                @for (size of petSizeOptions; track size.value) {
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    formControlName="size"
+                    [id]="size.value"
+                    [value]="size.value"
+                    [checked]="detailsForm.get('size')?.value === size.value"
+                  />
+                  <label class="form-check-label" [for]="size.value"
+                    >{{ size.label }}
+                  </label>
+                </div>
+                }
+              </div>
+            </div>
+
+            <div class="d-flex flex-column gap-1">
+              <label class="form-label fw-bold">Health and Care Needs</label>
+              <div class="d-flex gap-3 flex-column" formArrayName="care">
+                @for (item of petCareOptions; track item.value) {
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [id]="item.value"
+                    [value]="item.value"
+                    (change)="onCareSelectionChange($event, item.value)"
+                    [checked]="
+                      detailsForm.get('care')?.value.includes(item.value)
+                    "
+                  />
+                  <label class="form-check-label" [for]="item.value">
+                    {{ item.label }}
+                  </label>
+                </div>
+                }
+              </div>
+            </div>
+
+            <div class="d-flex flex-column gap-1">
+              <label class="form-label fw-bold">Pet good with</label>
+              <div
+                class="d-flex gap-3 flex-column flex-md-row"
+                formArrayName="goodWith"
+              >
+                @for (item of petGoodWithOptions; track item.value) {
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [id]="item.value"
+                    [value]="item.value"
+                    (change)="onGoodWithSelectionChange($event, item.value)"
+                    [checked]="
+                      detailsForm.get('goodWith')?.value.includes(item.value)
+                    "
+                  />
+                  <label class="form-check-label" [for]="item.value">
+                    {{ item.label }}
+                  </label>
+                </div>
+                }
+              </div>
+            </div>
+          </form>
+        </ng-template>
+      </app-step>
+    </app-steps>
+  </div>
+</div>

@@ -16,11 +16,10 @@
     }
 
     .card {
-      background-color: transparent;
+      background-color: var(--bs-primaryDarken);
 
       @include m.media-up(xl) {
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        background-color: var(--bs-primary);
       }
 
       .arrow-icon {

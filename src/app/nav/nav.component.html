@@ -13,25 +13,54 @@
           (click)="this.showSecondaryNav = !this.showSecondaryNav"
         >
           All about pets
-          <i
-            class="ph-bold"
-            [ngClass]="showSecondaryNav ? 'ph-caret-down' : 'ph-caret-up'"
-          ></i>
+
+          <span class="caret-icon d-flex align-items-center">
+            @if(!showSecondaryNav) {
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <rect width="256" height="256" fill="none" />
+              <polyline
+                points="208 96 128 176 48 96"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              />
+            </svg>
+            } @else {
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <rect width="256" height="256" fill="none" />
+              <polyline
+                points="48 160 128 80 208 160"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="24"
+              />
+            </svg>
+            }
+          </span>
         </button>
       </li>
 
       <li class="nav-item">
-        <a class="text-light" routerLink="">
-          <i class="ph-fill ph-heart fs-3"></i>
+        <a routerLink="" class="favorite-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <rect width="256" height="256" fill="currentColor" />
+            <path
+              d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"
+            />
+          </svg>
         </a>
       </li>
     </ul>
 
     <ul class="navbar-nav flex-row align-items-center">
-      @if(isLoggedIn) {
+      @if(authService.isLoggedIn()) {
 
       <li class="nav-item d-none d-lg-flex">
-        <a class="nav-link text-light">
+        <a class="nav-link text-light" (click)="onLogOut()">
           <app-user-avatar></app-user-avatar>
         </a>
       </li>
@@ -39,17 +68,52 @@
       } @else {
       <button
         class="btn btn-secondary text-light fw-bold d-none d-lg-flex text-uppercase"
-        [routerLink]="'/auth'"
+        (click)="onSignIn()"
       >
         Sign in
       </button>
       }
       <button
-        class="shadow-none btn d-lg-none d-flex"
+        class="shadow-none btn d-lg-none d-flex menu-btn"
         type="button"
         (click)="onShowMobileNav()"
       >
-        <i class="ph ph-list text-light fs-2"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+          <rect width="256" height="256" fill="none" />
+          <line
+            x1="40"
+            y1="128"
+            x2="216"
+            y2="128"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="16"
+          />
+          <line
+            x1="40"
+            y1="64"
+            x2="216"
+            y2="64"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="16"
+          />
+          <line
+            x1="40"
+            y1="192"
+            x2="216"
+            y2="192"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="16"
+          />
+        </svg>
       </button>
     </ul>
   </div>
@@ -60,7 +124,7 @@
   ></app-secondary-nav>
 </nav>
 <!--mobile nav-->
-<app-sidebar [offcanvasPosition]="'start'" #offcanvasMobileNav>
+<app-sidebar [offcanvasPosition]="'start'">
   <a class="offcanvas__title" routerLink="/">
     <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
   </a>
@@ -83,9 +147,9 @@
       <ul
         class="navbar-nav d-flex flex-row justify-content-between align-items-center w-100 align-self-end"
       >
-        @if(isLoggedIn) {
+        @if(authService.isLoggedIn()) {
 
-        <li class="nav-item">
+        <li class="nav-item" (click)="onLogOut()">
           <a class="nav-link text-light">
             <app-user-avatar></app-user-avatar>
           </a>
@@ -94,7 +158,7 @@
         } @else {
         <button
           class="btn btn-secondary text-light rounded fw-bold text-uppercase"
-          [routerLink]="'/auth'"
+          (click)="onSignIn()"
         >
           Sign in
         </button>

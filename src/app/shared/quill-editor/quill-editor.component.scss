@@ -1,0 +1,17 @@
+quill-editor {
+  height: 300px;
+  width: 100%;
+}
+
+:host.ng-invalid.ng-touched {
+  ::ng-deep quill-editor {
+    .ql-container.ql-snow {
+      border: 1px solid var(--bs-danger);
+    }
+
+    .ql-toolbar.ql-snow {
+      border: 1px solid var(--bs-danger);
+      border-bottom: none;
+    }
+  }
+}

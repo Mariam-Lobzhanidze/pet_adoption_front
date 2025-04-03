@@ -12,7 +12,10 @@
           formControlName="email"
           placeholder="Email"
         />
-        <app-error [control]="loginForm.get('email')"></app-error>
+        <app-error
+          [control]="loginForm.get('email')"
+          [backgroundColor]="'var(--bs-primaryDarken)'"
+        ></app-error>
       </div>
       <div class="form-field-wrapper">
         <input
@@ -21,7 +24,10 @@
           formControlName="password"
           placeholder="Password"
         />
-        <app-error [control]="loginForm.get('password')"></app-error>
+        <app-error
+          [control]="loginForm.get('password')"
+          [backgroundColor]="'var(--bs-primaryDarken)'"
+        ></app-error>
       </div>
     </div>
 

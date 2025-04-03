@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { PetDetails } from '../models/pet.model';
 import { FavoriteBtnComponent } from '../favorite-btn/favorite-btn.component';
+import { Pet } from '../models/pet.model';
 
 @Component({
   selector: 'app-card',
@@ -13,7 +13,7 @@ import { FavoriteBtnComponent } from '../favorite-btn/favorite-btn.component';
 export class CardComponent {
   @Input() loading: boolean = true;
   public imageLoaded: boolean = false;
-  @Input() item: Partial<PetDetails> = {};
+  @Input() item: Partial<Pet> = {};
 
   public isFavorite: boolean = false;
 

@@ -1,3 +1,5 @@
-<small class="text-danger">
+@if(errorMessage) {
+<small [ngStyle]="{ 'background-color': backgroundColor, color: textColor }">
   {{ errorMessage }}
 </small>
+}

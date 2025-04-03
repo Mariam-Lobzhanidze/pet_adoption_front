@@ -1,7 +1,8 @@
-<a
-  class="card shadow rounded overflow-hidden"
-  [routerLink]="item.route"
-  aria-label="Go to pet category route"
+<div
+  class="card shadow rounded overflow-hidden w-100 h-100"
+  [ngClass]="{ selected: selectable && selected }"
+  [routerLink]="!selectable ? item.route : null"
+  aria-label="icon card for pet type"
 >
   <div
     class="card-body d-flex flex-column gap-3 justify-content-center align-items-center"
@@ -9,4 +10,4 @@
     <div class="card-body-icon" [innerHTML]="getSanitizedSVG()"></div>
     <h4 class="card-body-text">{{ item.label }}</h4>
   </div>
-</a>
+</div>

@@ -27,3 +27,22 @@
     );
   }
 }
+
+.hero-section-image {
+  min-height: 300px;
+  .paw-print-icon {
+    color: var(--bs-light);
+
+    svg {
+      width: 60px;
+      height: 60px;
+    }
+
+    @include m.media-up(lg) {
+      svg {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+}

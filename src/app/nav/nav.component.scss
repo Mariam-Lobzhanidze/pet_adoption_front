@@ -4,10 +4,11 @@
   height: 80px;
   @include m.responsive-margin-bottom(20px, 30px, 40px);
 
-  .ph-heart {
-    transition: all 0.3s ease;
-    &:hover {
-      color: var(--bs-secondary);
+  .menu-btn {
+    color: var(--bs-light);
+    svg {
+      width: 24px;
+      height: 24px;
     }
   }
 
@@ -20,7 +21,27 @@
       color: var(--bs-secondary);
     }
   }
+
+  .caret-icon {
+    width: 20px;
+    height: 20px;
+  }
 }
 app-sidebar {
   z-index: 999999;
+}
+
+.favorite-icon {
+  fill: var(--bs-danger);
+  transition: all 0.3s ease;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  &:hover {
+    fill: var(--bs-secondary);
+    color: transparent;
+  }
 }

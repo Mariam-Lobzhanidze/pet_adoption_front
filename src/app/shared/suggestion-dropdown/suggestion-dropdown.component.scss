@@ -1,3 +1,4 @@
+@use "mixins" as m;
 .search-bar {
   position: relative;
 
@@ -8,7 +9,11 @@
     transform: translateY(-50%);
     cursor: pointer;
     color: var(--bs-secondary);
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
+    @include m.media-up(lg) {
+      width: 21px;
+      height: 21px;
+    }
   }
 }

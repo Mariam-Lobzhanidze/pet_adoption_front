@@ -1,4 +1,4 @@
-<app-sidebar [offcanvasPosition]="'top'" #authSidebar>
+<app-sidebar [offcanvasPosition]="'top'" [offcanvasId]="'authSidebar'">
   <a class="offcanvas__title" routerLink="/">
     <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
   </a>
@@ -43,7 +43,7 @@
                 </button>
                 } @if(authView !== 'default'){
                 <button
-                  class="border-0 bg-primary rounded position-absolute d-none d-xl-block top-50 start-0 translate-middle p-3"
+                  class="border-0 bg-primaryDarken rounded position-absolute d-none d-xl-block top-50 start-0 translate-middle p-3"
                   (click)="handleAuthViewChange()"
                   aria-label="back to default auth view"
                 >

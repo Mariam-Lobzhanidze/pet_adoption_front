@@ -26,7 +26,10 @@
             formControlName="username"
             placeholder="Username"
           />
-          <app-error [control]="registerForm.get('username')"></app-error>
+          <app-error
+            [control]="registerForm.get('username')"
+            [backgroundColor]="'var(--bs-primaryDarken)'"
+          ></app-error>
         </div>
 
         } @if(isShelter()) {
@@ -37,7 +40,10 @@
             formControlName="shelterName"
             placeholder="Charity or shelter name"
           />
-          <app-error [control]="registerForm.get('shelterName')"></app-error>
+          <app-error
+            [control]="registerForm.get('shelterName')"
+            [backgroundColor]="'var(--bs-primaryDarken)'"
+          ></app-error>
         </div>
         }
         <div class="form-field-wrapper">
@@ -47,7 +53,10 @@
             formControlName="email"
             placeholder="Email"
           />
-          <app-error [control]="registerForm.get('email')"></app-error>
+          <app-error
+            [control]="registerForm.get('email')"
+            [backgroundColor]="'var(--bs-primaryDarken)'"
+          ></app-error>
         </div>
       </div>
       @if(isShelter()){
@@ -59,7 +68,10 @@
             formControlName="address"
             placeholder="Address"
           />
-          <app-error [control]="registerForm.get('address')"></app-error>
+          <app-error
+            [control]="registerForm.get('address')"
+            [backgroundColor]="'var(--bs-primaryDarken)'"
+          ></app-error>
         </div>
         <div class="form-field-wrapper">
           <input
@@ -68,7 +80,10 @@
             formControlName="phone"
             placeholder="Phone"
           />
-          <app-error [control]="registerForm.get('phone')"></app-error>
+          <app-error
+            [control]="registerForm.get('phone')"
+            [backgroundColor]="'var(--bs-primaryDarken)'"
+          ></app-error>
         </div>
       </div>
 
@@ -85,7 +100,10 @@
               'ng-invalid': passwordMismatchError
             }"
           />
-          <app-error [control]="registerForm.get('password')"></app-error>
+          <app-error
+            [control]="registerForm.get('password')"
+            [backgroundColor]="'var(--bs-primaryDarken)'"
+          ></app-error>
         </div>
 
         <div class="form-field-wrapper">
@@ -102,6 +120,7 @@
           <app-error
             [control]="registerForm.get('confirmPassword')"
             [form]="registerForm"
+            [backgroundColor]="'var(--bs-primaryDarken)'"
           ></app-error>
         </div>
       </div>
