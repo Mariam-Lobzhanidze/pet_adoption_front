@@ -10,12 +10,14 @@
       <app-step stepTitle="Images" [stepGroup]="imagesForm">
         <ng-template #stepContent>
           <form class="pet-form" [formGroup]="imagesForm">
-            <div class="d-flex flex-column gap-1">
-              <label class="form-label fw-bold"
-                >Upload at least one pet image</label
-              >
-              <app-image-upload></app-image-upload>
+            <div class="d-flex flex-column gap-3">
+              <!-- <label class="form-label fw-bold"
+                >Add at least one pet photo</label
+              > -->
 
+              <app-image-upload
+                (imageChanges)="getImageFiles($event)"
+              ></app-image-upload>
               <div class="form-field-wrapper w-100">
                 <app-error
                   [control]="imagesForm.get('images')"

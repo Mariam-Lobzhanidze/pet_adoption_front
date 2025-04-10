@@ -1,4 +1,4 @@
-<div class="stepper p-2">
+<div class="stepper">
   <header>
     <ul
       class="nav nav-pills mb-3 d-flex justify-content-between align-items-center py-3 rounded"
@@ -7,7 +7,7 @@
     >
       @for(step of allSteps;let i=$index; track step.stepTitle) {
       <li
-        class="nav-item d-flex flex-sm-row flex-column align-items-center"
+        class="nav-item flex-sm-row flex-column d-flex align-items-center"
         role="presentation"
       >
         <small

@@ -14,3 +14,13 @@ export function passwordMatchValidator(
     return null;
   };
 }
+
+export function emptyArrayValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value as any[];
+    if (!Array.isArray(value) || value.length === 0) {
+      return { emptyArray: true };
+    }
+    return null;
+  };
+}

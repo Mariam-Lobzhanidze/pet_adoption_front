@@ -1,76 +1,115 @@
-import { Component } from '@angular/core';
-import { IconCardComponent } from '../../shared/icon-card/icon-card.component';
-import {
-  ImageCroppedEvent,
-  ImageCropperComponent,
-  LoadedImage,
-} from 'ngx-image-cropper';
+import { NgClass } from '@angular/common';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 
+interface UploadedImage {
+  id: string;
+  originalFile: File;
+  croppedFile: File;
+  croppedUrl: string;
+}
 @Component({
   selector: 'app-image-upload',
   templateUrl: './image-upload.component.html',
   styleUrls: ['./image-upload.component.scss'],
   standalone: true,
-  imports: [IconCardComponent, ImageCropperComponent],
+  imports: [ImageCropperComponent, NgClass],
 })
 export class ImageUploadComponent {
-  imageChangedEvent: Event | null = null;
-  croppedImages: Blob[] = [];
-  croppedImageUrls: string[] = [];
+  @Output() imageChanges = new EventEmitter<File[]>();
+  public uploadedImages: UploadedImage[] = [];
 
-  // later
-  public item = {
-    label: '',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/><line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/></svg>',
-  };
+  public activeImageFile: File | undefined | null = undefined;
+  public activeImageId: string | null = null;
 
-  //
+  public fileChangeEvent(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
 
-  fileChangeEvent(event: Event): void {
-    this.imageChangedEvent = event;
-  }
+    if (file) {
+      this.activeImageId = file.name + '-' + Date.now();
+      this.activeImageFile = file;
 
-  imageCropped(event: ImageCroppedEvent) {
-    console.log(event);
-
-    if (event.blob) {
-      const imageUrl = URL.createObjectURL(event.blob);
-      this.croppedImageUrls.push(imageUrl);
-      console.log(this.croppedImageUrls);
+      this.addNewImage(this.activeImageId, file);
+      input.value = '';
     }
   }
 
-  //
-  imageLoaded(image: LoadedImage) {
-    // show cropper
+  private addNewImage(id: string, file: File) {
+    this.uploadedImages.unshift({
+      id,
+      originalFile: file,
+      croppedUrl: '',
+      croppedFile: file,
+    });
   }
-  cropperReady() {
-    // cropper ready
+
+  public imageCropped(event: ImageCroppedEvent) {
+    const uploadedImage = this.uploadedImages.find(
+      (img) => img.id === this.activeImageId
+    );
+
+    if (event && event.blob && uploadedImage) {
+      this.saveCroppedFile(event.blob, uploadedImage);
+      this.emitCroppedFiles();
+    }
   }
-  loadImageFailed() {
-    // show message
+
+  private saveCroppedFile(blob: Blob, uploadedImage: UploadedImage): void {
+    if (uploadedImage && uploadedImage?.croppedUrl) {
+      URL.revokeObjectURL(uploadedImage.croppedUrl);
+    }
+
+    const getName = () =>
+      uploadedImage.id.substring(0, uploadedImage.id.lastIndexOf('.')) +
+      '-' +
+      Date.now() +
+      '.webp';
+
+    const croppedFile = new File([blob], getName(), { type: blob.type });
+
+    uploadedImage.croppedFile = croppedFile;
+    uploadedImage.croppedUrl = URL.createObjectURL(blob);
+  }
+
+  public deleteImage(id: string): void {
+    this.uploadedImages = this.uploadedImages.filter((img) => img.id !== id);
+
+    if (this.activeImageId === id) {
+      const next = this.uploadedImages[0] || null;
+      this.activeImageFile = next?.croppedFile ?? null;
+      this.activeImageId = next?.id ?? null;
+    }
+
+    this.emitCroppedFiles();
+  }
+
+  public onShowImage(id: string): void {
+    const uploadedImage = this.uploadedImages.find((img) => img.id === id);
+    if (uploadedImage && this.activeImageId !== uploadedImage.id) {
+      this.activeImageId = uploadedImage.id;
+      this.activeImageFile = uploadedImage.originalFile;
+    }
+  }
+
+  private getCroppedFiles(arr: UploadedImage[]): File[] {
+    return this.uploadedImages.map((item) => item.croppedFile);
+  }
+
+  public emitCroppedFiles() {
+    const croppedFiles = this.getCroppedFiles(this.uploadedImages);
+    this.imageChanges.emit(croppedFiles);
   }
 }
 
-// providers: [
-//   {
-//     provide: NG_VALUE_ACCESSOR,
-//     useExisting: forwardRef(() => ImageUploadComponent),
-//     multi: true,
-//   },
-// ],
-// implements ControlValueAccessor
-// onChange: (images: any[]) => void = () => {};
-// onTouched: () => void = () => {};
-
-// public constructor(private sanitizer: DomSanitizer) {}
-
-// writeValue(images: any[]): void {}
-
-// registerOnChange(fn: any): void {
-//   this.onChange = fn;
+// imageLoaded(image: LoadedImage) {
+//   // show cropper
 // }
 
-// registerOnTouched(fn: any): void {
-//   this.onTouched = fn;
+// cropperReady() {
+//   // cropper ready
+// }
+
+// loadImageFailed() {
+//   // show message
 // }

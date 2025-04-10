@@ -5,6 +5,7 @@ export interface Pet {
   type: string;
   breed: string;
   age: Age;
+  // images: { public_id: string; file: File }[];
   images: { public_id: string; url: string }[];
   gender: Gender;
   size?: Size;

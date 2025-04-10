@@ -41,6 +41,10 @@ export class ErrorComponent {
       if (this.control?.hasError('emailAlreadyRegistered')) {
         return 'Email already registered';
       }
+
+      if (this.control?.errors?.['emptyArray']) {
+        return 'Please upload at least one pet image';
+      }
     }
 
     return null;

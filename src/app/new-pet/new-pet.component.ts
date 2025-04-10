@@ -37,7 +37,7 @@ import { AsyncPipe } from '@angular/common';
 import { GEORGIAN_CITIES } from '../constants/georgianCities';
 import { QuillEditorComponent } from '../shared/quill-editor/quill-editor.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
-import { ImageCropper } from '../shared/image-cropper/image-cropper.component';
+import { emptyArrayValidator } from '../validators/validators';
 
 interface Options {
   value: string;
@@ -58,7 +58,6 @@ interface Options {
     QuillEditorComponent,
     FormsModule,
     ImageUploadComponent,
-    ImageCropper,
   ],
   templateUrl: './new-pet.component.html',
   styleUrl: './new-pet.component.scss',
@@ -133,8 +132,7 @@ export class NewPetComponent implements OnInit, OnDestroy {
     });
 
     this.imagesForm = this.fb.group({
-      images: this.fb.array([]),
-      // Validators.required
+      images: this.fb.array([], emptyArrayValidator()),
     });
   }
 
@@ -232,6 +230,16 @@ export class NewPetComponent implements OnInit, OnDestroy {
   private initializeUserId(): void {
     const user = this.authService.user();
     this.userId = user?.id || null;
+  }
+
+  public getImageFiles(imageFiles: File[]) {
+    console.log(imageFiles);
+    const imageArray = this.imagesForm.get('images') as FormArray;
+
+    imageFiles.forEach((file) => {
+      imageArray.push(this.fb.control(file));
+    });
+    console.log(this.imagesForm.value);
   }
 
   private savePet(pet: Partial<Pet>): void {
