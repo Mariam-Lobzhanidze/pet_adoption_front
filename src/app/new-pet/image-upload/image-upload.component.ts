@@ -22,6 +22,9 @@ export class ImageUploadComponent {
   public activeImageFile: File | undefined | null = undefined;
   public activeImageId: string | null = null;
 
+  public imagesSaved: boolean = false;
+  public isDragging = false;
+
   public fileChangeEvent(event: Event): void {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
@@ -45,14 +48,18 @@ export class ImageUploadComponent {
   }
 
   public imageCropped(event: ImageCroppedEvent) {
+    this.imagesSaved = false;
     const uploadedImage = this.uploadedImages.find(
       (img) => img.id === this.activeImageId
     );
 
     if (event && event.blob && uploadedImage) {
       this.saveCroppedFile(event.blob, uploadedImage);
-      this.emitCroppedFiles();
     }
+  }
+
+  public onSaveImages(): void {
+    this.emitCroppedFiles();
   }
 
   private saveCroppedFile(blob: Blob, uploadedImage: UploadedImage): void {
@@ -81,7 +88,7 @@ export class ImageUploadComponent {
       this.activeImageId = next?.id ?? null;
     }
 
-    this.emitCroppedFiles();
+    this.imagesSaved = false;
   }
 
   public onShowImage(id: string): void {
@@ -98,7 +105,31 @@ export class ImageUploadComponent {
 
   public emitCroppedFiles() {
     const croppedFiles = this.getCroppedFiles(this.uploadedImages);
+
     this.imageChanges.emit(croppedFiles);
+    this.imagesSaved = true;
+  }
+
+  //
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+    this.isDragging = true;
+  }
+
+  onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+    this.isDragging = false;
+  }
+
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    this.isDragging = false;
+    const file = event.dataTransfer?.files?.[0];
+    if (file && file.type.startsWith('image/')) {
+      this.activeImageId = file.name + '-' + Date.now();
+      this.activeImageFile = file;
+      this.addNewImage(this.activeImageId, file);
+    }
   }
 }
 

@@ -8,6 +8,7 @@ export interface Pet {
   // images: { public_id: string; file: File }[];
   images: { public_id: string; url: string }[];
   gender: Gender;
+  city?: string;
   size?: Size;
   care?: Care;
   color?: string;

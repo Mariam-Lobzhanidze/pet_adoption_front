@@ -43,7 +43,7 @@ export class ErrorComponent {
       }
 
       if (this.control?.errors?.['emptyArray']) {
-        return 'Please upload at least one pet image';
+        return 'Please upload at least one pet image and save changes';
       }
     }
 

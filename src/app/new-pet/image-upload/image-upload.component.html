@@ -1,42 +1,41 @@
 <div class="d-flex flex-column gap-3">
-  <button
-    class="add-btn btn btn-secondary text-light d-flex align-items-center gap-2 p-0"
-    (click)="fileInput.click()"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-      <rect width="256" height="256" fill="none" />
-      <line
-        x1="40"
-        y1="128"
-        x2="216"
-        y2="128"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"
-      />
-      <line
-        x1="128"
-        y1="40"
-        x2="128"
-        y2="216"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="16"
-      />
-    </svg>
-    <input
-      #fileInput
-      type="file"
-      accept="image/*"
-      (change)="fileChangeEvent($event)"
-      hidden
-      class="d-none"
-    />
-  </button>
+  <div class="d-flex flex-column gap-3">
+    <div
+      class="drop-zone d-flex justify-content-center align-items-center"
+      (drop)="onDrop($event)"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      [class.active]="isDragging"
+    >
+      <p class="d-flex flex-lg-row flex-column gap-2 align-items-center">
+        Drag and drop image or click
+        <button
+          class="btn btn-sm btn-secondary text-light"
+          (click)="fileInput.click()"
+        >
+          New image
+
+          <input
+            #fileInput
+            type="file"
+            accept="image/*"
+            (change)="fileChangeEvent($event)"
+            hidden
+            class="d-none"
+          />
+        </button>
+      </p>
+    </div>
+    <button
+      class="btn-secondary btn btn-sm"
+      [class.glow]="uploadedImages.length"
+      type="button"
+      (click)="onSaveImages()"
+      [disabled]="!uploadedImages.length || imagesSaved"
+    >
+      Save
+    </button>
+  </div>
 
   <div class="d-flex flex-lg-row flex-column flex-sm-column-reverse gap-2">
     @if(activeImageFile) {
@@ -48,10 +47,6 @@
         format="webp"
         (imageCropped)="imageCropped($event)"
       ></image-cropper>
-
-      <!-- (imageLoaded)="imageLoaded($event)"
-        (cropperReady)="cropperReady()"
-        (loadImageFailed)="loadImageFailed()" -->
     </div>
     }
 
@@ -104,3 +99,7 @@
     </div>
   </div>
 </div>
+
+<!-- (imageLoaded)="imageLoaded($event)"
+        (cropperReady)="cropperReady()"
+        (loadImageFailed)="loadImageFailed()" -->

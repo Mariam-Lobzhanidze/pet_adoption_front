@@ -182,9 +182,7 @@ export class PetService {
       formData.append('files', file);
     });
 
-    return this.http.post(`${this.API_URL}/upload`, formData, {
-      headers: new HttpHeaders(),
-    });
+    return this.http.post(`${this.API_URL}/upload`, formData);
   }
 
   public deleteImage(publicId: string): Observable<any> {

@@ -7,12 +7,12 @@
   padding: 0;
   border: 2px solid var(--bs-pageBody);
   border-radius: 50%;
-  background-color: var(--bs-primary);
+  background-color: var(--bs-secondary);
   color: var(--bs-light);
   transition: all 0.3s ease;
   &:hover {
-    background-color: var(--bs-secondary);
     color: var(--bs-light);
+    background-color: var(--bs-primary);
   }
 
   svg {
@@ -26,7 +26,36 @@
   height: calc(120px * (7 / 6));
   cursor: pointer;
 }
-.add-btn {
-  width: 30px;
-  height: 30px;
+
+.glow:not(:disabled) {
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    background-color: var(--bs-secondary);
+  }
+
+  100% {
+    background-color: var(--bs-primary);
+    color: var(--bs-light);
+  }
+}
+
+.drop-zone {
+  height: 160px;
+  width: 100%;
+  border: 1px dashed var(--bs-secondary);
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  background-color: var(--bs-pageBody);
+  &.active {
+    background-color: var(--bs-tertiary);
+  }
+}
+
+button {
+  width: fit-content;
 }

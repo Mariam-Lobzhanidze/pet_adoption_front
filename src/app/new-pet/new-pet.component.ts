@@ -233,21 +233,18 @@ export class NewPetComponent implements OnInit, OnDestroy {
   }
 
   public getImageFiles(imageFiles: File[]) {
-    console.log(imageFiles);
     const imageArray = this.imagesForm.get('images') as FormArray;
+    imageArray.clear();
 
     imageFiles.forEach((file) => {
       imageArray.push(this.fb.control(file));
     });
-    console.log(this.imagesForm.value);
   }
 
-  private savePet(pet: Partial<Pet>): void {
-    if (this.petId) {
-      this.updatePet(pet);
-    } else {
-      this.createPet(pet);
-    }
+  public logCollectedData(event: void) {
+    console.log({ ...this.basicInfoForm.value, ...this.detailsForm.value });
+
+    console.log(this.imagesForm.value);
   }
 
   private createPet(pet: Partial<Pet>): void {
@@ -266,12 +263,39 @@ export class NewPetComponent implements OnInit, OnDestroy {
     });
   }
 
-  public onSubmit(): void {
-    if (this.basicInfoForm.valid) {
-      // this.savePet(this.basicInfoForm.value);
+  private savePet(pet: Partial<Pet>): void {
+    if (this.petId) {
+      this.updatePet(pet);
     } else {
-      console.error('Form is invalid');
+      this.createPet(pet);
     }
+  }
+
+  public onSubmit(): void {
+    if (
+      !this.basicInfoForm.valid &&
+      !this.imagesForm.valid &&
+      !this.detailsForm.valid
+    )
+      return;
+    this.petService.uploadImages(this.imagesForm.value).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+
+    const payload = {
+      ...this.basicInfoForm.value,
+      ...this.imagesForm.value,
+      ...this.detailsForm.value,
+    };
+
+    console.log(payload);
+
+    // this.savePet();
   }
 
   ngOnDestroy(): void {

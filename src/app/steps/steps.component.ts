@@ -3,6 +3,8 @@ import {
   ContentChildren,
   QueryList,
   AfterContentInit,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 
 import { NgClass, NgTemplateOutlet } from '@angular/common';
@@ -17,6 +19,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./steps.component.scss'],
 })
 export class StepsComponent implements AfterContentInit {
+  @Output() stepsDataCollected = new EventEmitter<void>();
   @ContentChildren(StepComponent)
   allSteps!: QueryList<StepComponent>;
 
@@ -39,19 +42,18 @@ export class StepsComponent implements AfterContentInit {
     const step = [...this.allSteps][this.activeStepIndex];
     const activeStepGroup = step.stepGroup;
 
-    console.log(activeStepGroup.value);
-
     activeStepGroup?.markAllAsTouched();
-    activeStepGroup.updateValueAndValidity();
+    // activeStepGroup.updateValueAndValidity();
 
-    if (
-      this.activeStepIndex < this.allSteps.length - 1 &&
-      activeStepGroup.valid
-    ) {
-      this.activeStepIndex++;
-      this.updateRouteQueryParams();
-    } else {
-      return;
+    const isLastStep = this.activeStepIndex === this.allSteps.length - 1;
+
+    if (activeStepGroup?.valid) {
+      if (isLastStep) {
+        this.stepsDataCollected.emit();
+      } else {
+        this.activeStepIndex++;
+        this.updateRouteQueryParams();
+      }
     }
   }
 
