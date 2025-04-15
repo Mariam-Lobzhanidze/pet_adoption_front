@@ -6,7 +6,7 @@
   </header>
 
   <div class="w-100">
-    <app-steps (stepsDataCollected)="logCollectedData($event)">
+    <app-steps (stepsDataCollected)="onSubmit()" [isSubmitting]="isSubmitting">
       <app-step stepTitle="Basic" [stepGroup]="basicInfoForm">
         <ng-template #stepContent>
           <form
@@ -140,6 +140,38 @@
                 </div>
               </div>
             </div>
+            <div class="d-flex flex-md-row flex-column gap-3">
+              <div class="d-flex flex-column gap-1 flex-fill">
+                <label class="form-label fw-bold">Contact email</label>
+                <div class="form-field-wrapper">
+                  <input
+                    type="email"
+                    class="form-control w-100 p-3"
+                    formControlName="contactEmail"
+                    placeholder="yourEmail@gmail.com"
+                  />
+                  <app-error
+                    [control]="basicInfoForm.get('contactEmail')"
+                    [backgroundColor]="'var(--bs-pageBody)'"
+                  ></app-error>
+                </div>
+              </div>
+              <div class="d-flex flex-column gap-1 flex-fill">
+                <label class="form-label fw-bold">Contact phone</label>
+                <div class="form-field-wrapper">
+                  <input
+                    type="text"
+                    class="form-control w-100 p-3"
+                    formControlName="contactPhone"
+                    placeholder="e.g. +995 5XX XXX XXX"
+                  />
+                  <app-error
+                    [control]="basicInfoForm.get('contactPhone')"
+                    [backgroundColor]="'var(--bs-pageBody)'"
+                  ></app-error>
+                </div>
+              </div>
+            </div>
 
             <div class="d-flex flex-column gap-1">
               <label class="form-label fw-bold">Pet history</label>
@@ -151,23 +183,6 @@
 
                 <app-error
                   [control]="basicInfoForm.get('history')"
-                  [backgroundColor]="'var(--bs-pageBody)'"
-                ></app-error>
-              </div>
-            </div>
-          </form>
-        </ng-template>
-      </app-step>
-      <app-step stepTitle="Images" [stepGroup]="imagesForm">
-        <ng-template #stepContent>
-          <form class="pet-form" [formGroup]="imagesForm">
-            <div class="d-flex flex-column gap-3">
-              <app-image-upload
-                (imageChanges)="getImageFiles($event)"
-              ></app-image-upload>
-              <div class="form-field-wrapper w-100">
-                <app-error
-                  [control]="imagesForm.get('images')"
                   [backgroundColor]="'var(--bs-pageBody)'"
                 ></app-error>
               </div>
@@ -250,6 +265,25 @@
                   </label>
                 </div>
                 }
+              </div>
+            </div>
+          </form>
+        </ng-template>
+      </app-step>
+
+      <app-step stepTitle="Images" [stepGroup]="imagesForm">
+        <ng-template #stepContent>
+          <form class="pet-form" [formGroup]="imagesForm">
+            <div class="d-flex flex-column gap-3">
+              <app-image-upload
+                [initialImageFiles]="imagesForm.get('images')?.value"
+                (imageChanges)="getImageFiles($event)"
+              ></app-image-upload>
+              <div class="form-field-wrapper w-100">
+                <app-error
+                  [control]="imagesForm.get('images')"
+                  [backgroundColor]="'var(--bs-pageBody)'"
+                ></app-error>
               </div>
             </div>
           </form>

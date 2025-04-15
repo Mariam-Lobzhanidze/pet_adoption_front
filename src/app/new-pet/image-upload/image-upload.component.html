@@ -8,7 +8,7 @@
       [class.active]="isDragging"
     >
       <p class="d-flex flex-lg-row flex-column gap-2 align-items-center">
-        Drag and drop image or click
+        Drag and drop images here or
         <button
           class="btn btn-sm btn-secondary text-light"
           (click)="fileInput.click()"
@@ -27,11 +27,11 @@
       </p>
     </div>
     <button
-      class="btn-secondary btn btn-sm"
+      class="btn-secondary btn btn-sm align-self-end"
       [class.glow]="uploadedImages.length"
       type="button"
       (click)="onSaveImages()"
-      [disabled]="!uploadedImages.length || imagesSaved"
+      [disabled]="!imageSaveState"
     >
       Save
     </button>

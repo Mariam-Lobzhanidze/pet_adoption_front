@@ -20,7 +20,6 @@
           class="nav-link"
           [class.active]="i === activeStepIndex"
           [attr.aria-selected]="i === activeStepIndex ? 'true' : 'false'"
-          [attr.aria-controls]="step.stepTitle"
           type="button"
           role="tab"
           [disabled]="!step.isValid || i !== activeStepIndex"
@@ -66,7 +65,11 @@
     >
       Previous
     </button>
-    <button class="btn btn-secondary text-light" (click)="nextStep()">
+    <button
+      [disabled]="isSubmitting"
+      class="btn btn-secondary"
+      (click)="nextStep()"
+    >
       {{ activeStepIndex === allSteps.length - 1 ? "Submit" : "Next" }}
     </button>
   </div>

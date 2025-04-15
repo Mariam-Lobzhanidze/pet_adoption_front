@@ -5,16 +5,24 @@ export interface Pet {
   type: string;
   breed: string;
   age: Age;
-  // images: { public_id: string; file: File }[];
   images: { public_id: string; url: string }[];
   gender: Gender;
   city?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+  preferredContact?: string;
+  availableFor?: 'adoption' | 'foster';
   size?: Size;
   care?: Care;
   color?: string;
   coatLength?: CoatLengthType;
   goodWith?: GoodWith[];
   status?: Status;
+}
+
+export interface PetImageUploadResponse {
+  message: string;
+  uploadResults: { public_id: string; url: string }[];
 }
 
 export type Gender = 'male' | 'female' | 'unknown';

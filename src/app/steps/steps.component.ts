@@ -5,6 +5,7 @@ import {
   AfterContentInit,
   Output,
   EventEmitter,
+  Input,
 } from '@angular/core';
 
 import { NgClass, NgTemplateOutlet } from '@angular/common';
@@ -19,6 +20,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./steps.component.scss'],
 })
 export class StepsComponent implements AfterContentInit {
+  @Input() isSubmitting: boolean = false;
   @Output() stepsDataCollected = new EventEmitter<void>();
   @ContentChildren(StepComponent)
   allSteps!: QueryList<StepComponent>;
@@ -43,24 +45,36 @@ export class StepsComponent implements AfterContentInit {
     const activeStepGroup = step.stepGroup;
 
     activeStepGroup?.markAllAsTouched();
-    // activeStepGroup.updateValueAndValidity();
 
     const isLastStep = this.activeStepIndex === this.allSteps.length - 1;
 
     if (activeStepGroup?.valid) {
       if (isLastStep) {
         this.stepsDataCollected.emit();
+        this.scrollToTop();
       } else {
         this.activeStepIndex++;
         this.updateRouteQueryParams();
+        this.scrollToTop();
       }
     }
+  }
+
+  private scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   public prevStep() {
     if (this.activeStepIndex > 0) {
       this.activeStepIndex--;
       this.updateRouteQueryParams();
+      this.scrollToTop();
     }
+  }
+
+  public resetStepper() {
+    this.activeStepIndex = 0;
+    this.allSteps.forEach((step) => step.stepGroup.reset());
+    this.updateRouteQueryParams();
   }
 }

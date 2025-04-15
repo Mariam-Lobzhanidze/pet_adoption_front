@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AvatarComponent } from '../avatar/avatar.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-call-to-action-card',
@@ -14,4 +15,6 @@ export class CallToActionCard {
   @Input({ required: true }) message: string = '';
   @Input({ required: true }) buttonText: string = '';
   @Input() routePath: string = '/';
+
+  constructor(public authService: AuthService) {}
 }

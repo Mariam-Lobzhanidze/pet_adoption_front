@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Pet } from '../shared/models/pet.model';
+import { Pet, PetImageUploadResponse } from '../shared/models/pet.model';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { PetService } from '../services/pet.service';
@@ -32,12 +32,14 @@ import {
   PET_SIZE_OPTIONS,
   RABBIT_BREEDS_OPTIONS,
 } from '../constants/pet.constants';
-import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, concatMap, Subject, takeUntil } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { GEORGIAN_CITIES } from '../constants/georgianCities';
 import { QuillEditorComponent } from '../shared/quill-editor/quill-editor.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { emptyArrayValidator } from '../validators/validators';
+import { ONLY_NUMBERS_AND_PLUS_SIGN } from '../validators/patterns';
+import { ToastService } from '../services/toast.service';
 
 interface Options {
   value: string;
@@ -63,6 +65,9 @@ interface Options {
   styleUrl: './new-pet.component.scss',
 })
 export class NewPetComponent implements OnInit, OnDestroy {
+  public isSubmitting: boolean = false;
+  @ViewChild(StepsComponent) stepperComponent!: StepsComponent;
+
   public basicInfoForm!: FormGroup;
   public detailsForm!: FormGroup;
   public imagesForm!: FormGroup;
@@ -81,6 +86,7 @@ export class NewPetComponent implements OnInit, OnDestroy {
   public petCareOptions: Options[] = PET_CARE_OPTIONS;
   public petGoodWithOptions: Options[] = GOOD_WITH_OPTIONS;
   public petSizeOptions: Options[] = PET_SIZE_OPTIONS;
+
   private petIconCards: Item[] = ICON_CARDS_ITEMS.filter(
     (item) => item.value !== 'shelters'
   );
@@ -97,7 +103,8 @@ export class NewPetComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private petService: PetService
+    private petService: PetService,
+    private toastService: ToastService
   ) {}
 
   public ngOnInit(): void {
@@ -114,18 +121,22 @@ export class NewPetComponent implements OnInit, OnDestroy {
     this.basicInfoForm = this.fb.group({
       type: [this.selectedPetType, Validators.required],
       name: ['', Validators.required],
-      age: ['baby'],
+      age: ['baby', Validators.required],
       breed: ['', Validators.required],
       city: ['', Validators.required],
-      gender: ['male'],
+      contactEmail: ['', [Validators.required, Validators.email]],
+      contactPhone: [
+        '',
+        [Validators.required, Validators.pattern(ONLY_NUMBERS_AND_PLUS_SIGN)],
+      ],
+
+      gender: ['male', Validators.required],
       history: ['', Validators.required],
     });
 
     this.detailsForm = this.fb.group({
       size: ['small_0_25_lbs'],
-      care: this.fb.array(
-        ['house_trained'].map((value) => new FormControl(value))
-      ),
+      care: this.fb.array(['unknown'].map((value) => new FormControl(value))),
       goodWith: this.fb.array(
         ['everyone'].map((value) => new FormControl(value))
       ),
@@ -241,61 +252,44 @@ export class NewPetComponent implements OnInit, OnDestroy {
     });
   }
 
-  public logCollectedData(event: void) {
-    console.log({ ...this.basicInfoForm.value, ...this.detailsForm.value });
-
-    console.log(this.imagesForm.value);
-  }
-
-  private createPet(pet: Partial<Pet>): void {
-    this.petService.createPet(pet).subscribe({
-      next: (response) => console.log('Pet Created:', response),
-      error: (err) => console.error('Error creating pet:', err),
-    });
-  }
-
-  private updatePet(pet: Partial<Pet>): void {
-    if (!this.petId) return;
-
-    this.petService.updatePet(this.petId, pet).subscribe({
-      next: (response) => console.log('Pet Updated:', response),
-      error: (err) => console.error('Error updating pet:', err),
-    });
-  }
-
-  private savePet(pet: Partial<Pet>): void {
-    if (this.petId) {
-      this.updatePet(pet);
-    } else {
-      this.createPet(pet);
-    }
-  }
-
   public onSubmit(): void {
-    if (
-      !this.basicInfoForm.valid &&
-      !this.imagesForm.valid &&
-      !this.detailsForm.valid
-    )
-      return;
-    this.petService.uploadImages(this.imagesForm.value).subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.isSubmitting = true;
+    const images = this.imagesForm.get('images')?.value;
 
-    const payload = {
-      ...this.basicInfoForm.value,
-      ...this.imagesForm.value,
-      ...this.detailsForm.value,
-    };
+    this.petService
+      .uploadImages(images)
+      .pipe(
+        concatMap((uploadResponse: PetImageUploadResponse) => {
+          const payload: Partial<Pet> = {
+            userId: this.userId,
+            ...this.basicInfoForm.value,
+            ...this.detailsForm.value,
+            images: uploadResponse.uploadResults,
+          };
+          console.log(payload);
 
-    console.log(payload);
+          return this.petId
+            ? this.petService.updatePet(this.petId, payload)
+            : this.petService.createPet(payload);
+        })
+      )
+      .subscribe({
+        next: (res) => {
+          console.log('Pet submitted:', res);
+          this.isSubmitting = false;
+          this.toastService.showToast('Pet was created 😺', 'success');
+          this.stepperComponent.resetStepper();
 
-    // this.savePet();
+          this.initializeForms();
+        },
+        error: (err) => {
+          this.isSubmitting = false;
+          this.toastService.showToast(
+            'Something went wrong,try later!',
+            'error'
+          );
+        },
+      });
   }
 
   ngOnDestroy(): void {
@@ -303,5 +297,3 @@ export class NewPetComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 }
-
-// this.updatePet(this.petId, pet); // this.createPet(pet);

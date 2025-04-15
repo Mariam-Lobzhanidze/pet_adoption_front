@@ -146,7 +146,8 @@ label {
   }
 }
 
-.btn:not(:disabled) {
+.btn:not(:disabled),
+.btn:not(:disabled):active {
   color: var(--bs-light);
 }
 

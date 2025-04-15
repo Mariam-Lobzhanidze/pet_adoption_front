@@ -30,7 +30,7 @@ import { NavigationService } from '../services/navigation.service';
   styleUrl: './nav.component.scss',
 })
 export class NavComponent {
-  public isLoggedIn: boolean = false;
+  // public isLoggedIn: boolean = false;
 
   @ViewChild(SidebarComponent) mobileNavSidebar!: SidebarComponent;
   public showSecondaryNav: boolean = false;

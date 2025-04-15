@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class StepComponent {
   @Input() stepTitle: string = '';
-  @Input() active: boolean = false;
+
   @Input() stepGroup!: FormGroup;
 
   @ContentChild('stepContent', { static: true }) content!: TemplateRef<void>;
@@ -17,8 +17,4 @@ export class StepComponent {
   get isValid(): boolean {
     return (this.stepGroup && this.stepGroup.valid) || false;
   }
-
-  // ngOnInit() {
-  //   console.log(this.stepGroup);
-  // }
 }

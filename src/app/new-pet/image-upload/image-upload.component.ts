@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 
 interface UploadedImage {
@@ -19,11 +19,35 @@ export class ImageUploadComponent {
   @Output() imageChanges = new EventEmitter<File[]>();
   public uploadedImages: UploadedImage[] = [];
 
+  @Input() initialImageFiles: File[] = [];
+
   public activeImageFile: File | undefined | null = undefined;
   public activeImageId: string | null = null;
 
-  public imagesSaved: boolean = false;
+  public imageSaveState: boolean = false;
   public isDragging = false;
+
+  public ngOnInit(): void {
+    if (this.initialImageFiles?.length) {
+      this.uploadedImages = this.initialImageFiles.map((file) => {
+        const id = file.name + '-' + Date.now();
+        return {
+          id,
+          originalFile: file,
+          croppedFile: file,
+          croppedUrl: URL.createObjectURL(file),
+        };
+      });
+
+      this.setFirstImageAsActive();
+    }
+  }
+
+  private setFirstImageAsActive(): void {
+    const first = this.uploadedImages[0];
+    this.activeImageFile = first?.croppedFile ?? null;
+    this.activeImageId = first?.id ?? null;
+  }
 
   public fileChangeEvent(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -48,7 +72,6 @@ export class ImageUploadComponent {
   }
 
   public imageCropped(event: ImageCroppedEvent) {
-    this.imagesSaved = false;
     const uploadedImage = this.uploadedImages.find(
       (img) => img.id === this.activeImageId
     );
@@ -56,9 +79,11 @@ export class ImageUploadComponent {
     if (event && event.blob && uploadedImage) {
       this.saveCroppedFile(event.blob, uploadedImage);
     }
+    this.imageSaveState = true;
   }
 
   public onSaveImages(): void {
+    this.imageSaveState = false;
     this.emitCroppedFiles();
   }
 
@@ -80,15 +105,12 @@ export class ImageUploadComponent {
   }
 
   public deleteImage(id: string): void {
+    this.imageSaveState = true;
     this.uploadedImages = this.uploadedImages.filter((img) => img.id !== id);
 
     if (this.activeImageId === id) {
-      const next = this.uploadedImages[0] || null;
-      this.activeImageFile = next?.croppedFile ?? null;
-      this.activeImageId = next?.id ?? null;
+      this.setFirstImageAsActive();
     }
-
-    this.imagesSaved = false;
   }
 
   public onShowImage(id: string): void {
@@ -105,9 +127,7 @@ export class ImageUploadComponent {
 
   public emitCroppedFiles() {
     const croppedFiles = this.getCroppedFiles(this.uploadedImages);
-
     this.imageChanges.emit(croppedFiles);
-    this.imagesSaved = true;
   }
 
   //

@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Pet } from '../shared/models/pet.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Pet, PetImageUploadResponse } from '../shared/models/pet.model';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -175,14 +175,17 @@ export class PetService {
   }
 
   //
-  public uploadImages(files: FileList): Observable<any> {
+  public uploadImages(files: FileList): Observable<PetImageUploadResponse> {
     const formData = new FormData();
 
     Array.from(files).forEach((file) => {
       formData.append('files', file);
     });
 
-    return this.http.post(`${this.API_URL}/upload`, formData);
+    return this.http.post<PetImageUploadResponse>(
+      `${this.API_URL}/upload`,
+      formData
+    );
   }
 
   public deleteImage(publicId: string): Observable<any> {

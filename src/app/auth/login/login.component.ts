@@ -47,10 +47,7 @@ export class LoginComponent implements OnInit {
         next: () => {
           this.resetForm();
 
-          this.toastService.showToast(
-            'Welcome back! Your furry friends are waiting for you. 🐶🐱',
-            'success'
-          );
+          this.toastService.showToast('Welcome back!  🐶🐱', 'success', 3000);
         },
         error: (err) => {
           this.toastService.showToast(err.error.message, 'error');

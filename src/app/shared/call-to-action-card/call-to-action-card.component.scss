@@ -1,11 +1,9 @@
-.card-text {
+.card-message {
   max-width: 500px;
-}
+  fill: var(--bs-secondary);
 
-.btn {
-  color: var(--bs-secondary);
-
-  &:hover {
-    color: var(--bs-secondaryDarken);
+  svg {
+    width: 20px;
+    height: 20px;
   }
 }

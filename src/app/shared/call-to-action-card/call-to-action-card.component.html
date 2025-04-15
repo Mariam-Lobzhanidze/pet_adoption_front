@@ -1,4 +1,4 @@
-<div class="card border-1 shadow bg-primary">
+<div class="card shadow bg-primary">
   <div
     class="card-body p-3 text-light text-center font-monospace fst-italic d-flex flex-column align-items-center gap-3"
   >
@@ -6,15 +6,24 @@
     <app-avatar [avatarImage]="avatarImage" shape="circle"></app-avatar>
     }
 
-    <p class="card-text">
+    <p class="card-message">
       {{ message }}
-      <i class="ph-fill ph-heart-straight text-secondary fst-italic"></i>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <path
+          d="M240,98a57.63,57.63,0,0,1-17,41L133.7,229.62a8,8,0,0,1-11.4,0L33,139a58,58,0,0,1,82-82.1L128,69.05l13.09-12.19A58,58,0,0,1,240,98Z"
+        />
+      </svg>
     </p>
+
+    @if(!authService.isLoggedIn()) {
     <a
       [routerLink]="routePath"
       class="btn btn-secondary text-light fw-bold w-100 text-uppercase"
     >
       {{ buttonText }}
     </a>
+    }
   </div>
 </div>
