@@ -45,16 +45,11 @@
       </li>
 
       <ul class="navbar-nav d-lg-flex d-none flex-row align-items-center gap-5">
-        @if(authService.isLoggedIn()){
         <li class="nav-item">
-          <a
-            class="btn btn-secondary icon-link text-light fw-bold border-0"
-            [routerLink]="'pets/create'"
-          >
+          <a class="btn nav-link fw-bold border-0" [routerLink]="'pets/create'">
             Add a Pet
           </a>
         </li>
-        }
 
         <li class="nav-item">
           <a routerLink="" class="favorite-icon">
@@ -69,66 +64,63 @@
       </ul>
     </ul>
 
-    <ul class="navbar-nav flex-row align-items-center">
-      @if(authService.isLoggedIn()) {
+    @if(authService.isLoggedIn()) {
+    <div class="d-none d-lg-flex">
+      <app-dropdown [items]="userProfileDropdownItems">
+        <app-user-avatar [currentUser]="activeUser"></app-user-avatar>
+      </app-dropdown>
+    </div>
 
-      <li class="nav-item d-none d-lg-flex">
-        <a class="nav-link text-light" (click)="onLogOut()">
-          <app-user-avatar></app-user-avatar>
-        </a>
-      </li>
-
-      } @else {
-      <button
-        class="btn btn-secondary text-light fw-bold d-none d-lg-flex text-uppercase"
-        (click)="onSignIn()"
-      >
-        Sign in
-      </button>
-      }
-      <button
-        class="shadow-none btn d-lg-none d-flex menu-btn"
-        type="button"
-        (click)="onShowMobileNav()"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-          <rect width="256" height="256" fill="none" />
-          <line
-            x1="40"
-            y1="128"
-            x2="216"
-            y2="128"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="16"
-          />
-          <line
-            x1="40"
-            y1="64"
-            x2="216"
-            y2="64"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="16"
-          />
-          <line
-            x1="40"
-            y1="192"
-            x2="216"
-            y2="192"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="16"
-          />
-        </svg>
-      </button>
-    </ul>
+    } @else {
+    <button
+      class="btn btn-secondary text-light fw-bold d-none d-lg-flex text-uppercase"
+      (click)="onSignIn()"
+    >
+      Sign in
+    </button>
+    }
+    <button
+      class="shadow-none btn d-lg-none d-flex menu-btn"
+      type="button"
+      (click)="onShowMobileNav()"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <line
+          x1="40"
+          y1="128"
+          x2="216"
+          y2="128"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="16"
+        />
+        <line
+          x1="40"
+          y1="64"
+          x2="216"
+          y2="64"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="16"
+        />
+        <line
+          x1="40"
+          y1="192"
+          x2="216"
+          y2="192"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="16"
+        />
+      </svg>
+    </button>
   </div>
 
   <app-secondary-nav
@@ -157,16 +149,12 @@
         </li>
       </ul>
 
-      <ul
-        class="navbar-nav d-flex flex-row justify-content-between align-items-center w-100 align-self-end"
-      >
+      <div class="d-flex flex-row justify-content-end w-100">
         @if(authService.isLoggedIn()) {
 
-        <li class="nav-item" (click)="onLogOut()">
-          <a class="nav-link text-light">
-            <app-user-avatar></app-user-avatar>
-          </a>
-        </li>
+        <app-dropdown [items]="userProfileDropdownItems" [dropup]="true">
+          <app-user-avatar [currentUser]="activeUser"></app-user-avatar>
+        </app-dropdown>
 
         } @else {
         <button
@@ -176,10 +164,7 @@
           Sign in
         </button>
         }
-        <li class="nav-item p-2">
-          <span class="p-2">En|Ka</span>
-        </li>
-      </ul>
+      </div>
     </nav>
 
     <app-submenu

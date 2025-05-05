@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserAvatarComponent } from '../shared/user-avatar/user-avatar.component';
 import { SecondaryNavComponent } from './secondary-nav/secondary-nav.component';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,8 @@ import { SubMenuComponent } from './subMenu/submenu.component';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { NavigationService } from '../services/navigation.service';
+import { User } from '../shared/models/user.model';
+import { DropdownComponent } from '../shared/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-nav',
@@ -25,12 +27,14 @@ import { NavigationService } from '../services/navigation.service';
     SidebarComponent,
     SubMenuComponent,
     RouterLink,
+    DropdownComponent,
   ],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   // public isLoggedIn: boolean = false;
+  public activeUser!: Partial<User> | null;
 
   @ViewChild(SidebarComponent) mobileNavSidebar!: SidebarComponent;
   public showSecondaryNav: boolean = false;
@@ -43,6 +47,11 @@ export class NavComponent {
     { title: 'Other types of pets', items: OTHER_TYPE_ITEMS },
   ];
 
+  public userProfileDropdownItems: Item[] = [
+    { label: 'My pets', route: '/my-pets' },
+    { label: 'Log out', route: '/', action: () => this.authService.logout() },
+  ];
+
   public selectedSidebarData: { title: string; items: Item[] } | null = null;
 
   public constructor(
@@ -51,6 +60,9 @@ export class NavComponent {
     private navigationService: NavigationService
   ) {}
 
+  ngOnInit() {
+    this.activeUser = this.authService.user();
+  }
   public onShowSubMenu(selectedData: { title: string; items: Item[] }): void {
     this.selectedSidebarData = selectedData;
     this.showSubMenu = true;

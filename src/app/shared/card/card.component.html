@@ -73,13 +73,42 @@
 
   <div class="card-footer p-3">
     <h4
-      class="m-0 text-center text-primary fw-bold"
+      class="m-0 text-center fw-bold"
       [ngClass]="{
         'placeholder-lg placeholder-wave w-100 bg-primary ': loading
       }"
     >
       {{ loading ? "" : item.name }}
     </h4>
+
+    @if(showCheckbox) {
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        [id]="item.id"
+        [value]="item.id"
+        (change)="onCardSelect(item.id, $event)"
+        [checked]="isSelected"
+      />
+    </div>
+    } @if(showEdit) {
+    <div class="edit-controls" (click)="onCardSelectForEdit(item.id)">
+      <app-dropdown [items]="editDropdownItems">
+        <svg
+          class="menu-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 256 256"
+        >
+          <rect width="256" height="256" fill="none" />
+          <circle cx="128" cy="60" r="16" />
+          <circle cx="128" cy="128" r="16" />
+          <circle cx="128" cy="196" r="16" />
+        </svg>
+      </app-dropdown>
+    </div>
+
+    }
   </div>
   @if(!loading && imageLoaded) {
   <app-favorite-btn

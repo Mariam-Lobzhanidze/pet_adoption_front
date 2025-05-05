@@ -12,4 +12,8 @@ import { ToastMessageComponent } from './shared/toast-message/toast-message.comp
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent {
+  public confirmDeletion() {}
+
+  public cancelDeletion() {}
+}

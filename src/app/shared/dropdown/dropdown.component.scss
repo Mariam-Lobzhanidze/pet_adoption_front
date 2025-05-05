@@ -1,4 +1,6 @@
+@use "mixins" as m;
 .dropdown {
+  list-style: none;
   &-menu {
     transition: opacity 0.3s ease, transform 0.3s ease-in-out;
     display: flex;
@@ -12,6 +14,18 @@
     opacity: 1;
     transform: none;
     visibility: visible;
+  }
+
+  &-menu {
+    left: auto;
+    right: 0;
+  }
+
+  @include m.media-down(lg) {
+    &-menu.mobile-popup {
+      top: auto;
+      bottom: 100%;
+    }
   }
 
   &-toggle {

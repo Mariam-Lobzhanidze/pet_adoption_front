@@ -420,15 +420,18 @@ export const PET_SIZE_OPTIONS = [
 ];
 
 export const PET_CARE_OPTIONS = [
-  { value: 'house_trained', label: 'House Trained' },
+  { value: 'vaccinated', label: 'Vaccinated' },
+  { value: 'neutered', label: 'Neutered' },
+  { value: 'dewormed', label: 'Dewormed' },
   { value: 'special_needs', label: 'Special Needs' },
   { value: 'medications_required', label: 'Medications Required' },
   { value: 'needs_regular_grooming', label: 'Needs Regular Grooming' },
-  { value: 'no_special_requirements', label: 'No Special Requirements' },
+  { value: 'house_trained', label: 'House Trained' },
   {
     value: 'requires_exercise_or_playtime',
     label: 'Requires Exercise or Playtime',
   },
+
   { value: 'unknown', label: 'Unknown' },
 ];
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Item } from '../shared/models/item.model';
 import { IconCardComponent } from '../shared/icon-card/icon-card.component';
 import { Pet, PetStory } from '../shared/models/pet.model';
@@ -29,19 +29,27 @@ import { ICON_CARDS_ITEMS } from '../constants/pet.constants';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
+  public loading = signal(true);
   private petIconCards: Item[] = ICON_CARDS_ITEMS;
   public imageLoaded: Record<string, boolean> = {};
   public placeholders = Array(10).fill(null);
   //
-  public totalPetsCount = 100;
+  public moreAvailablePetsCount = 0;
 
-  public petCardData!: Observable<Partial<Pet>[]>;
+  public petCardData: Partial<Pet>[] = [];
   public petStories: PetStory[] = PET_STORIES;
 
   constructor(public petService: PetService) {}
 
   public ngOnInit(): void {
-    this.petCardData = this.petService.petItems$ as Observable<Partial<Pet>[]>;
+    this.petService.getAllPets().subscribe((response) => {
+      console.log(response);
+
+      this.loading.set(false);
+      this.petCardData = response.pets;
+      this.moreAvailablePetsCount =
+        response.totalCount - this.petCardData.length;
+    });
   }
 
   public get petTypes(): Item[] {

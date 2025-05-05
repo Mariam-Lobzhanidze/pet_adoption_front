@@ -3,4 +3,5 @@ export interface Item {
   route?: string;
   icon?: string;
   value?: string;
+  action?: () => void;
 }

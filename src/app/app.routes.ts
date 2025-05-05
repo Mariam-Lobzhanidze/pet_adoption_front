@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { AuthComponent } from './auth/auth/auth.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -29,6 +28,13 @@ export const routes: Routes = [
     path: 'pets/edit/:id',
     loadComponent: () =>
       import('./new-pet/new-pet.component').then((m) => m.NewPetComponent),
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'my-pets',
+    loadComponent: () =>
+      import('./my-pets/my-pets.component').then((m) => m.MyPetsComponent),
     canActivate: [AuthGuard],
   },
 ];

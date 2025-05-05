@@ -157,3 +157,12 @@ label {
   background-color: var(--bs-gray-300);
   border: 1px solid var(--bs-gray-800);
 }
+
+.x-icon {
+  color: var(--bs-light);
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}

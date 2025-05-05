@@ -27,17 +27,18 @@
     ></app-section-title>
 
     <div class="card-list">
-      @if (petService.loading()){ @for(item of placeholders;let i=$index;track i
-      ) {
+      @if(loading() ) { @for(item of placeholders;let i=$index;track i ) {
       <app-card [loading]="true"></app-card>
 
-      } } @else { @for (item of (petCardData | async) ?? [] ;let i=$index; track
-      i) {
+      } }@else { @for (item of petCardData ;let i=$index; track i) {
 
       <app-card [item]="item" [loading]="false"></app-card>
 
-      } } @if(!petService.loading()) {
-      <app-see-more-card [totalAmount]="totalPetsCount"></app-see-more-card>
+      } } @if(!loading()) {
+
+      <app-see-more-card
+        [totalAmount]="moreAvailablePetsCount"
+      ></app-see-more-card>
       }
     </div>
   </section>
