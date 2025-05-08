@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UserAvatarComponent } from '../shared/user-avatar/user-avatar.component';
+import { UserAvatarComponent } from './user-avatar/user-avatar.component';
 import { SecondaryNavComponent } from './secondary-nav/secondary-nav.component';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
@@ -63,6 +63,7 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     this.activeUser = this.authService.user();
   }
+
   public onShowSubMenu(selectedData: { title: string; items: Item[] }): void {
     this.selectedSidebarData = selectedData;
     this.showSubMenu = true;

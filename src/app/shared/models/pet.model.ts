@@ -13,11 +13,12 @@ export interface Pet {
   preferredContact?: string;
   availableFor?: 'adoption' | 'foster';
   size?: Size;
-  care?: Care;
+  care?: Care[];
   color?: string;
   coatLength?: CoatLengthType;
   goodWith?: GoodWith[];
   status?: Status;
+  history?: string;
 }
 
 export interface PetImageUploadResponse {
@@ -34,11 +35,13 @@ export type Size =
   | 'extra_large_101_lbs_or_more';
 
 export type Care =
+  | 'vaccinated'
+  | 'neutered'
+  | 'dewormed'
   | 'house_trained'
   | 'special_needs'
   | 'medications_required'
   | 'needs_regular_grooming'
-  | 'no_special_requirements'
   | 'requires_exercise_or_playtime'
   | 'unknown';
 

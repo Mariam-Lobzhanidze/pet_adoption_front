@@ -1,5 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 
 interface UploadedImage {
@@ -15,7 +22,7 @@ interface UploadedImage {
   standalone: true,
   imports: [ImageCropperComponent, NgClass],
 })
-export class ImageUploadComponent {
+export class ImageUploadComponent implements OnInit {
   @Output() imageChanges = new EventEmitter<File[]>();
   public uploadedImages: UploadedImage[] = [];
 

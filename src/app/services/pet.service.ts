@@ -47,6 +47,14 @@ export class PetService {
     );
   }
 
+  public deletePet(id: string): Observable<{ message: string }> {
+    return this.http.delete<{ message: string }>(`${this.API_URL}/pets/${id}`);
+  }
+
+  public getPetById(id: string): Observable<Partial<Pet>> {
+    return this.http.get<Partial<Pet>>(`${this.API_URL}/pets/${id}`);
+  }
+
   //
   public uploadImages(files: FileList): Observable<PetImageUploadResponse> {
     const formData = new FormData();

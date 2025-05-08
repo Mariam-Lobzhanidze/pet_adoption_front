@@ -67,7 +67,7 @@
     @if(authService.isLoggedIn()) {
     <div class="d-none d-lg-flex">
       <app-dropdown [items]="userProfileDropdownItems">
-        <app-user-avatar [currentUser]="activeUser"></app-user-avatar>
+        <app-user-avatar></app-user-avatar>
       </app-dropdown>
     </div>
 
@@ -153,7 +153,7 @@
         @if(authService.isLoggedIn()) {
 
         <app-dropdown [items]="userProfileDropdownItems" [dropup]="true">
-          <app-user-avatar [currentUser]="activeUser"></app-user-avatar>
+          <app-user-avatar></app-user-avatar>
         </app-dropdown>
 
         } @else {

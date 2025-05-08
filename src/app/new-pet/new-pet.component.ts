@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Pet, PetImageUploadResponse } from '../shared/models/pet.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { PetService } from '../services/pet.service';
 import { ErrorComponent } from '../shared/error/error.component';
@@ -40,6 +40,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { emptyArrayValidator } from '../validators/validators';
 import { ONLY_NUMBERS_AND_PLUS_SIGN } from '../validators/patterns';
 import { ToastService } from '../services/toast.service';
+import { ImageService } from '../services/imageService';
 
 interface Options {
   value: string;
@@ -66,6 +67,8 @@ interface Options {
 })
 export class NewPetComponent implements OnInit, OnDestroy {
   public isSubmitting: boolean = false;
+  private isPatching = false;
+
   @ViewChild(StepsComponent) stepperComponent!: StepsComponent;
 
   public basicInfoForm!: FormGroup;
@@ -104,15 +107,19 @@ export class NewPetComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private authService: AuthService,
     private petService: PetService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private imageService: ImageService,
+    private router: Router
   ) {}
 
   public ngOnInit(): void {
     this.initializeForms();
 
     this.petId = this.route.snapshot.paramMap.get('id');
+    if (this.petId) {
+      this.patchPetData(this.petId);
+    }
 
-    this.loadPetData();
     this.initializeUserId();
     this.resetBreedOnTypeChange();
   }
@@ -151,7 +158,10 @@ export class NewPetComponent implements OnInit, OnDestroy {
     this.basicInfoForm
       .get('type')
       ?.valueChanges.pipe(takeUntil(this.destroy$))
-      .subscribe(() => this.clearBreedSelection());
+      .subscribe(() => {
+        if (this.isPatching) return;
+        this.clearBreedSelection();
+      });
   }
 
   private clearBreedSelection(): void {
@@ -224,10 +234,54 @@ export class NewPetComponent implements OnInit, OnDestroy {
     }
   }
 
-  private loadPetData(): void {
-    if (this.petId) {
-      // console.log(this.petId);
-    }
+  private patchPetData(id: string): void {
+    this.petService.getPetById(id).subscribe((pet) => {
+      console.log(pet);
+
+      this.isPatching = true;
+      if (pet.type) {
+        this.selectedPetType = pet.type;
+      }
+
+      this.basicInfoForm.patchValue(pet);
+      this.detailsForm.patchValue(pet);
+      if (pet.care) {
+        const careArray = this.detailsForm.get('care') as FormArray;
+        careArray.clear();
+
+        pet.care.forEach((value: string) =>
+          careArray.push(new FormControl(value))
+        );
+      }
+
+      if (pet.goodWith) {
+        const goodWithArray = this.detailsForm.get('goodWith') as FormArray;
+        goodWithArray.clear();
+        pet.goodWith.forEach((value: string) =>
+          goodWithArray.push(new FormControl(value))
+        );
+      }
+
+      if (pet.images) {
+        this.convertToImageFiles(pet.images);
+      }
+
+      setTimeout(() => {
+        this.isPatching = false;
+      }, 0);
+    });
+  }
+
+  private convertToImageFiles(images: { public_id: string; url: string }[]) {
+    this.imageService
+      .convertCloudinaryImagesToFiles(images)
+      .subscribe((files) => {
+        files.forEach((file) => {
+          const imageArray = this.imagesForm.get('images') as FormArray;
+
+          imageArray.push(this.fb.control(file));
+        });
+      });
   }
 
   public setSelectedPetBreed(breed: string) {
@@ -275,12 +329,15 @@ export class NewPetComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (res) => {
-          console.log('Pet submitted:', res);
           this.isSubmitting = false;
-          this.toastService.showToast('Pet was created 😺', 'success');
-          this.stepperComponent.resetStepper();
+          this.toastService.showToast(res.message + '😺', 'success');
 
-          this.initializeForms();
+          if (this.petId) {
+            this.router.navigate(['/my-pets']);
+          } else {
+            this.stepperComponent.resetStepper();
+            this.initializeForms();
+          }
         },
         error: (err) => {
           this.isSubmitting = false;

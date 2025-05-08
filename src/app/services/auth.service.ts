@@ -54,6 +54,7 @@ export class AuthService {
         tap((response) => {
           this.saveAuthData(response.auth.token, response.user);
           this.manageNavigation();
+          this.user.set(response.user);
 
           this.autoLogout(response.auth.expiresIn);
         })

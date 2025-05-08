@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { debounceTime, map, Observable } from 'rxjs';
 import {
   NgbTypeaheadModule,
@@ -19,7 +27,7 @@ import { NgClass } from '@angular/common';
   templateUrl: './suggestion-dropdown.component.html',
   styleUrl: './suggestion-dropdown.component.scss',
 })
-export class SuggestionDropdownComponent {
+export class SuggestionDropdownComponent implements OnInit, OnChanges {
   public formGroup!: FormGroup;
   @Input() suggestions: { value: string; label: string }[] = [];
 
@@ -41,24 +49,29 @@ export class SuggestionDropdownComponent {
 
   public constructor(private fb: FormBuilder) {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['formControlValue'] && this.formGroup) {
+      const newValue = changes['formControlValue'].currentValue;
+
+      this.formGroup
+        .get('searchQuery')
+        ?.setValue(newValue, { emitEvent: false });
+    }
+  }
+
   public ngOnInit() {
     this.formGroup = this.fb.group({
       searchQuery: [this.formControlValue || '', Validators.required],
     });
-
-    this.setInitialQuery();
   }
 
-  private setInitialQuery() {
-    if (this.formControlValue) {
-      const selectedSuggestion = this.suggestions.find(
-        (s) => s.value === this.formControlValue
-      );
-
-      this.formGroup?.patchValue({ searchQuery: selectedSuggestion });
+  public formatter = (item: { value: string; label: string } | string) => {
+    if (typeof item === 'string') {
+      const match = this.suggestions.find((s) => s.value === item);
+      return match?.label || item;
     }
-  }
-  public formatter = (item: { value: string; label: string }) => item.label;
+    return item.label;
+  };
 
   public search = (text$: Observable<string>) =>
     text$.pipe(
@@ -71,7 +84,7 @@ export class SuggestionDropdownComponent {
     );
 
   public onSearch(event: NgbTypeaheadSelectItemEvent<any>) {
-    this.formGroup.get('searchQuery')?.setValue(event.item.label);
+    this.formGroup.get('searchQuery')?.setValue(event.item.value);
     this.queryChange.emit(event.item.value);
   }
 

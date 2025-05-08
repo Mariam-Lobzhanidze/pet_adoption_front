@@ -24,12 +24,14 @@ export class StepsComponent implements AfterContentInit {
   @Output() stepsDataCollected = new EventEmitter<void>();
   @ContentChildren(StepComponent)
   allSteps!: QueryList<StepComponent>;
+  public allStepsArray: StepComponent[] = [];
 
   public activeStepIndex: number = 0;
 
   public constructor(private router: Router) {}
 
   ngAfterContentInit() {
+    this.allStepsArray = this.allSteps.toArray();
     this.updateRouteQueryParams();
   }
 

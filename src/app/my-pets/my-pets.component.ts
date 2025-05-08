@@ -3,9 +3,10 @@ import { SectionTitleComponent } from '../shared/section-title/section-title.com
 import { CardComponent } from '../shared/card/card.component';
 import { Pet } from '../shared/models/pet.model';
 import { PetService } from '../services/pet.service';
-
 import { Item } from '../shared/models/item.model';
 import { ConfirmModalComponent } from '../shared/confirm-modal/confirm-modal.component';
+import { forkJoin } from 'rxjs';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-my-pets',
@@ -34,7 +35,10 @@ export class MyPetsComponent implements OnInit {
 
   public selectedPetIds: Set<string> = new Set();
 
-  constructor(private petService: PetService) {}
+  constructor(
+    private petService: PetService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit() {
     this.loadPets();
@@ -70,18 +74,34 @@ export class MyPetsComponent implements OnInit {
     } else {
       this.selectedPetIds.delete(event.id);
     }
-    console.log(event, this.selectedPetIds);
   }
 
   public confirmDeletion() {
     const ids = [...this.selectedPetIds];
-    console.log('Deleting pets:', ids);
-    // this.petService.deletePets(ids).subscribe(...)
-    this.selectedPetIds.clear();
+
+    if (ids.length === 0) return;
+
+    const deleteObservables = ids.map((id) => this.petService.deletePet(id));
+
+    forkJoin(deleteObservables).subscribe({
+      next: (response) => {
+        console.log('Deleted pets:', response);
+        this.selectedPetIds.clear();
+        this.toastService.showToast(
+          'All selected pets were deleted.',
+          'success',
+          3000
+        );
+
+        this.loadPets();
+      },
+      error: (error) => {
+        this.toastService.showToast('Something went wrong', 'error', 3000);
+      },
+    });
   }
 
   public cancelDeletion() {
-    console.log('User cancelled the deletion');
     this.selectedPetIds.clear();
   }
 }
