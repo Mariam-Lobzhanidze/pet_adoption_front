@@ -16,6 +16,7 @@ import { ToastService } from '../services/toast.service';
   styleUrl: './my-pets.component.scss',
 })
 export class MyPetsComponent implements OnInit {
+  public loading = true;
   public myPets: Partial<Pet>[] = [];
   public totalCount: number = 0;
   public limit: number = 10;
@@ -51,6 +52,7 @@ export class MyPetsComponent implements OnInit {
       next: (response) => {
         this.myPets = response.pets;
         this.totalCount = response.totalCount;
+        this.loading = false;
         console.log(response);
       },
       error: (error) => {

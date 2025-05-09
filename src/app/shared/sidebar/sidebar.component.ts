@@ -74,7 +74,7 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
   }
 
   public onSidebarShown() {
-    this.setBodyStyles('hidden', '15px');
+    this.setBodyStyles('hidden', '0px');
   }
 
   public open(): void {
@@ -85,7 +85,7 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
   public close(): void {
     this.offcanvasInstance.hide();
     this.setBodyStyles('auto', '0px');
-    this.router.navigate([this.previousUrl]);
+    // this.router.navigate([this.previousUrl]);
   }
 
   private setBodyStyles(overflow: string, paddingRight: string): void {

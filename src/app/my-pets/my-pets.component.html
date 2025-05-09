@@ -2,6 +2,7 @@
   <section class="page-section">
     <app-section-title title="My pets"></app-section-title>
     <div class="controls d-flex justify-content-end align-items-center mb-2">
+      @if(!loading) {
       <button
         class="btn"
         type="button"
@@ -66,13 +67,14 @@
           />
         </svg>
       </button>
+      }
     </div>
     <div class="card-list">
       @for (item of myPets ;let i=$index; track i) {
 
       <app-card
         [item]="item"
-        [loading]="false"
+        [loading]="loading"
         [showCheckbox]="true"
         [showEdit]="true"
         [editDropdownItems]="editItems()"

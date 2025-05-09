@@ -31,6 +31,12 @@ app-sidebar {
   z-index: 999999;
 }
 
+.caret-right {
+  width: 16px;
+  height: 16px;
+  color: var(--bs-light);
+}
+
 .favorite-icon {
   fill: var(--bs-danger);
   transition: all 0.3s ease;

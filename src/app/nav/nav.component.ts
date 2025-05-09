@@ -48,7 +48,11 @@ export class NavComponent implements OnInit {
   ];
 
   public userProfileDropdownItems: Item[] = [
-    { label: 'My pets', route: '/my-pets' },
+    {
+      label: 'My pets',
+      route: '/my-pets',
+      action: () => this.mobileNavSidebar.close(),
+    },
     { label: 'Log out', route: '/', action: () => this.authService.logout() },
   ];
 

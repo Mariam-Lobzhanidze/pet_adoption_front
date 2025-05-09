@@ -129,7 +129,7 @@
   ></app-secondary-nav>
 </nav>
 <!--mobile nav-->
-<app-sidebar [offcanvasPosition]="'start'">
+<app-sidebar [offcanvasPosition]="'end'">
   <a class="offcanvas__title" routerLink="/">
     <img src="adopto_logo.png" class="adopto-logo" alt="adopto logo" />
   </a>
@@ -139,13 +139,44 @@
         @for(item of navItems;let i=$index;track item.title) {
         <li class="icon-link nav-item p-2" (click)="onShowSubMenu(item)">
           <a class="nav-link">{{ item.title }}</a>
-          <i class="ph ph-caret-right"></i>
+
+          <svg
+            class="caret-right"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+          >
+            <rect width="256" height="256" fill="none" />
+            <polyline
+              points="96 48 176 128 96 208"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="16"
+            />
+          </svg>
         </li>
 
         }
         <div class="w-100"><hr class="divider text-light" /></div>
         <li class="nav-item p-2 w-100">
-          <a class="nav-link">Favorites</a>
+          <a
+            class="nav-link"
+            data-bs-dismiss="offcanvas"
+            data-bs-target="#adoptoMobileNav"
+            routerLink="/"
+            >Favorites</a
+          >
+        </li>
+
+        <li class="nav-item p-2 w-100">
+          <a
+            class="nav-link"
+            data-bs-dismiss="offcanvas"
+            data-bs-target="#adoptoMobileNav"
+            routerLink="/pets/create"
+            >Add a pet</a
+          >
         </li>
       </ul>
 
