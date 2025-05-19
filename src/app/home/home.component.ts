@@ -4,7 +4,6 @@ import { IconCardComponent } from '../shared/icon-card/icon-card.component';
 import { Pet, PetStory } from '../shared/models/pet.model';
 import { CardComponent } from '../shared/card/card.component';
 import { PetService } from '../services/pet.service';
-import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { SectionTitleComponent } from '../shared/section-title/section-title.component';
 import { SeeMoreCardComponent } from '../shared/see-more-card/see-more-card.component';
@@ -12,6 +11,8 @@ import { PetStoriesCarouselComponent } from '../shared/pet-stories-carousel/pet-
 import { PET_STORIES } from '../constants/pet-stories';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ICON_CARDS_ITEMS } from '../constants/pet.constants';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -39,12 +40,14 @@ export class HomeComponent implements OnInit {
   public petCardData: Partial<Pet>[] = [];
   public petStories: PetStory[] = PET_STORIES;
 
-  constructor(public petService: PetService) {}
+  constructor(
+    public petService: PetService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   public ngOnInit(): void {
     this.petService.getAllPets().subscribe((response) => {
-      console.log(response);
-
       this.loading.set(false);
       this.petCardData = response.pets;
       this.moreAvailablePetsCount =
@@ -54,5 +57,14 @@ export class HomeComponent implements OnInit {
 
   public get petTypes(): Item[] {
     return this.petIconCards.slice(0, 4);
+  }
+
+  public onSearch(value: string | undefined): void {
+    if (value) {
+      this.router.navigate(['/pets/search'], {
+        queryParams: { type: value },
+        queryParamsHandling: 'merge',
+      });
+    }
   }
 }

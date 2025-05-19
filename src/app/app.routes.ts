@@ -37,4 +37,12 @@ export const routes: Routes = [
       import('./my-pets/my-pets.component').then((m) => m.MyPetsComponent),
     canActivate: [AuthGuard],
   },
+
+  {
+    path: 'pets/search',
+    loadComponent: () =>
+      import('./pet-filtering/pet-filtering.component').then(
+        (m) => m.PetFilteringComponent
+      ),
+  },
 ];

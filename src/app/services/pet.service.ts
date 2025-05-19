@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Pet, PetImageUploadResponse } from '../shared/models/pet.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 
@@ -27,12 +27,33 @@ export class PetService {
     );
   }
 
+  // public getAllPets(
+  //   limit: number = 14,
+  //   offset: number = 0
+  // ): Observable<{ pets: Partial<Pet>[]; totalCount: number }> {
+  //   return this.http.get<{ pets: Partial<Pet>[]; totalCount: number }>(
+  //     `${this.API_URL}/pets?limit=${limit}&offset=${offset}`
+  //   );
+  // }
+
   public getAllPets(
     limit: number = 14,
-    offset: number = 0
+    offset: number = 0,
+    filters: { [key: string]: any } = {}
   ): Observable<{ pets: Partial<Pet>[]; totalCount: number }> {
+    let params = new HttpParams()
+      .set('limit', limit.toString())
+      .set('offset', offset.toString());
+
+    for (const key in filters) {
+      if (filters[key] !== undefined && filters[key] !== null) {
+        params = params.set(key, filters[key]);
+      }
+    }
+
     return this.http.get<{ pets: Partial<Pet>[]; totalCount: number }>(
-      `${this.API_URL}/pets?limit=${limit}&offset=${offset}`
+      `${this.API_URL}/pets`,
+      { params }
     );
   }
 

@@ -1,0 +1,26 @@
+.x-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--bs-primary);
+  background-color: var(--bs-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+.clear-btn {
+  color: var(--bs-primary);
+  transition: all 0.3s ease;
+  background-color: transparent;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--bs-primaryDarken);
+    text-decoration: underline;
+  }
+}

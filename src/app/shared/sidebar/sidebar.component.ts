@@ -85,7 +85,10 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
   public close(): void {
     this.offcanvasInstance.hide();
     this.setBodyStyles('auto', '0px');
-    // this.router.navigate([this.previousUrl]);
+
+    if (this.router.url.includes('/auth')) {
+      this.router.navigate([this.previousUrl]);
+    }
   }
 
   private setBodyStyles(overflow: string, paddingRight: string): void {

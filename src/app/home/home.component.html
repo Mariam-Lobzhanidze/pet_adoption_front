@@ -10,7 +10,11 @@
 
     <div class="hero-section-icon-cards">
       @for (item of petTypes; track item.label) {
-      <app-icon-card [item]="item" [selectable]="false"></app-icon-card>
+      <app-icon-card
+        [item]="item"
+        [selectable]="false"
+        (click)="onSearch(item.value)"
+      ></app-icon-card>
       }
     </div>
 

@@ -21,8 +21,7 @@ export class SearchBarComponent {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   public onSearch(): void {
-    this.router.navigate([], {
-      relativeTo: this.route,
+    this.router.navigate(['/pets/search'], {
       queryParams: {
         breed: this.selectedBreed || null,
         city: this.selectedCity || null,

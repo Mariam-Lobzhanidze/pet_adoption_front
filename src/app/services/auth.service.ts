@@ -74,7 +74,7 @@ export class AuthService {
   private autoLogout(expiresInMilliseconds: number): void {
     timer(expiresInMilliseconds)
       .pipe(take(1))
-      .subscribe(() => {
+      .subscribe((res) => {
         this.logout();
       });
   }

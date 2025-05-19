@@ -1,6 +1,7 @@
 @use "mixins" as m;
 .dropdown {
   list-style: none;
+
   &-menu {
     transition: opacity 0.3s ease, transform 0.3s ease-in-out;
     display: flex;

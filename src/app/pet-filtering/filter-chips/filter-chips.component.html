@@ -1,0 +1,47 @@
+@if(filters) {
+<div class="chip-wrapper d-flex align-items-center flex-wrap">
+  @for (key of filterKeys(); track key) {
+  <span class="badge bg-primary d-inline-flex align-items-center p-2 me-2">
+    {{ filters[key] }}
+    <button
+      type="button"
+      class="btn ms-2 x-icon p-0"
+      (click)="removeFilter(key)"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <line
+          x1="200"
+          y1="56"
+          x2="56"
+          y2="200"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+        <line
+          x1="200"
+          y1="200"
+          x2="56"
+          y2="56"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+      </svg>
+    </button>
+  </span>
+  } @if(filterKeys().length) {
+  <button
+    class="badge clear-btn btn-link ms-2 p-2 border-0"
+    (click)="clearAll()"
+  >
+    Clear All
+  </button>
+  }
+</div>
+}

@@ -1,7 +1,6 @@
 <div
   class="card shadow rounded overflow-hidden w-100 h-100"
   [ngClass]="{ selected: selectable && selected }"
-  [routerLink]="!selectable ? item.route : null"
   aria-label="icon card for pet type"
 >
   <div
@@ -11,3 +10,4 @@
     <h4 class="card-body-text">{{ item.label }}</h4>
   </div>
 </div>
+<!-- [routerLink]="!selectable ? item.route : null" -->
