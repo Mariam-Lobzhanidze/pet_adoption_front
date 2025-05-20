@@ -1,1 +1,12 @@
-<p>filter-select works!</p>
+<div class="filters d-flex flex-column gap-5">
+  <div class="filters-category">
+    <h4 class="mb-2 fw-bold text-center text-uppercase">Breed</h4>
+
+    <app-suggestion-dropdown
+      [suggestions]="petBreeds"
+      placeholderText="Terrier,Labrador... "
+      (queryChange)="selectedBreed = $event"
+      [showBorder]="false"
+    ></app-suggestion-dropdown>
+  </div>
+</div>

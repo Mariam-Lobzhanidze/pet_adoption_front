@@ -6,11 +6,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { FilterChipsComponent } from './filter-chips/filter-chips.component';
 import { SectionTitleComponent } from '../shared/section-title/section-title.component';
+import { FilterSelectComponent } from './filter-select/filter-select.component';
 
 @Component({
   selector: 'app-pet-filtering',
   standalone: true,
-  imports: [CardComponent, FilterChipsComponent, SectionTitleComponent],
+  imports: [
+    CardComponent,
+    FilterChipsComponent,
+    SectionTitleComponent,
+    FilterSelectComponent,
+  ],
   templateUrl: './pet-filtering.component.html',
   styleUrl: './pet-filtering.component.scss',
 })
@@ -59,7 +65,7 @@ export class PetFilteringComponent implements OnInit {
     });
   }
 
-  onRemoveFilter(key: string) {
+  public onRemoveFilter(key: string) {
     const updatedFilters = { ...this.filters };
     delete updatedFilters[key];
     this.router.navigate([], {
@@ -68,10 +74,18 @@ export class PetFilteringComponent implements OnInit {
     });
   }
 
-  onClearAllFilters() {
+  public onClearAllFilters() {
     this.router.navigate([], {
       queryParams: {},
     });
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.totalCount / this.limit);
+  }
+
+  get totalPagesArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
   public goToPage(page: number) {
