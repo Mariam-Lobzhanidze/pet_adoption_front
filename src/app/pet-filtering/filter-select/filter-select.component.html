@@ -3,7 +3,7 @@
     <h4 class="mb-2 fw-bold text-center text-uppercase">Breed</h4>
 
     <app-suggestion-dropdown
-      [suggestions]="petBreeds"
+      [suggestions]="breedsByType"
       placeholderText="Terrier,Labrador... "
       (queryChange)="selectedBreed = $event"
       [showBorder]="false"

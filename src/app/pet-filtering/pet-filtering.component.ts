@@ -3,25 +3,19 @@ import { PetService } from '../services/pet.service';
 import { Pet } from '../shared/models/pet.model';
 import { CardComponent } from '../shared/card/card.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter } from 'rxjs';
 import { FilterChipsComponent } from './filter-chips/filter-chips.component';
-import { SectionTitleComponent } from '../shared/section-title/section-title.component';
 import { FilterSelectComponent } from './filter-select/filter-select.component';
 
 @Component({
   selector: 'app-pet-filtering',
   standalone: true,
-  imports: [
-    CardComponent,
-    FilterChipsComponent,
-    SectionTitleComponent,
-    FilterSelectComponent,
-  ],
+  imports: [CardComponent, FilterChipsComponent, FilterSelectComponent],
   templateUrl: './pet-filtering.component.html',
   styleUrl: './pet-filtering.component.scss',
 })
 export class PetFilteringComponent implements OnInit {
   public filters: { [key: string]: string } = {};
+
   public loading = true;
   public myPets: Partial<Pet>[] = [];
   public totalCount: number = 0;
@@ -90,6 +84,6 @@ export class PetFilteringComponent implements OnInit {
 
   public goToPage(page: number) {
     this.currentPage = page;
-    this.loadPets();
+    this.loadPets(this.filters);
   }
 }

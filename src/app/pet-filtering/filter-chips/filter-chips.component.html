@@ -2,7 +2,8 @@
 <div class="chip-wrapper d-flex align-items-center flex-wrap">
   @for (key of filterKeys(); track key) {
   <span class="badge bg-primary d-inline-flex align-items-center p-2 me-2">
-    {{ filters[key] }}
+    {{ getFilterLabel(key, filters[key]) }}
+
     <button
       type="button"
       class="btn ms-2 x-icon p-0"

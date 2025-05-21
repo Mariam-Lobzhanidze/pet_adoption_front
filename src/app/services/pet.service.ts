@@ -76,6 +76,12 @@ export class PetService {
     return this.http.get<Partial<Pet>>(`${this.API_URL}/pets/${id}`);
   }
 
+  public getBreedsCount(): Observable<{ breed: string; count: string }[]> {
+    return this.http.get<{ breed: string; count: string }[]>(
+      `${this.API_URL}/breeds/count`
+    );
+  }
+
   //
   public uploadImages(files: FileList): Observable<PetImageUploadResponse> {
     const formData = new FormData();
