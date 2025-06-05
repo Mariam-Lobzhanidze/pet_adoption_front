@@ -1,0 +1,65 @@
+@use "mixins" as m;
+.search-bar {
+  position: relative;
+
+  .x-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--bs-secondary);
+    width: 16px;
+    height: 16px;
+    @include m.media-up(lg) {
+      width: 21px;
+      height: 21px;
+    }
+  }
+}
+
+.dropdown {
+  &-toggle {
+    background-color: var(--bs-light);
+    color: var(--bs-body-color);
+    border-color: var(--bs-border-color);
+
+    .caret-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--bs-gray);
+    }
+
+    &:after {
+      display: none;
+    }
+
+    &:active {
+      background-color: var(--bs-light);
+      color: var(--bs-body-color);
+      border-color: var(--bs-border-color);
+    }
+  }
+
+  &-menu {
+    max-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: var(--bs-light);
+  }
+
+  &-item {
+    transition: all 0.3s ease;
+    color: var(--bs-dark);
+
+    &:hover {
+      background-color: var(--bs-primary);
+      color: var(--bs-light);
+    }
+
+    &.active {
+      background-color: var(--bs-secondary);
+      color: var(--bs-light);
+    }
+  }
+}

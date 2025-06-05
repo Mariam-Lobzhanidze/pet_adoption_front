@@ -396,6 +396,14 @@ export const ICON_CARDS_ITEMS: Item[] = [
   },
 ];
 
+export const PET_TYPE_OPTIONS: { value: string; label: string }[] = [
+  { value: 'dogs', label: 'Dogs' },
+  { value: 'cats', label: 'Cats' },
+  { value: 'horses', label: 'Horses' },
+  { value: 'birds', label: 'Birds' },
+  { value: 'rabbits', label: 'Rabbits' },
+];
+
 export const PET_AGE_OPTIONS = [
   { value: 'baby', label: 'Baby' },
   { value: 'adult', label: 'Adult' },
@@ -406,7 +414,7 @@ export const PET_AGE_OPTIONS = [
 export const PET_GENDER_OPTIONS = [
   { value: 'male', label: 'Male' },
   { value: 'female', label: 'Female' },
-  { value: 'unknown', label: 'Unknown' },
+  // { value: 'unknown', label: 'Unknown' },
 ];
 
 export const PET_SIZE_OPTIONS = [

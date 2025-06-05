@@ -1,0 +1,99 @@
+<div ngbDropdown class="dropdown mb-3" (openChange)="dropdownOpen = $event">
+  <button
+    class="btn btn-primary dropdown-toggle w-100 d-flex justify-content-between align-items-center p-3"
+    ngbDropdownToggle
+    type="button"
+  >
+    {{ selectedOption }}
+    <span class="caret-icon d-flex align-items-center">
+      @if(!dropdownOpen){
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <polyline
+          points="208 96 128 176 48 96"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+      </svg>
+      }@else {
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" fill="none" />
+        <polyline
+          points="48 160 128 80 208 160"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+      </svg>
+
+      }
+    </span>
+  </button>
+
+  <ul ngbDropdownMenu class="dropdown-menu w-100">
+    @if(dropdownOpen) {
+    <form class="search-bar form-inputs m-3" [formGroup]="formGroup">
+      <input
+        type="text"
+        class="form-control shadow-none p-3"
+        [ngbTypeahead]="search"
+        [resultFormatter]="formatter"
+        [inputFormatter]="formatter"
+        [placeholder]="placeholderText"
+        (selectItem)="onSearch($event)"
+        formControlName="searchQuery"
+      />
+
+      @if(formGroup.get('searchQuery') ) {
+
+      <span class="x-icon" (click)="clearSearch()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+          <rect width="256" height="256" fill="none" />
+          <line
+            x1="200"
+            y1="56"
+            x2="56"
+            y2="200"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"
+          />
+          <line
+            x1="200"
+            y1="200"
+            x2="56"
+            y2="56"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"
+          />
+        </svg>
+      </span>
+
+      }
+    </form>
+    } @for(option of suggestions;track option.value) {
+    <li>
+      <button
+        class="dropdown-item px-3 py-2"
+        (click)="onSelectOption(option)"
+        [class.active]="
+          option.label === selectedOption ||
+          (selectedOption && option.label.includes(selectedOption))
+        "
+      >
+        {{ option.label }}
+      </button>
+    </li>
+    }
+  </ul>
+</div>

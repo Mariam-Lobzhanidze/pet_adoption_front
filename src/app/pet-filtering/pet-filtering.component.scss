@@ -11,3 +11,23 @@
     )
   );
 }
+
+// .filters {
+//   @include m.media-down(sm) {
+//     display: none;
+//   }
+// }
+
+// button {
+//   display: flex;
+//   border: 1px solid var(--bs-primary);
+
+//   @include m.media-up(sm) {
+//     display: none;
+//   }
+// }
+
+// .filter-icon {
+//   width: 20px;
+//   height: auto;
+// }

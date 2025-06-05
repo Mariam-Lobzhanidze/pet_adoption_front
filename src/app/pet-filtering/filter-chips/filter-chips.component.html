@@ -1,4 +1,7 @@
-@if(filters) {
+@if(filterKeys().length) {
+<h6 class="small text-muted">filters applied:</h6>
+}
+
 <div class="chip-wrapper d-flex align-items-center flex-wrap">
   @for (key of filterKeys(); track key) {
   <span class="badge bg-primary d-inline-flex align-items-center p-2 me-2">
@@ -45,4 +48,3 @@
   </button>
   }
 </div>
-}

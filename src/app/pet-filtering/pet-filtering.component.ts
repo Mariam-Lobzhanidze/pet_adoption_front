@@ -61,6 +61,7 @@ export class PetFilteringComponent implements OnInit {
 
   public onRemoveFilter(key: string) {
     const updatedFilters = { ...this.filters };
+
     delete updatedFilters[key];
     this.router.navigate([], {
       queryParams: { [key]: null },

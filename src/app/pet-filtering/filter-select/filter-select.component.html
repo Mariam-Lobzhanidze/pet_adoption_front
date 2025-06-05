@@ -1,12 +1,64 @@
-<div class="filters d-flex flex-column gap-5">
+<div class="filters d-flex flex-column gap-3">
   <div class="filters-category">
-    <h4 class="mb-2 fw-bold text-center text-uppercase">Breed</h4>
+    <h4 class="mb-2 fw-bold text-center text-uppercase">Pet Type</h4>
+    <app-select-dropdown
+      [suggestions]="petTypes"
+      (queryChange)="onPetTypeChange($event)"
+      placeholderText="type to search..."
+      [formControlValue]="selectedPetType"
+    ></app-select-dropdown>
+  </div>
+  @if(selectedPetType) {
+  <div class="filters-category">
+    <h4 class="mb-2 fw-bold text-center text-uppercase">Pet breed</h4>
 
-    <app-suggestion-dropdown
+    <app-select-dropdown
       [suggestions]="breedsByType"
-      placeholderText="Terrier,Labrador... "
-      (queryChange)="selectedBreed = $event"
-      [showBorder]="false"
-    ></app-suggestion-dropdown>
+      placeholderText="type to search..."
+      (queryChange)="onPetBreedChange($event)"
+      [formControlValue]="selectedBreed"
+    ></app-select-dropdown>
+  </div>
+
+  }
+
+  <div class="filters-category">
+    <h4 class="mb-2 fw-bold text-center text-uppercase">Pet Age</h4>
+    <app-select-dropdown
+      [suggestions]="petAges"
+      (queryChange)="onPetAgeChange($event)"
+      placeholderText="type to search..."
+      [formControlValue]="selectedPetAge"
+    ></app-select-dropdown>
+  </div>
+
+  <div class="filters-category">
+    <h4 class="mb-2 fw-bold text-center text-uppercase">Pet Gender</h4>
+    <app-select-dropdown
+      [suggestions]="petGenders"
+      (queryChange)="onPetGenderChange($event)"
+      placeholderText="type to search..."
+      [formControlValue]="selectedPetGender"
+    ></app-select-dropdown>
+  </div>
+
+  <div class="filters-category">
+    <h4 class="mb-2 fw-bold text-center text-uppercase">Pet Size</h4>
+    <app-select-dropdown
+      [suggestions]="petSizes"
+      (queryChange)="onPetSizeChange($event)"
+      placeholderText="type to search..."
+      [formControlValue]="selectedPetSize"
+    ></app-select-dropdown>
+  </div>
+
+  <div class="filters-category">
+    <h4 class="mb-2 fw-bold text-center text-uppercase">Pet City</h4>
+    <app-select-dropdown
+      [suggestions]="petCities"
+      (queryChange)="onPetCityChange($event)"
+      placeholderText="type to search..."
+      [formControlValue]="selectedPetCity"
+    ></app-select-dropdown>
   </div>
 </div>
