@@ -59,8 +59,8 @@ export class HomeComponent implements OnInit {
     return this.petIconCards.slice(0, 4);
   }
 
-  public onSearch(value: string | undefined): void {
-    if (value) {
+  public onSearch(value: string | undefined | null): void {
+    if (value !== 'shelters') {
       this.router.navigate(['/pets/search'], {
         queryParams: { type: value },
         queryParamsHandling: 'merge',

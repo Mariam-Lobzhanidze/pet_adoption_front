@@ -13,7 +13,7 @@
       <app-icon-card
         [item]="item"
         [selectable]="false"
-        (click)="onSearch(item.value)"
+        (click)="onSearch(item.value ? item.value : null)"
       ></app-icon-card>
       }
     </div>
