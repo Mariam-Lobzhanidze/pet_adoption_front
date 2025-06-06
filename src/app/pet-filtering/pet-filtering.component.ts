@@ -61,7 +61,7 @@ export class PetFilteringComponent implements OnInit {
         this.myPets = response.pets;
         this.totalCount = response.totalCount;
         this.loading = false;
-        console.log(response);
+        // console.log(response);
       },
       error: (error) => {
         console.error(error);
