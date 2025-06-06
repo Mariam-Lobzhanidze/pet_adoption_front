@@ -47,6 +47,8 @@ export class PetFilteringComponent implements OnInit {
         }
       }
 
+      this.currentPage = 1;
+
       this.loadPets(this.filters);
     });
   }

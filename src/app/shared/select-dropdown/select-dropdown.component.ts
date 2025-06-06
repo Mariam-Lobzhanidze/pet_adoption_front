@@ -42,7 +42,7 @@ export class SelectDropdownComponent implements OnInit, OnChanges {
   public constructor(private fb: FormBuilder) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['formControlValue']);
+    // console.log(changes['formControlValue']);
 
     if (changes['formControlValue'] && this.formGroup) {
       const newValue = changes['formControlValue'].currentValue;
@@ -65,7 +65,7 @@ export class SelectDropdownComponent implements OnInit, OnChanges {
     const match = this.suggestions.find(
       (s) => s.value === this.formControlValue
     );
-    console.log(match);
+    // console.log(match);
 
     this.selectedOption = match?.label || 'Any';
   }
