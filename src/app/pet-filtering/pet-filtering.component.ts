@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PetService } from '../services/pet.service';
 import { Pet } from '../shared/models/pet.model';
 import { CardComponent } from '../shared/card/card.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterChipsComponent } from './filter-chips/filter-chips.component';
 import { FilterSelectComponent } from './filter-select/filter-select.component';
+import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-pet-filtering',
   standalone: true,
-  imports: [CardComponent, FilterChipsComponent, FilterSelectComponent],
+  imports: [
+    CardComponent,
+    FilterChipsComponent,
+    FilterSelectComponent,
+    SidebarComponent,
+  ],
   templateUrl: './pet-filtering.component.html',
   styleUrl: './pet-filtering.component.scss',
 })
@@ -21,6 +27,8 @@ export class PetFilteringComponent implements OnInit {
   public totalCount: number = 0;
   public limit: number = 10;
   public currentPage: number = 1;
+
+  @ViewChild(SidebarComponent) filtersSidebar!: SidebarComponent;
 
   constructor(
     private petService: PetService,
@@ -86,5 +94,13 @@ export class PetFilteringComponent implements OnInit {
   public goToPage(page: number) {
     this.currentPage = page;
     this.loadPets(this.filters);
+  }
+
+  public onOpenFilters() {
+    this.filtersSidebar.open();
+  }
+
+  public onCloseFilters() {
+    this.filtersSidebar.close();
   }
 }

@@ -22,6 +22,7 @@ import { filter, Subject, takeUntil } from 'rxjs';
 })
 export class SidebarComponent implements AfterViewInit, OnDestroy {
   @Input() offcanvasId: string = 'offcanvasMobileNav';
+  @Input() offcanvasBodyColor: string = '';
   @Input({ required: true }) offcanvasPosition:
     | 'start'
     | 'end'
@@ -79,7 +80,7 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
 
   public open(): void {
     this.offcanvasInstance.show();
-    this.setBodyStyles('hidden', '15px');
+    this.setBodyStyles('hidden', '0px');
   }
 
   public close(): void {

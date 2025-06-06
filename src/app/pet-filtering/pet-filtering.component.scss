@@ -12,22 +12,23 @@
   );
 }
 
-// .filters {
-//   @include m.media-down(sm) {
-//     display: none;
-//   }
-// }
+.filters {
+  @include m.media-down(lg) {
+    display: none;
+  }
+}
 
-// button {
-//   display: flex;
-//   border: 1px solid var(--bs-primary);
+button {
+  display: none;
+  border: 1px solid var(--bs-primary);
 
-//   @include m.media-up(sm) {
-//     display: none;
-//   }
-// }
+  @include m.media-down(lg) {
+    display: flex;
+  }
+}
 
-// .filter-icon {
-//   width: 20px;
-//   height: auto;
-// }
+.filter-icon,
+.caret-icon {
+  width: 18px;
+  height: auto;
+}
