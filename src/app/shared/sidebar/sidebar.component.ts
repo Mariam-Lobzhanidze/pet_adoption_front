@@ -62,8 +62,6 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
         takeUntil(this.destroy$)
       )
       .subscribe((event) => {
-        // console.log(event);
-
         if (!(event as NavigationEnd).url.includes('/auth')) {
           this.setBodyStyles('auto', '0px');
         }
@@ -74,18 +72,14 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
     this.setBodyStyles('auto', '0px');
   }
 
-  public onSidebarShown() {
-    this.setBodyStyles('hidden', '0px');
-  }
+  public onSidebarShown() {}
 
   public open(): void {
     this.offcanvasInstance.show();
-    this.setBodyStyles('hidden', '0px');
   }
 
   public close(): void {
     this.offcanvasInstance.hide();
-    this.setBodyStyles('auto', '0px');
 
     if (this.router.url.includes('/auth')) {
       this.router.navigate([this.previousUrl]);

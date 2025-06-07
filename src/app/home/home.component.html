@@ -41,7 +41,7 @@
       } } @if(!loading()) {
 
       <app-see-more-card
-        routePath="/pets/search"
+        (click)="onSeeMorePets()"
         [totalAmount]="moreAvailablePetsCount"
       ></app-see-more-card>
       }

@@ -96,6 +96,8 @@ export class PetFilteringComponent implements OnInit {
   public goToPage(page: number) {
     this.currentPage = page;
     this.loadPets(this.filters);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   public onOpenFilters() {
