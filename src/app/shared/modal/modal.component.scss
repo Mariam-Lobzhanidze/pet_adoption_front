@@ -1,6 +1,6 @@
 @use "mixins" as m;
 .modal-header {
-  border-bottom: none;
+  // border-bottom: none;
   .x-icon {
     color: var(--bs-dark);
     transition: all 0.3s ease;
