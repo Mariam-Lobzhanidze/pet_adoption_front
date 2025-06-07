@@ -62,7 +62,7 @@ export class SelectDropdownComponent implements OnInit, OnChanges {
   }
 
   private setSelectedOption() {
-    const match = this.suggestions.find(
+    const match = this.suggestions?.find(
       (s) => s.value === this.formControlValue
     );
     // console.log(match);

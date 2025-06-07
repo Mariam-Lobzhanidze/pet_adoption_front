@@ -1,0 +1,50 @@
+<div class="modal fade" tabindex="-1" [id]="modalId" #modalRef>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div
+        class="modal-header d-flex justify-content-between align-items-center"
+      >
+        <img src="footer_logo.png" class="adopto-logo" alt="adopto logo" />
+
+        <button
+          type="button"
+          class="btn x-icon"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <rect width="256" height="256" fill="none" />
+            <line
+              x1="200"
+              y1="56"
+              x2="56"
+              y2="200"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="24"
+            />
+            <line
+              x1="200"
+              y1="200"
+              x2="56"
+              y2="56"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="24"
+            />
+          </svg>
+        </button>
+      </div>
+      <h5 class="modal-title text-center mt-3 fw-bold">{{ title }}</h5>
+      <div
+        class="modal-body d-flex flex-wrap gap-2 justify-content-start py-3 px-4"
+      >
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { Item } from '../models/item.model';
-import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-icon-card',
   standalone: true,
-  imports: [RouterLink, NgClass],
+  imports: [NgClass],
   templateUrl: './icon-card.component.html',
   styleUrls: ['./icon-card.component.scss'],
 })

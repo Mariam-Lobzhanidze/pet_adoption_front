@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, ViewChild } from '@angular/core';
 import { Item } from '../shared/models/item.model';
 import { IconCardComponent } from '../shared/icon-card/icon-card.component';
 import { Pet, PetStory } from '../shared/models/pet.model';
@@ -12,7 +12,7 @@ import { PET_STORIES } from '../constants/pet-stories';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ICON_CARDS_ITEMS } from '../constants/pet.constants';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpParams } from '@angular/common/http';
+import { ModalComponent } from '../shared/modal/modal.component';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +25,7 @@ import { HttpParams } from '@angular/common/http';
     SeeMoreCardComponent,
     PetStoriesCarouselComponent,
     SearchBarComponent,
+    ModalComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -39,6 +40,8 @@ export class HomeComponent implements OnInit {
 
   public petCardData: Partial<Pet>[] = [];
   public petStories: PetStory[] = PET_STORIES;
+
+  @ViewChild(ModalComponent) modal!: ModalComponent;
 
   constructor(
     public petService: PetService,
@@ -59,12 +62,28 @@ export class HomeComponent implements OnInit {
     return this.petIconCards.slice(0, 4);
   }
 
+  public get otherPetTypes(): Item[] {
+    return this.petIconCards.slice(-3);
+  }
+
   public onSearch(value: string | undefined | null): void {
-    if (value !== 'shelters') {
+    if (value !== 'shelters' && value !== 'others') {
       this.router.navigate(['/pets/search'], {
         queryParams: { type: value },
         queryParamsHandling: 'merge',
       });
     }
+
+    if (value === 'others') {
+      this.modal.open();
+    }
+  }
+
+  public onOtherPetsSearch(value: string | undefined | null): void {
+    this.router.navigate(['/pets/search'], {
+      queryParams: { type: value },
+      queryParamsHandling: 'merge',
+    });
+    this.modal.close();
   }
 }

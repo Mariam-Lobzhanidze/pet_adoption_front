@@ -1,0 +1,27 @@
+@use "mixins" as m;
+.modal-header {
+  border-bottom: none;
+  .x-icon {
+    color: var(--bs-dark);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: var(--bs-secondary);
+      color: var(--bs-light);
+    }
+  }
+}
+
+@include m.media-down(sm) {
+  .x-icon {
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+.modal-title {
+  @include m.media-down(sm) {
+    font-size: 16px;
+  }
+}

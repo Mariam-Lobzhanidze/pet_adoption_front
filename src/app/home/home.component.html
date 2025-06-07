@@ -127,3 +127,17 @@
     }
   </div>
 </ng-template>
+
+<app-modal
+  modalId="petTypesModal"
+  title="What type of pet are you searching for"
+  #modal
+>
+  @for (item of otherPetTypes; track item.value) {
+  <app-icon-card
+    [item]="item"
+    [selectable]="false"
+    (click)="onOtherPetsSearch(item.value || null)"
+  ></app-icon-card>
+  }
+</app-modal>
