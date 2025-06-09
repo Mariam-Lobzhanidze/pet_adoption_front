@@ -12,6 +12,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import Offcanvas from 'bootstrap/js/dist/offcanvas';
 import { NavigationService } from '../../services/navigation.service';
 import { filter, Subject, takeUntil } from 'rxjs';
+import { OffcanvasManagerService } from '../../services/offcanas-manager.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -40,7 +41,8 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
   public constructor(
     private router: Router,
     private navigationService: NavigationService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private offcanvasManager: OffcanvasManagerService
   ) {}
 
   public ngAfterViewInit() {
@@ -48,6 +50,9 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
       this.offcanvasInstance = new Offcanvas(
         this.offcanvasElement.nativeElement
       );
+
+      //
+      this.offcanvasManager.register(this.offcanvasInstance);
 
       this.previousUrl = this.navigationService.previousUrl();
     }
@@ -69,12 +74,15 @@ export class SidebarComponent implements AfterViewInit, OnDestroy {
   }
 
   public onSidebarHidden() {
-    this.setBodyStyles('auto', '0px');
+    this.offcanvasManager.unregister(this.offcanvasInstance);
   }
 
-  public onSidebarShown() {}
+  public onSidebarShown() {
+    this.setBodyStyles('hidden', '0px');
+  }
 
   public open(): void {
+    this.offcanvasManager.register(this.offcanvasInstance);
     this.offcanvasInstance.show();
   }
 

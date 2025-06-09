@@ -16,6 +16,7 @@ import { AuthService } from '../services/auth.service';
 import { NavigationService } from '../services/navigation.service';
 import { User } from '../shared/models/user.model';
 import { DropdownComponent } from '../shared/dropdown/dropdown.component';
+import { OffcanvasManagerService } from '../services/offcanas-manager.service';
 
 @Component({
   selector: 'app-nav',
@@ -61,7 +62,8 @@ export class NavComponent implements OnInit {
   public constructor(
     public authService: AuthService,
     private router: Router,
-    private navigationService: NavigationService
+    private navigationService: NavigationService,
+    private offcanvasManager: OffcanvasManagerService
   ) {}
 
   ngOnInit() {
@@ -75,6 +77,7 @@ export class NavComponent implements OnInit {
 
   public onShowMobileNav(): void {
     this.mobileNavSidebar.open();
+
     this.navigationService.setPreviousUrl(this.router.url);
   }
 
@@ -83,7 +86,9 @@ export class NavComponent implements OnInit {
   }
 
   public onSignIn(): void {
+    this.offcanvasManager.closeCurrent();
     this.router.navigate(['/auth']);
+
     this.navigationService.setPreviousUrl(this.router.url);
   }
 }
