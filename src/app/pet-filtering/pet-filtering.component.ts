@@ -29,6 +29,7 @@ export class PetFilteringComponent implements OnInit {
   public currentPage: number = 1;
 
   @ViewChild(SidebarComponent) filtersSidebar!: SidebarComponent;
+  public showMobileFilters: boolean = false;
 
   constructor(
     private petService: PetService,
@@ -102,9 +103,11 @@ export class PetFilteringComponent implements OnInit {
 
   public onOpenFilters() {
     this.filtersSidebar.open();
+    this.showMobileFilters = true;
   }
 
   public onCloseFilters() {
     this.filtersSidebar.close();
+    this.showMobileFilters = false;
   }
 }

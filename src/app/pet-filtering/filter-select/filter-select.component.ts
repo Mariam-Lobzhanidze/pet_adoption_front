@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PetService } from '../../services/pet.service';
 import { SelectDropdownComponent } from '../../shared/select-dropdown/select-dropdown.component';
 import { GEORGIAN_CITIES } from '../../constants/georgianCities';
+import { concatMap, map, Observable, Subject, takeUntil, tap } from 'rxjs';
 
 interface Options {
   value: string;
@@ -39,7 +40,7 @@ export class FilterSelectComponent implements OnInit {
   public selectedBreed: string | null = '';
 
   public petTypes: { value: string; label: string }[] = PET_TYPE_OPTIONS;
-  public selectedPetType: string | null = '';
+  public selectedPetType: string | null = null;
 
   public petAges: { value: string; label: string }[] = PET_AGE_OPTIONS;
   public selectedPetAge: string | null = '';
@@ -53,6 +54,9 @@ export class FilterSelectComponent implements OnInit {
   public petSizes: { value: string; label: string }[] = PET_SIZE_OPTIONS;
   public selectedPetSize: string | null = '';
 
+  private breedCountMap = new Map<string, string>();
+  private destroy$ = new Subject<void>();
+
   constructor(
     private route: ActivatedRoute,
     private petService: PetService,
@@ -60,50 +64,66 @@ export class FilterSelectComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      if (params['type']) {
-        this.selectedPetType = params['type'];
-        this.breedsByType = this.petBreeds[params['type']];
+    this.getBreedsCount()
+      .pipe(
+        concatMap(() => this.route.queryParams),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((params) => {
+        const newType = params['type'] || null;
 
-        this.petService.getBreedsCount().subscribe((res) => {
-          const breedCountMap = new Map<string, string>();
-          res.forEach((item: { breed: string; count: string }) => {
-            breedCountMap.set(item.breed, item.count);
+        this.selectedBreed = params['breed'] || null;
+        this.selectedPetAge = params['age'] || null;
+        this.selectedPetGender = params['gender'] || null;
+        this.selectedPetCity = params['city'] || null;
+        this.selectedPetSize = params['size'] || null;
+
+        const typeChanged = newType !== this.selectedPetType;
+
+        if (typeChanged) {
+          this.selectedBreed = null;
+          this.router.navigate([], {
+            queryParams: { breed: null },
+            queryParamsHandling: 'merge',
           });
+        }
 
-          // Append count
-          this.breedsByType = this.breedsByType?.map((breed) => {
-            const count = breedCountMap.get(breed.value) ?? '0';
-            return {
-              ...breed,
-              label: `${breed.label} (${count})`,
-              // (${count})
-            };
-          });
+        this.selectedPetType = newType;
+
+        if (this.selectedPetType) {
+          this.breedsByType = this.petBreeds[this.selectedPetType];
+          this.updateBreedsCountOnTypeChange();
+        } else {
+          this.breedsByType = [];
+        }
+      });
+  }
+
+  private getBreedsCount(): Observable<void> {
+    return this.petService.getBreedsCount().pipe(
+      tap((res) => {
+        res.forEach((item: { breed: string; count: string }) => {
+          this.breedCountMap.set(item.breed, item.count);
         });
-      } else {
-        this.selectedPetType = null;
-        this.selectedBreed = null;
+      }),
+      map(() => void 0)
+    );
+  }
 
-        this.router.navigate([], {
-          queryParams: { breed: null },
-          queryParamsHandling: 'merge',
-        });
-        this.breedsByType = [];
-      }
+  private updateBreedsCountOnTypeChange() {
+    this.breedsByType = this.breedsByType?.map((breed) => {
+      const count = this.breedCountMap.get(breed.value) ?? '0';
 
-      this.selectedBreed = params['breed'] || '';
-      this.selectedPetAge = params['age'] || '';
-      this.selectedPetGender = params['gender'] || '';
-      this.selectedPetCity = params['city'] || '';
-      this.selectedPetSize = params['size'] || '';
+      return {
+        ...breed,
+        label: `${breed.label} (${count})`,
+      };
     });
   }
 
   public onPetTypeChange(type: string) {
-    this.selectedPetType = type;
     this.router.navigate([], {
-      queryParams: { type: this.selectedPetType || null },
+      queryParams: { type: type || null },
       queryParamsHandling: 'merge',
     });
   }
@@ -148,5 +168,8 @@ export class FilterSelectComponent implements OnInit {
     });
   }
 
-  public onSearch(): void {}
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

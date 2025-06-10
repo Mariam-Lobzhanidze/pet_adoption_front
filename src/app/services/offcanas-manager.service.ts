@@ -10,11 +10,11 @@ export class OffcanvasManagerService {
       this.currentOffcanvas.hide();
     }
     this.currentOffcanvas = offcanvas;
-    console.log('register', this.currentOffcanvas);
+    // console.log('register', this.currentOffcanvas);
   }
 
   unregister(offcanvas: Offcanvas): void {
-    console.log('unregister', offcanvas);
+    // console.log('unregister', offcanvas);
 
     if (this.currentOffcanvas === offcanvas) {
       this.currentOffcanvas = null;
@@ -22,7 +22,7 @@ export class OffcanvasManagerService {
   }
 
   closeCurrent(): void {
-    console.log('close current', this.currentOffcanvas);
+    // console.log('close current', this.currentOffcanvas);
 
     this.currentOffcanvas?.hide();
     this.currentOffcanvas = null;

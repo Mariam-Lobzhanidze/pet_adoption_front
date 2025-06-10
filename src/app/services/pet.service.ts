@@ -1,5 +1,5 @@
-import { Injectable, signal } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Pet, PetImageUploadResponse } from '../shared/models/pet.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -79,6 +79,16 @@ export class PetService {
   public getBreedsCount(): Observable<{ breed: string; count: string }[]> {
     return this.http.get<{ breed: string; count: string }[]>(
       `${this.API_URL}/breeds/count`
+    );
+  }
+
+  public toggleFavorite(
+    petId: string,
+    userId: string
+  ): Observable<{ isFavorite: boolean; message: string }> {
+    return this.http.post<{ isFavorite: boolean; message: string }>(
+      `${this.API_URL}/pets/${petId}/favorite`,
+      { userId }
     );
   }
 

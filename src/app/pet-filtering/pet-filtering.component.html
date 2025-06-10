@@ -95,15 +95,20 @@
   [offcanvasBodyColor]="'bg-light'"
 >
   <a class="offcanvas__title fs-6 text-light fw-bold">Filter options</a>
-  <div class="offcanvas__body h-100 d-flex flex-column gap-3">
+  <div
+    class="offcanvas__body overflow-scroll p-4 h-100 d-flex flex-column gap-3"
+  >
+    @if(showMobileFilters) {
+
     <app-filter-select></app-filter-select>
-    <!-- <button
+
+    <button
       type="button"
       (click)="onCloseFilters()"
-      class="fw-bold btn btn-secondary text-light border-0 align-self-end d-flex align-items-center gap-2"
+      class="fw-bold w-100 btn btn-secondary text-light border-0 align-self-end d-flex justify-content-center align-items-center gap-2"
     >
       Apply Filters
-      <svg
+      <!-- <svg
         class="caret-icon"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 256 256"
@@ -117,7 +122,8 @@
           stroke-linejoin="round"
           stroke-width="24"
         />
-      </svg>
-    </button> -->
+      </svg> -->
+    </button>
+    }
   </div>
 </app-sidebar>

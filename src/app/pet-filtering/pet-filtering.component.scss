@@ -13,6 +13,8 @@
 }
 
 .filters {
+  display: flex;
+
   @include m.media-down(lg) {
     display: none;
   }

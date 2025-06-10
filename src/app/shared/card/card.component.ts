@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FavoriteBtnComponent } from '../favorite-btn/favorite-btn.component';
 import { Pet } from '../models/pet.model';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { Item } from '../models/item.model';
+import { PetService } from '../../services/pet.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-card',
@@ -12,7 +14,7 @@ import { Item } from '../models/item.model';
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
   @Input() loading: boolean = true;
   @Input() editDropdownItems: Item[] = [];
   public imageLoaded: boolean = false;
@@ -30,6 +32,17 @@ export class CardComponent {
     selected: boolean;
   }>();
 
+  private currentUserId: string | undefined = '';
+
+  constructor(
+    private petService: PetService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.currentUserId = this.authService.user()?.id;
+  }
+
   public onCardSelect(id: string | undefined, event: Event) {
     if (!id) return;
     const selected = (event.target as HTMLInputElement).checked;
@@ -42,10 +55,16 @@ export class CardComponent {
     this.idUpdated.emit({ id: this.currentPetId });
   }
 
-  //go to service
-  public updateFavoriteStatus(newStatus: boolean): void {
-    this.isFavorite = newStatus;
+  public updateFavoriteStatus(status: boolean): void {
+    this.isFavorite = status;
+    if (this.item.id && this.currentUserId) {
+      this.petService
+        .toggleFavorite(this.item.id, this.currentUserId)
+        .subscribe((res) => {
+          this.isFavorite = res.isFavorite;
 
-    console.log(`card with id ${this.item.id} changed to ${this.isFavorite}`);
+          console.log(res);
+        });
+    }
   }
 }

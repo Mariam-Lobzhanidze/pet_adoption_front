@@ -49,8 +49,6 @@ export class FilterChipsComponent {
       age: this.petAges,
       gender: this.petGenders,
       size: this.petSizes,
-
-      //  other filters like gender, age, size ...later
     };
 
     const items = labelMap[key];
