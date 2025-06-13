@@ -37,6 +37,14 @@ export const routes: Routes = [
       import('./my-pets/my-pets.component').then((m) => m.MyPetsComponent),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'my-favorites',
+    loadComponent: () =>
+      import('./favorites/favorites.component').then(
+        (m) => m.FavoritesComponent
+      ),
+    canActivate: [AuthGuard],
+  },
 
   {
     path: 'pets/search',

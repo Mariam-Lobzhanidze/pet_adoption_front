@@ -104,4 +104,26 @@ export class AuthService {
     const userString = localStorage.getItem(this.userKey);
     return userString ? JSON.parse(userString) : null;
   }
+
+  public updateFavorite(petId: string, isFavorite: boolean): void {
+    const currentUser = this.user();
+
+    if (!currentUser) return;
+
+    let updatedFavorites = currentUser.favorites || [];
+
+    if (isFavorite && !updatedFavorites.includes(petId)) {
+      updatedFavorites = [...updatedFavorites, petId];
+    } else if (!isFavorite && updatedFavorites.includes(petId)) {
+      updatedFavorites = updatedFavorites.filter((id) => id !== petId);
+    }
+
+    const updatedUser = {
+      ...currentUser,
+      favorites: updatedFavorites,
+    };
+
+    this.user.set(updatedUser);
+    localStorage.setItem(this.userKey, JSON.stringify(updatedUser));
+  }
 }

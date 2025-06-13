@@ -92,6 +92,10 @@ export class PetService {
     );
   }
 
+  public getFavoritePets(): Observable<{ pets: Pet[] }> {
+    return this.http.get<{ pets: Pet[] }>(`${this.API_URL}/pets/favorites`);
+  }
+
   //
   public uploadImages(files: FileList): Observable<PetImageUploadResponse> {
     const formData = new FormData();

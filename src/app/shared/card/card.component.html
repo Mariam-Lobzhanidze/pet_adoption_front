@@ -110,7 +110,7 @@
 
     }
   </div>
-  @if(!loading && imageLoaded) {
+  @if(!loading && imageLoaded && isLoggedIn()) {
   <app-favorite-btn
     [positions]="{ top: '8px', right: '8px' }"
     [isFavorite]="isFavorite"

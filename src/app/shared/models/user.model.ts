@@ -22,5 +22,5 @@ export interface User {
   isFirstLogin?: boolean;
   status: UserStatus;
   role: UserRole;
-  favorites: any;
+  favorites: string[];
 }

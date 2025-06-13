@@ -1,0 +1,13 @@
+<div class="container container-fluid">
+  <section class="page-section">
+    <app-section-title title="My Favorites"></app-section-title>
+
+    <div class="card-list">
+      @for (item of myPets ;let i=$index; track i) {
+
+      <app-card [item]="item" [loading]="loading"> </app-card>
+
+      }
+    </div>
+  </section>
+</div>

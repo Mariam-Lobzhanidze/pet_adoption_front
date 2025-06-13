@@ -1,11 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  computed,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  signal,
+} from '@angular/core';
 import { FavoriteBtnComponent } from '../favorite-btn/favorite-btn.component';
 import { Pet } from '../models/pet.model';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { Item } from '../models/item.model';
 import { PetService } from '../../services/pet.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -15,6 +24,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './card.component.scss',
 })
 export class CardComponent implements OnInit {
+  public isLoggedIn = computed(() => this.authService.isLoggedIn());
   @Input() loading: boolean = true;
   @Input() editDropdownItems: Item[] = [];
   public imageLoaded: boolean = false;
@@ -32,15 +42,29 @@ export class CardComponent implements OnInit {
     selected: boolean;
   }>();
 
-  private currentUserId: string | undefined = '';
+  public currentUserId: string | undefined = '';
 
   constructor(
     private petService: PetService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.currentUserId = this.authService.user()?.id;
+    this.setFavoriteStatus();
+  }
+
+  private setFavoriteStatus() {
+    if (this.item.id) {
+      const isIncluded = this.authService
+        .user()
+        ?.favorites?.includes(this.item.id);
+
+      if (isIncluded) {
+        this.isFavorite = true;
+      }
+    }
   }
 
   public onCardSelect(id: string | undefined, event: Event) {
@@ -56,6 +80,11 @@ export class CardComponent implements OnInit {
   }
 
   public updateFavoriteStatus(status: boolean): void {
+    // if (!this.authService.user()) {
+    //   this.router.navigate(['auth'], { queryParams: { authView: 'login' } });
+    //   return;
+    // }
+
     this.isFavorite = status;
     if (this.item.id && this.currentUserId) {
       this.petService
@@ -63,7 +92,7 @@ export class CardComponent implements OnInit {
         .subscribe((res) => {
           this.isFavorite = res.isFavorite;
 
-          console.log(res);
+          this.authService.updateFavorite(this.item.id!, res.isFavorite);
         });
     }
   }
