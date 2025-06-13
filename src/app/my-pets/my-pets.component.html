@@ -1,5 +1,6 @@
 <div class="container container-fluid">
   <section class="page-section">
+    @if(myPets.length) {
     <app-section-title title="My pets"></app-section-title>
     <div class="controls d-flex justify-content-end align-items-center mb-2">
       @if(!loading) {
@@ -70,7 +71,7 @@
       }
     </div>
     <div class="card-list">
-      @for (item of myPets ;let i=$index; track i) {
+      @for (item of myPets ;let i=$index; track item.id) {
 
       <app-card
         [item]="item"
@@ -86,6 +87,14 @@
 
       }
     </div>
+    } @if(!loading && !myPets.length) {
+    <div
+      class="position-absolute top-50 start-50 translate-middle d-flex flex-column gap-1 align-items-center"
+    >
+      <img class="img" src="/dog-cat-6.png" alt="pet-image" />
+      <span class="">No pets yet 🚫</span>
+    </div>
+    }
   </section>
 </div>
 

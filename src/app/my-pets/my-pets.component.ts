@@ -7,11 +7,17 @@ import { Item } from '../shared/models/item.model';
 import { ConfirmModalComponent } from '../shared/confirm-modal/confirm-modal.component';
 import { forkJoin } from 'rxjs';
 import { ToastService } from '../services/toast.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-my-pets',
   standalone: true,
-  imports: [SectionTitleComponent, CardComponent, ConfirmModalComponent],
+  imports: [
+    SectionTitleComponent,
+    CardComponent,
+    ConfirmModalComponent,
+    RouterLink,
+  ],
   templateUrl: './my-pets.component.html',
   styleUrl: './my-pets.component.scss',
 })

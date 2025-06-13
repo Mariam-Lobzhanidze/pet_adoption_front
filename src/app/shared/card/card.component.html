@@ -78,7 +78,7 @@
         'placeholder-lg placeholder-wave w-100 bg-primary ': loading
       }"
     >
-      {{ loading ? "" : item.name }}
+      {{ loading ? "" : (item.name | titlecase) }}
     </h4>
 
     @if(showCheckbox) {

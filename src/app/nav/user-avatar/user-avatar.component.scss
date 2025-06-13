@@ -1,4 +1,18 @@
 .adopto-user-avatar {
   width: 40px;
   height: 40px;
+  background-color: var(--bs-secondary);
+  color: var(--bs-light);
+
+  transition: all 0.3s ease;
+
+  .house-icon {
+    width: 60%;
+    height: auto;
+  }
+
+  &:hover {
+    background-color: var(--bs-light);
+    color: var(--bs-primary);
+  }
 }

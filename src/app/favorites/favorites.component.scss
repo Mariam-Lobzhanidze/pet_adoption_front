@@ -11,3 +11,11 @@
     )
   );
 }
+.img {
+  width: 120px;
+  height: auto;
+
+  @include m.media-up(lg) {
+    width: 200px;
+  }
+}
