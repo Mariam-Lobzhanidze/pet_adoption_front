@@ -1,4 +1,7 @@
-<div class="card shadow rounded-3 overflow-hidden position-relative">
+<div
+  class="card shadow rounded-3 overflow-hidden position-relative"
+  (click)="onNavigateToDetails()"
+>
   <div
     class="card-img-top d-flex justify-content-center align-items-center bg-primary"
     [ngClass]="{ 'placeholder-wave': loading || !imageLoaded }"

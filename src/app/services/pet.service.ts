@@ -73,7 +73,7 @@ export class PetService {
   }
 
   public getPetById(id: string): Observable<Partial<Pet>> {
-    return this.http.get<Partial<Pet>>(`${this.API_URL}/pets/${id}`);
+    return this.http.get<Partial<Pet>>(`${this.API_URL}/pet/${id}`);
   }
 
   public getBreedsCount(): Observable<{ breed: string; count: string }[]> {

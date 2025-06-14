@@ -1,0 +1,21 @@
+@use "mixins" as m;
+.slider-wrapper {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--bs-dark);
+  min-height: 300px;
+
+  .slider {
+    width: 400px;
+
+    @include m.media-down(md) {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+// .carousel {
+//   width: 100%;
+// }
+ngb-carousel {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+img {
+  height: 400px;
+  object-fit: cover;
+  width: 100%;
+}

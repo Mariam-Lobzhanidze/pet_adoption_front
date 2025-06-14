@@ -15,6 +15,7 @@ import { Item } from '../models/item.model';
 import { PetService } from '../../services/pet.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'app-card',
@@ -47,7 +48,8 @@ export class CardComponent implements OnInit {
   constructor(
     private petService: PetService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private navigationService: NavigationService
   ) {}
 
   ngOnInit() {
@@ -95,5 +97,10 @@ export class CardComponent implements OnInit {
           this.authService.updateFavorite(this.item.id!, res.isFavorite);
         });
     }
+  }
+
+  public onNavigateToDetails(): void {
+    this.router.navigate(['pet', this.item.id]);
+    this.navigationService.scrollToTop();
   }
 }

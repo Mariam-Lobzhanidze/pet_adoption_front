@@ -6,6 +6,10 @@
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
 //
 $theme-colors: map-merge(
   $theme-colors,
@@ -22,6 +26,13 @@ $theme-colors: map-merge(
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+:root {
+  --swiper-navigation-color: var(--bs-light);
+  --swiper-navigation-size: 30px;
+
+  --swiper-pagination-color: var(--bs-light);
+}
 
 body {
   background-color: $pageBody;
