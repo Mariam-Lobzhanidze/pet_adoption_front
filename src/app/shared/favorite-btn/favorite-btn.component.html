@@ -1,6 +1,6 @@
 <button
   class="favorite-icon d-flex justify-content-center align-items-center border border-0 shadow position-absolute"
-  (click)="toggleFavorite()"
+  (click)="toggleFavorite(); $event.stopPropagation()"
   [ngStyle]="{
     top: positions.top,
     right: positions.right,

@@ -12,12 +12,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-my-pets',
   standalone: true,
-  imports: [
-    SectionTitleComponent,
-    CardComponent,
-    ConfirmModalComponent,
-    RouterLink,
-  ],
+  imports: [SectionTitleComponent, CardComponent, ConfirmModalComponent],
   templateUrl: './my-pets.component.html',
   styleUrl: './my-pets.component.scss',
 })
@@ -35,7 +30,7 @@ export class MyPetsComponent implements OnInit {
     return id
       ? [
           { label: 'update', route: `/pets/edit/${id}` },
-          { label: 'details', route: '/' },
+          { label: 'details', route: `/pet/${id}` },
         ]
       : [];
   });

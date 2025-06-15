@@ -9,6 +9,7 @@ import { ToastMessageComponent } from './shared/toast-message/toast-message.comp
   selector: 'app-root',
   standalone: true,
   imports: [NavComponent, FooterComponent, RouterOutlet, ToastMessageComponent],
+
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

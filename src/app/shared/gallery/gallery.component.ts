@@ -1,28 +1,14 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-pet-gallery',
+  selector: 'app-image-carousel',
   standalone: true,
-  imports: [NgbCarouselModule, NgFor],
-  template: `
-    <ngb-carousel
-      [interval]="3000"
-      [wrap]="true"
-      [keyboard]="true"
-      [pauseOnHover]="true"
-    >
-      <ng-template
-        ngbSlide
-        *ngFor="let img of images; let i = index"
-        id="slide-{{ i }}"
-      >
-        <img [src]="img" class="d-block w-100" alt="pet photo {{ i + 1 }}" />
-      </ng-template>
-    </ngb-carousel>
-  `,
+
+  imports: [NgbCarouselModule, NgFor, NgIf],
+  templateUrl: './gallery.component.html',
 })
-export class PetGalleryComponent {
-  @Input() images: string[] = [];
+export class ImageCarouselComponent {
+  @Input() images: { src: string; title: string }[] = [];
 }

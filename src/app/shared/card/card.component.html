@@ -91,12 +91,15 @@
         type="checkbox"
         [id]="item.id"
         [value]="item.id"
-        (change)="onCardSelect(item.id, $event)"
+        (click)="onCardSelect(item.id, $event)"
         [checked]="isSelected"
       />
     </div>
     } @if(showEdit) {
-    <div class="edit-controls" (click)="onCardSelectForEdit(item.id)">
+    <div
+      class="edit-controls"
+      (click)="onCardSelectForEdit(item.id); $event.stopPropagation()"
+    >
       <app-dropdown [items]="editDropdownItems">
         <svg
           class="menu-icon"

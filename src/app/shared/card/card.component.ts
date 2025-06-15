@@ -70,6 +70,7 @@ export class CardComponent implements OnInit {
   }
 
   public onCardSelect(id: string | undefined, event: Event) {
+    event.stopPropagation();
     if (!id) return;
     const selected = (event.target as HTMLInputElement).checked;
     this.cardSelectionChange.emit({ id, selected });
