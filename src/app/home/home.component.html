@@ -13,7 +13,7 @@
       <app-icon-card
         [item]="item"
         [selectable]="false"
-        (click)="onSearch(item.value ? item.value : null)"
+        (clicked)="onSearch(item.value ? item.value : null)"
       ></app-icon-card>
       }
     </div>
@@ -25,7 +25,6 @@
 
   <section class="page-section">
     <app-section-title
-      (click)="onSeeMorePets()"
       title="Pets available for adoption"
       routePath="/pets/search"
       [icon]="true"
@@ -42,7 +41,7 @@
       } } @if(!loading()) {
 
       <app-see-more-card
-        (click)="onSeeMorePets()"
+        [routePath]="'/pets/search'"
         [totalAmount]="moreAvailablePetsCount"
       ></app-see-more-card>
       }
@@ -138,7 +137,7 @@
   <app-icon-card
     [item]="item"
     [selectable]="false"
-    (click)="onOtherPetsSearch(item.value || null)"
+    (clicked)="onOtherPetsSearch(item.value || null)"
   ></app-icon-card>
   }
 </app-modal>

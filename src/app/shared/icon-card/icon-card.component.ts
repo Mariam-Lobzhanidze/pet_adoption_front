@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Item } from '../models/item.model';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NgClass } from '@angular/common';
@@ -14,10 +14,17 @@ export class IconCardComponent {
   @Input({ required: true }) item!: Item;
   @Input({ required: true }) selectable: boolean = false;
   @Input() selected: boolean = false;
+  @Output() clicked = new EventEmitter<void>();
 
   public constructor(private sanitizer: DomSanitizer) {}
 
   public getSanitizedSVG(): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(this.item.icon as string);
+  }
+
+  public onClick(event: MouseEvent) {
+    console.log('clicked');
+
+    this.clicked.emit();
   }
 }

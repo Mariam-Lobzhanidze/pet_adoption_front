@@ -6,7 +6,6 @@ import {
   Input,
   OnInit,
   Output,
-  signal,
 } from '@angular/core';
 import { FavoriteBtnComponent } from '../favorite-btn/favorite-btn.component';
 import { Pet } from '../models/pet.model';
@@ -15,7 +14,6 @@ import { Item } from '../models/item.model';
 import { PetService } from '../../services/pet.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'app-card',
@@ -48,8 +46,7 @@ export class CardComponent implements OnInit {
   constructor(
     private petService: PetService,
     private authService: AuthService,
-    private router: Router,
-    private navigationService: NavigationService
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -102,6 +99,5 @@ export class CardComponent implements OnInit {
 
   public onNavigateToDetails(): void {
     this.router.navigate(['pet', this.item.id]);
-    this.navigationService.scrollToTop();
   }
 }

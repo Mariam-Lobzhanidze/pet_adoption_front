@@ -14,6 +14,7 @@ import { ICON_CARDS_ITEMS } from '../constants/pet.constants';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { NavigationService } from '../services/navigation.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -48,7 +49,7 @@ export class HomeComponent implements OnInit {
     public petService: PetService,
     private router: Router,
     private route: ActivatedRoute,
-    private navigationService: NavigationService
+    public navigationService: NavigationService
   ) {}
 
   public ngOnInit(): void {
@@ -87,10 +88,5 @@ export class HomeComponent implements OnInit {
       queryParamsHandling: 'merge',
     });
     this.modal.close();
-  }
-
-  public onSeeMorePets() {
-    this.router.navigate(['/pets/search']);
-    this.navigationService.scrollToTop();
   }
 }
