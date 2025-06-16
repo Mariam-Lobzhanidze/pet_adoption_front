@@ -1,14 +1,7 @@
 @use "mixins" as m;
 
 .pet-details {
-  @include m.responsive-margin-top(0px, 0px, 0px);
-
   .slider-wrapper {
-    // position: absolute;
-    // top: var(--header-height);
-    // left: 0;
-    // right: 0;
-    // margin-top: var(--header-height);
     display: flex;
     justify-content: center;
     align-items: center;

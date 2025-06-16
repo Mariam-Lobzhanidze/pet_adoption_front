@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { PetService } from '../services/pet.service';
 import { Pet } from '../shared/models/pet.model';
 import { ImageCarouselComponent } from '../shared/gallery/gallery.component';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pet-details',
   standalone: true,
-  imports: [ImageCarouselComponent],
+  imports: [ImageCarouselComponent, TitleCasePipe],
   templateUrl: './pet-details.component.html',
   styleUrl: './pet-details.component.scss',
 })
