@@ -1,4 +1,7 @@
-<ngb-carousel *ngIf="images && images.length">
+<ngb-carousel
+  *ngIf="images && images.length"
+  [showNavigationArrows]="images.length > 1"
+>
   <ng-template ngbSlide *ngFor="let img of images">
     <img [src]="img.src" [alt]="img.title" class="d-block w-100" />
   </ng-template>
