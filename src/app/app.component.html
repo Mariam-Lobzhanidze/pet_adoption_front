@@ -3,7 +3,7 @@
     <app-nav> </app-nav>
   </header>
 
-  <main>
+  <main [ngClass]="{ 'pet-details-active': isPetDetails }">
     <router-outlet></router-outlet>
   </main>
   <footer>

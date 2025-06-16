@@ -13,7 +13,7 @@ import { ImageCarouselComponent } from '../shared/gallery/gallery.component';
   styleUrl: './pet-details.component.scss',
 })
 export class PetDetailsComponent {
-  private pet: Partial<Pet> = {};
+  public pet: Partial<Pet> = {};
   public images: { src: string; title: string }[] = [];
   public petImages: { public_id: string; url: string }[] | undefined = [];
   private petId: string | null;

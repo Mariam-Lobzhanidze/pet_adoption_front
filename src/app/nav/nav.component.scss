@@ -2,7 +2,7 @@
 
 .navbar {
   height: var(--header-height);
-  @include m.responsive-margin-bottom(20px, 30px, 40px);
+  // @include m.responsive-margin-bottom(20px, 30px, 40px);
 
   .menu-btn {
     color: var(--bs-light);

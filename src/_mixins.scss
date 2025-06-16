@@ -54,6 +54,18 @@
   }
 }
 
+@mixin responsive-margin-top($mobile, $tablet, $desktop) {
+  margin-top: $mobile;
+
+  @include media-up(md) {
+    margin-top: $tablet;
+  }
+
+  @include media-up(lg) {
+    margin-top: $desktop;
+  }
+}
+
 //avatar
 
 @mixin responsive-size($mobile, $tablet, $desktop) {
