@@ -1,7 +1,7 @@
 @use "mixins" as m;
 .slider-wrapper {
   position: absolute;
-  top: 80px;
+  top: var(--header-height);
   left: 0;
   right: 0;
   display: flex;
@@ -11,6 +11,11 @@
   background-color: var(--bs-primaryDarken);
   max-height: 500px;
 
+  overflow: hidden;
+
+  @include m.media-down(md) {
+    max-height: 600px;
+  }
   .slider {
     width: 400px;
 

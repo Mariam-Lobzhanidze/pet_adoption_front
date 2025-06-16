@@ -1,7 +1,7 @@
 @use "mixins" as m;
 
 .navbar {
-  height: 80px;
+  height: var(--header-height);
   @include m.responsive-margin-bottom(20px, 30px, 40px);
 
   .menu-btn {

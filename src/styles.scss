@@ -22,6 +22,10 @@ $theme-colors: map-merge(
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+:root {
+  --header-height: 80px;
+}
+
 body {
   background-color: $pageBody;
 }
@@ -164,4 +168,32 @@ label {
     width: 22px;
     height: 22px;
   }
+}
+
+//ngb-carousel
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  color: var(--bs-primaryDarken);
+  background-color: var(--bs-light);
+  border-radius: 50%;
+  padding: 20px;
+  width: 20px;
+  height: 20px;
+  background-size: 60% 60%;
+}
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'/%3E%3Cpolyline points='160 208 80 128 160 48' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='24'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'/%3E%3Cpolyline points='96 48 176 128 96 208' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='24'/%3E%3C/svg%3E");
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: var(--bs-light);
+}
+
+.carousel-indicators .active {
+  background-color: var(--bs-primaryDarken);
 }
