@@ -1,6 +1,7 @@
 @use "mixins" as m;
 
 .pet-details {
+  min-height: 800px;
   .slider-wrapper {
     display: flex;
     justify-content: center;
@@ -20,6 +21,19 @@
       @include m.media-down(md) {
         width: 100%;
       }
+    }
+  }
+
+  .pet-info-group {
+    min-height: 400px;
+
+    .pet-info-card {
+      flex: 2;
+    }
+
+    .pet-adoption-card {
+      background-color: var(--bs-primaryDarken);
+      flex: 1;
     }
   }
 }
