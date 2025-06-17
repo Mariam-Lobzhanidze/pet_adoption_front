@@ -24,3 +24,12 @@ export interface User {
   role: UserRole;
   favorites: string[];
 }
+
+export interface Shelter {
+  id: string;
+  shelterName: string;
+  address: string;
+  phone: string;
+  email: string;
+  logo?: string;
+}

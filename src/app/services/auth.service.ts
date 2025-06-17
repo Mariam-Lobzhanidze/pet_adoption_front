@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { User } from '../shared/models/user.model';
+import { Shelter, User } from '../shared/models/user.model';
 import { environment } from '../../environments/environment';
 import { Observable, take, tap, timer } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -125,5 +125,9 @@ export class AuthService {
 
     this.user.set(updatedUser);
     localStorage.setItem(this.userKey, JSON.stringify(updatedUser));
+  }
+
+  public getAllShelters(): Observable<Shelter[]> {
+    return this.http.get<Shelter[]>(`${this.API_URL}/users/shelters`);
   }
 }

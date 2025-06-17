@@ -3,10 +3,6 @@
   [showNavigationArrows]="images.length > 1"
 >
   <ng-template ngbSlide *ngFor="let img of images">
-    <img
-      [src]="img.src || 'default_dog_img1.png'"
-      [alt]="img.title"
-      class="d-block w-100"
-    />
+    <img [src]="img.src" [alt]="img.title" class="d-block w-100" />
   </ng-template>
 </ngb-carousel>

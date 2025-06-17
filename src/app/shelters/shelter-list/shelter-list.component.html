@@ -1,0 +1,7 @@
+<div class="container container-fluid">
+  <div class="card-list">
+    @for(shelter of shelters;track shelter.id) {
+    <app-shelter-card [shelter]="shelter"></app-shelter-card>
+    }
+  </div>
+</div>

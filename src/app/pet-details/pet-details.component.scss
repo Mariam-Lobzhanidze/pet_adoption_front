@@ -2,12 +2,12 @@
 
 .pet-details {
   .slider-wrapper {
-    // min-height: 470px;
     display: flex;
     justify-content: center;
     align-items: center;
 
     background-color: var(--bs-primaryDarken);
+    min-height: 466px;
     max-height: 500px;
     overflow: hidden;
 

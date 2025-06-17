@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
     this.petService.getAllPets().subscribe((response) => {
       this.loading.set(false);
       this.petCardData = response.pets;
+
       this.moreAvailablePetsCount =
         response.totalCount - this.petCardData.length;
     });
@@ -79,6 +80,10 @@ export class HomeComponent implements OnInit {
 
     if (value === 'others') {
       this.modal.open();
+    }
+
+    if (value === 'shelters') {
+      this.router.navigate(['shelter-list']);
     }
   }
 

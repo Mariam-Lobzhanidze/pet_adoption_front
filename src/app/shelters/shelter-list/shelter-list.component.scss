@@ -1,0 +1,13 @@
+@use "mixins" as m;
+
+.container {
+  .card-list {
+    @include m.grid(
+      1,
+      16px,
+      (
+        lg: 2,
+      )
+    );
+  }
+}

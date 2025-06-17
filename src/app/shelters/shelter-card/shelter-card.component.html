@@ -1,24 +1,166 @@
-<!-- <div class="card d-flex flex-lg-row flex-md-column">
+<div class="card d-flex flex-lg-row flex-column">
   <div class="d-flex justify-content-center align-items-center p-3">
-    <div class="adopto-img-container rounded">
-      <img [src]="shelter.logo" alt="image" />
+    <div class="img-wrapper">
+      <img [src]="'shelter_logo_default_1.png'" alt="image" />
+      <!-- <svg
+        class="house-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 256 256"
+      >
+        <rect width="256" height="256" fill="none" />
+        <line
+          x1="16"
+          y1="216"
+          x2="240"
+          y2="216"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+        <polyline
+          points="152 216 152 152 104 152 104 216"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+        <line
+          x1="40"
+          y1="116.69"
+          x2="40"
+          y2="216"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+        <line
+          x1="216"
+          y1="216"
+          x2="216"
+          y2="116.69"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+        <path
+          d="M24,132.69l98.34-98.35a8,8,0,0,1,11.32,0L232,132.69"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+      </svg> -->
     </div>
   </div>
 
-  <div class="card-body d-flex flex-column">
-    <a class="text-primary fs-5 mb-2">
-      {{ shelter.title }}
+  <div class="card-body d-flex flex-column p-4">
+    <a
+      class="shelter-name text-secondary fw-bold mb-3 text-center text-lg-start d-block"
+    >
+      {{ shelter.shelterName | titlecase }}
     </a>
-    <p class="card-text">
-      <span class="d-flex align-items-center gap-2">
-        <i class="ph-bold ph-house text-primary fs-5"></i>
+
+    <div class="d-flex flex-column gap-2 mb-4">
+      <span class="d-flex align-items-center gap-2 card-text">
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 256 256"
+        >
+          <rect width="256" height="256" fill="none" />
+          <circle
+            cx="128"
+            cy="104"
+            r="32"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"
+          />
+          <path
+            d="M208,104c0,72-80,128-80,128S48,176,48,104a80,80,0,0,1,160,0Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"
+          />
+        </svg>
         {{ shelter.address }}
       </span>
-      <span class="d-flex align-items-center gap-2">
-        <i class="ph-bold ph-phone text-primary fs-5"></i>
+      <span class="d-flex align-items-center gap-2 card-text">
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 256 256"
+        >
+          <rect width="256" height="256" fill="none" />
+          <path
+            d="M152,48a78.61,78.61,0,0,1,56,56"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"
+          />
+          <path
+            d="M156.39,153.34a8,8,0,0,1,7.59-.69l47.16,21.13a8,8,0,0,1,4.8,8.3A48.33,48.33,0,0,1,168,224,136,136,0,0,1,32,88,48.33,48.33,0,0,1,73.92,40.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L81.32,125a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"
+          />
+          <path
+            d="M141.23,86A44.11,44.11,0,0,1,170,114.77"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"
+          />
+        </svg>
         {{ shelter.phone }}
       </span>
-    </p>
-    <button type="button" class="btn btn-primary w-100 mt-2">View Pets</button>
+      <span class="d-flex align-items-center gap-2 card-text">
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 256 256"
+        >
+          <rect width="256" height="256" fill="none" />
+          <path
+            d="M224,96V200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V96l96-64Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"
+          />
+          <polyline
+            points="224 96 145.46 152 110.55 152 32 96"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="24"
+          />
+        </svg>
+        {{ shelter.email }}
+      </span>
+    </div>
+
+    <button type="button" class="btn btn-secondary text-uppercase fw-bold">
+      View Pets
+    </button>
   </div>
-</div> -->
+</div>

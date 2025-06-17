@@ -1,7 +1,42 @@
 @use "mixins" as m;
-
 .card {
-  .adopto-img-container {
-    @include m.image-placeholder(144px);
+  overflow: hidden;
+  .img-wrapper {
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--bs-primary);
+
+    @include m.media-down(lg) {
+      width: 130px;
+      height: 130px;
+      align-self: center;
+    }
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .icon {
+    width: 20px;
+    color: var(--bs-secondary);
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .shelter-name {
+    font-size: 18px;
+
+    @include m.media-down(md) {
+      font-size: 16px;
+    }
   }
 }

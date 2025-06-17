@@ -60,4 +60,12 @@ export const routes: Routes = [
         (m) => m.PetFilteringComponent
       ),
   },
+
+  {
+    path: 'shelter-list',
+    loadComponent: () =>
+      import('./shelters/shelter-list/shelter-list.component').then(
+        (m) => m.ShelterListComponent
+      ),
+  },
 ];

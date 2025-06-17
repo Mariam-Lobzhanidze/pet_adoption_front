@@ -63,6 +63,13 @@ export class PetDetailsComponent {
     ];
   }
 
+  private transformCloudinary(url: string, width: number, quality = 80) {
+    const segments = url.split('/upload/');
+    if (segments.length !== 2) return url;
+
+    return `${segments[0]}/upload/w_${width},f_auto,q_auto/${segments[1]}`;
+  }
+
   ngOnInit() {
     if (this.petId) {
       this.petService.getPetById(this.petId).subscribe((res) => {
@@ -72,12 +79,12 @@ export class PetDetailsComponent {
 
         this.images =
           this.petImages?.map((img) => ({
-            src: img.url,
+            src: this.transformCloudinary(img.url, 900, 90),
             title: this.pet.name ? this.pet.name : '',
           })) || [];
 
         this.petDataLabels = this.getDataLabels();
-        console.log(this.petDataLabels);
+
         this.petBreed = this.labelFromOptions.transform(
           this.pet?.breed,
           this.allBreedOptions
