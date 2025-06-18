@@ -85,6 +85,7 @@ export class HomeComponent implements OnInit {
     if (value === 'shelters') {
       this.router.navigate(['shelters', 'list']);
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   public onOtherPetsSearch(value: string | undefined | null): void {
