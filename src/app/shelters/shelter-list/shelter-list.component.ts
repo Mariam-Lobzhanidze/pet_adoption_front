@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './shelter-list.component.scss',
 })
 export class ShelterListComponent {
+  public isLoading: boolean = true;
   public shelters: Shelter[] = [];
 
   constructor(
@@ -23,6 +24,7 @@ export class ShelterListComponent {
   ngOnInit() {
     this.authService.getAllShelters().subscribe((res) => {
       console.log(res);
+      this.isLoading = false;
       this.shelters = res;
     });
   }

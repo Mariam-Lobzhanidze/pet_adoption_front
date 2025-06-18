@@ -2,6 +2,7 @@
   <div class="card-list">
     @for(shelter of shelters;track shelter.id) {
     <app-shelter-card
+      [loading]="isLoading"
       [shelter]="shelter"
       (viewPets)="navigateToPets($event, shelter.shelterName)"
     ></app-shelter-card>

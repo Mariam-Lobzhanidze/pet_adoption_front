@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Shelter } from '../../shared/models/user.model';
-import { TitleCasePipe } from '@angular/common';
+import { NgIf, TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-shelter-card',
   standalone: true,
-  imports: [TitleCasePipe],
+  imports: [TitleCasePipe, NgIf],
   templateUrl: './shelter-card.component.html',
   styleUrl: './shelter-card.component.scss',
 })
@@ -18,6 +18,7 @@ export class ShelterCardComponent {
     logo: '',
     email: '',
   };
+  @Input() loading = false;
 
   @Output() viewPets = new EventEmitter<string>();
 }

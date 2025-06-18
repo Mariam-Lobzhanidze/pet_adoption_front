@@ -1,114 +1,157 @@
 <div class="card d-flex flex-lg-row flex-column">
-  <div class="d-flex justify-content-center align-items-center p-3">
-    <div class="img-wrapper">
-      <img [src]="'shelter_logo_default_1.png'" alt="image" />
-    </div>
-  </div>
-
-  <div class="card-body d-flex flex-column p-4">
-    <a
-      class="shelter-name text-secondary fw-bold mb-3 text-center text-lg-start d-block"
-    >
-      {{ shelter.shelterName | titlecase }}
-    </a>
-
-    <div class="d-flex flex-column gap-2 mb-4">
-      <span class="d-flex align-items-center gap-2 card-text">
-        <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 256 256"
-        >
-          <rect width="256" height="256" fill="none" />
-          <circle
-            cx="128"
-            cy="104"
-            r="32"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          />
-          <path
-            d="M208,104c0,72-80,128-80,128S48,176,48,104a80,80,0,0,1,160,0Z"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          />
-        </svg>
-        {{ shelter.address }}
-      </span>
-      <span class="d-flex align-items-center gap-2 card-text">
-        <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 256 256"
-        >
-          <rect width="256" height="256" fill="none" />
-          <path
-            d="M152,48a78.61,78.61,0,0,1,56,56"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          />
-          <path
-            d="M156.39,153.34a8,8,0,0,1,7.59-.69l47.16,21.13a8,8,0,0,1,4.8,8.3A48.33,48.33,0,0,1,168,224,136,136,0,0,1,32,88,48.33,48.33,0,0,1,73.92,40.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L81.32,125a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59Z"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          />
-          <path
-            d="M141.23,86A44.11,44.11,0,0,1,170,114.77"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          />
-        </svg>
-        {{ shelter.phone }}
-      </span>
-      <span class="d-flex align-items-center gap-2 card-text">
-        <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 256 256"
-        >
-          <rect width="256" height="256" fill="none" />
-          <path
-            d="M224,96V200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V96l96-64Z"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          />
-          <polyline
-            points="224 96 145.46 152 110.55 152 32 96"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="24"
-          />
-        </svg>
-        {{ shelter.email }}
-      </span>
+  <ng-container *ngIf="!loading; else placeholder">
+    <div class="d-flex justify-content-center align-items-center p-3">
+      <div class="img-wrapper">
+        <img [src]="'shelter_logo_default_1.png'" alt="image" />
+      </div>
     </div>
 
-    <button
-      type="button"
-      (click)="viewPets.emit(shelter.id)"
-      class="btn btn-secondary text-uppercase fw-bold"
-    >
-      View Pets
-    </button>
-  </div>
+    <div class="card-body d-flex flex-column p-4">
+      <a
+        class="shelter-name text-secondary fw-bold mb-3 text-center text-lg-start d-block"
+      >
+        {{ shelter.shelterName | titlecase }}
+      </a>
+
+      <div class="d-flex flex-column gap-2 mb-4">
+        <span class="d-flex align-items-center gap-2 card-text">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+          >
+            <rect width="256" height="256" fill="none" />
+            <circle
+              cx="128"
+              cy="104"
+              r="32"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="24"
+            />
+            <path
+              d="M208,104c0,72-80,128-80,128S48,176,48,104a80,80,0,0,1,160,0Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="24"
+            />
+          </svg>
+          {{ shelter.address }}
+        </span>
+        <span class="d-flex align-items-center gap-2 card-text">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+          >
+            <rect width="256" height="256" fill="none" />
+            <path
+              d="M152,48a78.61,78.61,0,0,1,56,56"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="24"
+            />
+            <path
+              d="M156.39,153.34a8,8,0,0,1,7.59-.69l47.16,21.13a8,8,0,0,1,4.8,8.3A48.33,48.33,0,0,1,168,224,136,136,0,0,1,32,88,48.33,48.33,0,0,1,73.92,40.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L81.32,125a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="24"
+            />
+            <path
+              d="M141.23,86A44.11,44.11,0,0,1,170,114.77"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="24"
+            />
+          </svg>
+          {{ shelter.phone }}
+        </span>
+        <span class="d-flex align-items-center gap-2 card-text">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 256 256"
+          >
+            <rect width="256" height="256" fill="none" />
+            <path
+              d="M224,96V200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V96l96-64Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="24"
+            />
+            <polyline
+              points="224 96 145.46 152 110.55 152 32 96"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="24"
+            />
+          </svg>
+          {{ shelter.email }}
+        </span>
+      </div>
+
+      <button
+        type="button"
+        (click)="viewPets.emit(shelter.id)"
+        class="btn btn-secondary text-uppercase fw-bold"
+      >
+        View Pets
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #placeholder>
+    <div class="d-flex justify-content-center align-items-center p-3">
+      <div class="img-wrapper placeholder-wave">
+        <img [src]="''" />
+      </div>
+    </div>
+
+    <div class="card-body d-flex flex-column p-4 placeholder-wave">
+      <a
+        class="shelter-name mb-3 text-center text-lg-start d-block placeholder w-100"
+      >
+        {{ "placeholder text" }}
+      </a>
+
+      <div class="d-flex flex-column gap-2 mb-4 placehoder-wave">
+        <span
+          class="d-flex align-items-center gap-2 card-text placeholder w-100"
+        >
+          {{ "placeholder text" }}
+        </span>
+        <span
+          class="d-flex align-items-center gap-2 card-text placeholder w-100"
+        >
+          {{ "placeholder text" }}
+        </span>
+        <span
+          class="d-flex align-items-center gap-2 card-text placeholder w-100"
+        >
+          {{ "placeholder text" }}
+        </span>
+      </div>
+      <button
+        style="color: transparent"
+        type="button"
+        class="btn btn-secondary text-uppercase fw-bold placeholder-wave w-100"
+      >
+        {{ "placeholder text" }}
+      </button>
+    </div>
+  </ng-template>
 </div>
