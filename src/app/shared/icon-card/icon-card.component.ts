@@ -23,8 +23,6 @@ export class IconCardComponent {
   }
 
   public onClick(event: MouseEvent) {
-    console.log('clicked');
-
     this.clicked.emit();
   }
 }
