@@ -27,15 +27,6 @@ export class PetService {
     );
   }
 
-  // public getAllPets(
-  //   limit: number = 14,
-  //   offset: number = 0
-  // ): Observable<{ pets: Partial<Pet>[]; totalCount: number }> {
-  //   return this.http.get<{ pets: Partial<Pet>[]; totalCount: number }>(
-  //     `${this.API_URL}/pets?limit=${limit}&offset=${offset}`
-  //   );
-  // }
-
   public getAllPets(
     limit: number = 14,
     offset: number = 0,
@@ -65,6 +56,12 @@ export class PetService {
 
     return this.http.get<{ pets: Partial<Pet>[]; totalCount: number }>(
       `${this.API_URL}/pets/user/${userId}?limit=${limit}&offset=${offset}`
+    );
+  }
+
+  public getPetsByShelterId(shelterId: string, limit = 15, offset = 0) {
+    return this.http.get<{ pets: Partial<Pet>[]; totalCount: number }>(
+      `${this.API_URL}/public/pets/user/${shelterId}?limit=${limit}&offset=${offset}`
     );
   }
 

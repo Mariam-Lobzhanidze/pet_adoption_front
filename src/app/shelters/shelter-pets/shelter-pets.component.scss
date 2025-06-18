@@ -1,0 +1,18 @@
+@use "mixins" as m;
+.card-list {
+  @include m.grid(
+    2,
+    16px,
+    (
+      md: 3,
+      lg: 4,
+      xl: 5,
+    )
+  );
+}
+
+@include m.media-down(md) {
+  .shelter-name {
+    font-size: 18px;
+  }
+}

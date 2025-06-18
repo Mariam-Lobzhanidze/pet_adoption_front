@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Shelter } from '../../shared/models/user.model';
 import { TitleCasePipe } from '@angular/common';
 
@@ -18,4 +18,6 @@ export class ShelterCardComponent {
     logo: '',
     email: '',
   };
+
+  @Output() viewPets = new EventEmitter<string>();
 }

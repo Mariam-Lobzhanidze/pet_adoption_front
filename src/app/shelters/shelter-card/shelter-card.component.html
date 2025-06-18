@@ -103,7 +103,11 @@
       </span>
     </div>
 
-    <button type="button" class="btn btn-secondary text-uppercase fw-bold">
+    <button
+      type="button"
+      (click)="viewPets.emit(shelter.id)"
+      class="btn btn-secondary text-uppercase fw-bold"
+    >
       View Pets
     </button>
   </div>

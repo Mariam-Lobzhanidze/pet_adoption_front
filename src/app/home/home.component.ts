@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
     }
 
     if (value === 'shelters') {
-      this.router.navigate(['shelter-list']);
+      this.router.navigate(['shelters', 'list']);
     }
   }
 

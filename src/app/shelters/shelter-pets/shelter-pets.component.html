@@ -1,0 +1,27 @@
+<div class="container container-fluid">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb small text-muted">
+      <li class="breadcrumb-item">
+        <a (click)="onBackToSheltersList()" class="text-decoration-none"
+          >Shelters</a
+        >
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Pets</li>
+    </ol>
+  </nav>
+  <h3 class="mb-4 text-center shelter-name">
+    Meet the Pets at
+    <span class="text-secondary fw-bold">{{ shelterName | titlecase }}</span>
+  </h3>
+
+  <div class="card-list">
+    @if(loading() ) { @for(item of placeholders;let i=$index;track i ) {
+    <app-card [loading]="true"></app-card>
+
+    } }@else { @for (item of petCardData ;let i=$index; track i) {
+
+    <app-card [item]="item" [loading]="false"></app-card>
+
+    } }
+  </div>
+</div>

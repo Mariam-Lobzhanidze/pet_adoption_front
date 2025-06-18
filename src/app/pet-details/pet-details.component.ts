@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PetService } from '../services/pet.service';
 import { Pet } from '../shared/models/pet.model';
 import { ImageCarouselComponent } from '../shared/gallery/gallery.component';
@@ -23,7 +23,12 @@ interface Options {
 @Component({
   selector: 'app-pet-details',
   standalone: true,
-  imports: [ImageCarouselComponent, TitleCasePipe, DottedListComponent],
+  imports: [
+    ImageCarouselComponent,
+    TitleCasePipe,
+    DottedListComponent,
+    RouterLink,
+  ],
   providers: [LabelFromOptionsPipe],
   templateUrl: './pet-details.component.html',
   styleUrl: './pet-details.component.scss',

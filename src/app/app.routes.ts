@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ShelterComponent } from './shelters/shelter/shelter.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -62,10 +63,23 @@ export const routes: Routes = [
   },
 
   {
-    path: 'shelter-list',
-    loadComponent: () =>
-      import('./shelters/shelter-list/shelter-list.component').then(
-        (m) => m.ShelterListComponent
-      ),
+    path: 'shelters',
+    component: ShelterComponent,
+    children: [
+      {
+        path: 'list',
+        loadComponent: () =>
+          import('./shelters/shelter-list/shelter-list.component').then(
+            (m) => m.ShelterListComponent
+          ),
+      },
+      {
+        path: ':id/pets',
+        loadComponent: () =>
+          import('./shelters/shelter-pets/shelter-pets.component').then(
+            (m) => m.ShelterPetsComponent
+          ),
+      },
+    ],
   },
 ];
