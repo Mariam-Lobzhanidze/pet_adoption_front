@@ -28,7 +28,7 @@ export class PetService {
   }
 
   public getAllPets(
-    limit: number = 14,
+    limit: number = 10,
     offset: number = 0,
     filters: { [key: string]: any } = {}
   ): Observable<{ pets: Partial<Pet>[]; totalCount: number }> {
@@ -59,7 +59,7 @@ export class PetService {
     );
   }
 
-  public getPetsByShelterId(shelterId: string, limit = 15, offset = 0) {
+  public getPetsByShelterId(shelterId: string, limit = 5, offset = 0) {
     return this.http.get<{ pets: Partial<Pet>[]; totalCount: number }>(
       `${this.API_URL}/public/pets/user/${shelterId}?limit=${limit}&offset=${offset}`
     );
