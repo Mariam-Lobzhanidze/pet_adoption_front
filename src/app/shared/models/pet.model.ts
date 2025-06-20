@@ -19,6 +19,12 @@ export interface Pet {
   goodWith?: GoodWith[];
   status?: Status;
   history?: string;
+  owner?: {
+    isShelter: boolean;
+    shelterName: string;
+    username: string;
+    address: string;
+  };
 }
 
 export interface PetImageUploadResponse {

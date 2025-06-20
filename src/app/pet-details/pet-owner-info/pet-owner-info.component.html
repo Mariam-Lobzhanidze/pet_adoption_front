@@ -1,0 +1,156 @@
+<div class="card p-3">
+  @if(ownerData.isShelter){
+  <h3 class="text-secondary fw-bold text-center">
+    {{ ownerData.shelterName | titlecase }}
+  </h3>
+  }@else {
+  <h3 class="text-secondary fw-bold text-center">
+    {{
+      ownerData.username
+        ? (ownerData.username | titlecase) + "'s Pet"
+        : "Pet Owner"
+    }}
+  </h3>
+
+  }
+
+  <div class="pet-owner-contacts d-flex flex-column gap-2 my-4">
+    @if(ownerData.address){
+    <div class="my-1"></div>
+    <app-map [addressCoords]="coords"></app-map>
+    <div class="my-2"></div>
+    <div class="address">
+      <svg
+        class="icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 256 256"
+      >
+        <rect width="256" height="256" fill="none" />
+        <circle
+          cx="128"
+          cy="104"
+          r="32"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+        <path
+          d="M208,104c0,72-80,128-80,128S48,176,48,104a80,80,0,0,1,160,0Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+      </svg>
+
+      <p>{{ ownerData.address }}</p>
+    </div>
+    <div class="border-top my-2"></div>
+
+    }
+
+    <div class="email">
+      <svg
+        class="icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 256 256"
+      >
+        <rect width="256" height="256" fill="none" />
+        <path
+          d="M224,96V200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V96l96-64Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+        <polyline
+          points="224 96 145.46 152 110.55 152 32 96"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+      </svg>
+      <p>{{ ownerData.contactEmail }}</p>
+    </div>
+    <div class="border-top my-2"></div>
+    <div class="phone">
+      <svg
+        class="icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 256 256"
+      >
+        <rect width="256" height="256" fill="none" />
+        <path
+          d="M152,48a78.61,78.61,0,0,1,56,56"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+        <path
+          d="M156.39,153.34a8,8,0,0,1,7.59-.69l47.16,21.13a8,8,0,0,1,4.8,8.3A48.33,48.33,0,0,1,168,224,136,136,0,0,1,32,88,48.33,48.33,0,0,1,73.92,40.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L81.32,125a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+        <path
+          d="M141.23,86A44.11,44.11,0,0,1,170,114.77"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+      </svg>
+      <p>
+        <a class="text-secondary" href="tel:{{ ownerData.contactPhone }}">{{
+          ownerData.contactPhone
+        }}</a>
+      </p>
+    </div>
+
+    <div class="border-top my-2"></div>
+    <div class="phone">
+      <svg
+        class="icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 256 256"
+      >
+        <rect width="256" height="256" fill="none" />
+        <path
+          d="M152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L98.65,121.6l1.65,4a56.47,56.47,0,0,0,30.15,30.15l4,1.65,18.17-12.12,23,11.48A24,24,0,0,1,152,176Z"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+        <path
+          d="M79.93,211.11a96,96,0,1,0-35-35h0L32.42,213.46a8,8,0,0,0,10.12,10.12l37.39-12.47Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="24"
+        />
+      </svg>
+      <p>
+        <a
+          [href]="'https://wa.me/' + phone"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Chat on WhatsApp
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

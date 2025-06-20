@@ -14,6 +14,7 @@ import {
 } from '../constants/pet.constants';
 import { LabelFromOptionsPipe } from '../pipes/labelFromOptions';
 import { GEORGIAN_CITIES } from '../constants/georgianCities';
+import { PetOwnerInfoComponent } from './pet-owner-info/pet-owner-info.component';
 
 interface Options {
   value: string;
@@ -27,7 +28,8 @@ interface Options {
     ImageCarouselComponent,
     TitleCasePipe,
     DottedListComponent,
-    RouterLink,
+    // RouterLink,
+    PetOwnerInfoComponent,
   ],
   providers: [LabelFromOptionsPipe],
   templateUrl: './pet-details.component.html',

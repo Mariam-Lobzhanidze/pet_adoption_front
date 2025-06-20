@@ -1,0 +1,16 @@
+.pet-owner-contacts {
+  .address,
+  .email,
+  .phone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    p {
+      font-size: 14px;
+    }
+    .icon {
+      width: 20px;
+      color: var(--bs-secondary);
+    }
+  }
+}
