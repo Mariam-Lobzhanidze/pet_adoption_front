@@ -17,6 +17,7 @@ import { NavigationService } from '../services/navigation.service';
 import { User } from '../shared/models/user.model';
 import { DropdownComponent } from '../shared/dropdown/dropdown.component';
 import { OffcanvasManagerService } from '../services/offcanas-manager.service';
+import { UIStateService } from '../services/ui-state.service';
 
 @Component({
   selector: 'app-nav',
@@ -34,11 +35,10 @@ import { OffcanvasManagerService } from '../services/offcanas-manager.service';
   styleUrl: './nav.component.scss',
 })
 export class NavComponent implements OnInit {
-  // public isLoggedIn: boolean = false;
   public activeUser!: Partial<User> | null;
 
   @ViewChild(SidebarComponent) mobileNavSidebar!: SidebarComponent;
-  public showSecondaryNav: boolean = false;
+
   public showSubMenu: boolean = false;
 
   public navItems: { title: string; items: Item[] }[] = [
@@ -63,11 +63,16 @@ export class NavComponent implements OnInit {
     public authService: AuthService,
     private router: Router,
     private navigationService: NavigationService,
-    private offcanvasManager: OffcanvasManagerService
+    private offcanvasManager: OffcanvasManagerService,
+    public ui: UIStateService
   ) {}
 
   ngOnInit() {
     this.activeUser = this.authService.user();
+  }
+
+  public toggleSecondaryNav() {
+    this.ui.toggleSecondaryNav();
   }
 
   public onShowSubMenu(selectedData: { title: string; items: Item[] }): void {

@@ -10,12 +10,12 @@
       <li class="nav-item">
         <button
           class="btn icon-link text-light fw-bold border-0"
-          (click)="this.showSecondaryNav = !this.showSecondaryNav"
+          (click)="toggleSecondaryNav()"
         >
           All about pets
 
           <span class="caret-icon d-flex align-items-center">
-            @if(!showSecondaryNav) {
+            @if(!ui.isSecondaryNavVisible()) {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
               <rect width="256" height="256" fill="none" />
               <polyline
@@ -124,7 +124,7 @@
   </div>
 
   <app-secondary-nav
-    [isVisible]="showSecondaryNav"
+    [isVisible]="ui.isSecondaryNavVisible()"
     [secondaryNavItems]="navItems"
   ></app-secondary-nav>
 </nav>

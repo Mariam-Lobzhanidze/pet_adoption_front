@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ShelterComponent } from './shelters/shelter/shelter.component';
+import { FeatureInProgressComponent } from './shared/feature-in-progress/feature-in-progress.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -82,4 +83,5 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: 'coming-soon', component: FeatureInProgressComponent },
 ];

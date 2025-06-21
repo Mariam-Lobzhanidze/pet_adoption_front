@@ -40,7 +40,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { emptyArrayValidator } from '../validators/validators';
 import { ONLY_NUMBERS_AND_PLUS_SIGN } from '../validators/patterns';
 import { ToastService } from '../services/toast.service';
-import { ImageService } from '../services/imageService';
+import { ImageService } from '../services/image-service';
 
 interface Options {
   value: string;
