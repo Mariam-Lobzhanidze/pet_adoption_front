@@ -84,4 +84,5 @@ export const routes: Routes = [
     ],
   },
   { path: 'coming-soon', component: FeatureInProgressComponent },
+  { path: '**', redirectTo: '/coming-soon' },
 ];
