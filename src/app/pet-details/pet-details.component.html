@@ -7,6 +7,7 @@
   <div
     class="pet-info-group d-flex flex-lg-row flex-column gap-3 container container-fluid"
   >
+    @if(pet.name && petBreed && petCity && petDataLabels.length) {
     <div class="pet-info-card card p-4">
       <h2
         class="text-primary fw-bold mb-3 d-flex justify-content-center justify-content-lg-start"
@@ -50,6 +51,38 @@
         </div>
       </div>
     </div>
+    } @else {
+    <div class="pet-info-card card p-4 placeholder-wave">
+      <h2 class="mb-3 placeholder bg-secondary text-secondary">
+        {{ "placeholder text" }}
+      </h2>
+
+      <div class="d-flex flex-column gap-3">
+        <div class="pet-info-details">
+          <div class="placeholder w-100">
+            <p>{{ "placeholder text" }}</p>
+          </div>
+          <div class="border-top border-light my-2"></div>
+          <div class="placeholder w-100">
+            <p>{{ "placeholder text" }}</p>
+          </div>
+          <div class="border-top border-light my-2"></div>
+        </div>
+        <div class="health-and-care">
+          <h5 class="mb-3 placeholder bg-secondary text-secondary w-100">
+            {{ "placeholder text" }}
+          </h5>
+          <div class="d-flex flex-wrap gap-2">
+            @for(label of ['empty','empty','empty'];track label) {
+            <span class="placeholder">{{ label }}</span>
+            }
+          </div>
+        </div>
+        <div class="border-top my-2 border-light"></div>
+      </div>
+    </div>
+    }
+
     <div class="pet-owner-card">
       @if(pet.owner && pet.contactEmail && pet.contactPhone) {
       <app-pet-owner-info

@@ -1,20 +1,26 @@
-<div class="card p-3">
-  @if(ownerData.isShelter){
-  <h3 class="text-secondary fw-bold text-center">
+<div class="card p-3 position-relative">
+  @if(ownerData.isShelter){ @if(ownerData.shelterName) {
+  <h3 class="fw-bold text-center">
     {{ ownerData.shelterName | titlecase }}
   </h3>
-  }@else {
+
+  } @else {
+  <h3 class="fw-bold text-center placeholder">
+    {{ "placeholder text" }}
+  </h3>
+  } }@else {
   <h3 class="text-secondary fw-bold text-center">
-    {{
+    <!-- {{
       ownerData.username
         ? (ownerData.username | titlecase) + "'s Pet"
         : "Pet Owner"
-    }}
+    }} -->
+    Pet owner contacts
   </h3>
 
   }
 
-  <div class="pet-owner-contacts d-flex flex-column gap-2 my-4">
+  <div class="pet-owner-contacts d-flex flex-column gap-2 mt-1 mb-5">
     @if(ownerData.address){
     <div class="my-1"></div>
     <app-map [addressCoords]="coords"></app-map>
@@ -52,33 +58,6 @@
 
     }
 
-    <div class="email">
-      <svg
-        class="icon"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 256 256"
-      >
-        <rect width="256" height="256" fill="none" />
-        <path
-          d="M224,96V200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V96l96-64Z"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="24"
-        />
-        <polyline
-          points="224 96 145.46 152 110.55 152 32 96"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="24"
-        />
-      </svg>
-      <p>{{ ownerData.contactEmail }}</p>
-    </div>
-    <div class="border-top my-2"></div>
     <div class="phone">
       <svg
         class="icon"
@@ -112,14 +91,14 @@
         />
       </svg>
       <p>
-        <a class="text-secondary" href="tel:{{ ownerData.contactPhone }}">{{
+        <a href="tel:{{ ownerData.contactPhone }}">{{
           ownerData.contactPhone
         }}</a>
       </p>
     </div>
-
     <div class="border-top my-2"></div>
-    <div class="phone">
+
+    <div class="email">
       <svg
         class="icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -127,14 +106,15 @@
       >
         <rect width="256" height="256" fill="none" />
         <path
-          d="M152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L98.65,121.6l1.65,4a56.47,56.47,0,0,0,30.15,30.15l4,1.65,18.17-12.12,23,11.48A24,24,0,0,1,152,176Z"
+          d="M224,96V200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V96l96-64Z"
+          fill="none"
           stroke="currentColor"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="24"
         />
-        <path
-          d="M79.93,211.11a96,96,0,1,0-35-35h0L32.42,213.46a8,8,0,0,0,10.12,10.12l37.39-12.47Z"
+        <polyline
+          points="224 96 145.46 152 110.55 152 32 96"
           fill="none"
           stroke="currentColor"
           stroke-linecap="round"
@@ -142,15 +122,17 @@
           stroke-width="24"
         />
       </svg>
-      <p>
-        <a
-          [href]="'https://wa.me/' + phone"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Chat on WhatsApp
-        </a>
-      </p>
+      <p>{{ ownerData.contactEmail }}</p>
     </div>
+    <div class="border-top my-2"></div>
   </div>
+  <a
+    role="button"
+    class="btn btn-secondary whatsapp-phone w-100 rounded-0 position-absolute bottom-0 start-0 end-0"
+    [href]="'https://wa.me/' + phone"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Call on WhatsApp
+  </a>
 </div>
