@@ -1,8 +1,9 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PetService } from './pet.service';
 import { environment } from '../../environments/environment';
 import { Pet } from '../shared/models/pet.model';
+import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class FavoritesService {
@@ -12,12 +13,32 @@ export class FavoritesService {
 
   private _loading = signal(true);
 
-  constructor(private http: HttpClient, private petService: PetService) {
-    this.loadFavorites();
+  constructor(
+    private http: HttpClient,
+    private petService: PetService,
+    private authService: AuthService
+  ) {
+    effect(
+      () => {
+        if (this.authService.isLoggedIn()) {
+          this.loadFavorites();
+        } else {
+          this.clearFavorites();
+        }
+      },
+      { allowSignalWrites: true }
+    );
+  }
+
+  private clearFavorites() {
+    this.favoritePets.set([]);
+    this.favoriteIds.set(new Set());
+    this._loading.set(false);
   }
 
   private loadFavorites(): void {
     this._loading.set(true);
+
     this.petService.getFavoritePets().subscribe(
       (res) => {
         this.favoritePets.set(res.pets);
