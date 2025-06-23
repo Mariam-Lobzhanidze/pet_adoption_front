@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, effect, signal, Signal } from '@angular/core';
 import { Pet } from '../shared/models/pet.model';
-import { PetService } from '../services/pet.service';
+
 import { CardComponent } from '../shared/card/card.component';
 import { SectionTitleComponent } from '../shared/section-title/section-title.component';
+import { FavoritesService } from '../services/favorites.service';
 
 @Component({
   selector: 'app-favorites',
@@ -12,37 +13,13 @@ import { SectionTitleComponent } from '../shared/section-title/section-title.com
   styleUrl: './favorites.component.scss',
 })
 export class FavoritesComponent {
-  public loading = true;
-  public myPets: Partial<Pet>[] = [];
-  // public totalCount: number = 0;
-  // public limit: number = 10;
-  // public currentPage: number = 1;
+  public loading!: Signal<boolean>;
+  public myPets!: Signal<Pet[]>;
 
-  constructor(private petService: PetService) {}
+  constructor(private favoritesService: FavoritesService) {}
 
   ngOnInit() {
-    this.loadPets();
+    this.myPets = this.favoritesService.favorites;
+    this.loading = this.favoritesService.loading;
   }
-
-  private loadPets() {
-    // const offset = (this.currentPage - 1) * this.limit;
-
-    this.petService.getFavoritePets().subscribe({
-      next: (response) => {
-        console.log(response);
-
-        this.myPets = response.pets;
-        // this.totalCount = response.totalCount;
-        this.loading = false;
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
-  }
-
-  // public goToPage(page: number) {
-  //   this.currentPage = page;
-  //   this.loadPets();
-  // }
 }

@@ -119,8 +119,8 @@
   @if(!loading && imageLoaded && isLoggedIn()) {
   <app-favorite-btn
     [positions]="{ top: '8px', right: '8px' }"
-    [isFavorite]="isFavorite"
-    (isFavoriteChange)="updateFavoriteStatus($event)"
+    [isFavorite]="isFavorite()"
+    (isFavoriteChange)="updateFavoriteStatus()"
   ></app-favorite-btn>
 
   }

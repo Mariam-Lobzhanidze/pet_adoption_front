@@ -6,6 +6,8 @@ import {
   Input,
   OnInit,
   Output,
+  Signal,
+  signal,
 } from '@angular/core';
 import { FavoriteBtnComponent } from '../favorite-btn/favorite-btn.component';
 import { Pet } from '../models/pet.model';
@@ -14,6 +16,7 @@ import { Item } from '../models/item.model';
 import { PetService } from '../../services/pet.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-card',
@@ -29,7 +32,7 @@ export class CardComponent implements OnInit {
   public imageLoaded: boolean = false;
   @Input() item: Partial<Pet> = {};
 
-  public isFavorite: boolean = false;
+  isFavorite!: Signal<boolean>;
   @Input() showEdit: boolean = false;
   private currentPetId: string = '';
   @Output() idUpdated = new EventEmitter<{ id: string }>();
@@ -46,24 +49,14 @@ export class CardComponent implements OnInit {
   constructor(
     private petService: PetService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private favoritesService: FavoritesService
   ) {}
 
   ngOnInit() {
     this.currentUserId = this.authService.user()?.id;
-    this.setFavoriteStatus();
-  }
 
-  private setFavoriteStatus() {
-    if (this.item.id) {
-      const isIncluded = this.authService
-        .user()
-        ?.favorites?.includes(this.item.id);
-
-      if (isIncluded) {
-        this.isFavorite = true;
-      }
-    }
+    this.isFavorite = this.favoritesService.isFavorite(this.item.id!);
   }
 
   public onCardSelect(id: string | undefined, event: Event) {
@@ -79,22 +72,8 @@ export class CardComponent implements OnInit {
     this.idUpdated.emit({ id: this.currentPetId });
   }
 
-  public updateFavoriteStatus(status: boolean): void {
-    // if (!this.authService.user()) {
-    //   this.router.navigate(['auth'], { queryParams: { authView: 'login' } });
-    //   return;
-    // }
-
-    this.isFavorite = status;
-    if (this.item.id && this.currentUserId) {
-      this.petService
-        .toggleFavorite(this.item.id, this.currentUserId)
-        .subscribe((res) => {
-          this.isFavorite = res.isFavorite;
-
-          this.authService.updateFavorite(this.item.id!, res.isFavorite);
-        });
-    }
+  updateFavoriteStatus(): void {
+    this.favoritesService.toggleFavorite(this.item.id!);
   }
 
   public onNavigateToDetails(): void {

@@ -17,9 +17,9 @@ export class FavoriteBtnComponent {
     right?: string;
   } = { top: '0px', bottom: '0px', left: '0px', right: '0px' };
 
-  @Output() isFavoriteChange = new EventEmitter<boolean>();
+  @Output() isFavoriteChange = new EventEmitter<void>();
 
   public toggleFavorite(): void {
-    this.isFavoriteChange.emit(!this.isFavorite);
+    this.isFavoriteChange.emit();
   }
 }
