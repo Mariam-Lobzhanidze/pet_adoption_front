@@ -29,6 +29,7 @@
     @for (item of submenuData?.items; track item.label) {
     <li class="nav-item p-2">
       <a
+        [routerLink]="item.route"
         class="nav-link"
         (click)="onCloseSubMenu()"
         data-bs-dismiss="offcanvas"

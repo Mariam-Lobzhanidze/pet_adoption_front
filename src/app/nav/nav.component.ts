@@ -76,6 +76,8 @@ export class NavComponent implements OnInit {
   }
 
   public onShowSubMenu(selectedData: { title: string; items: Item[] }): void {
+    console.log(selectedData);
+
     this.selectedSidebarData = selectedData;
     this.showSubMenu = true;
   }
